@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminSekolahController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -38,6 +39,9 @@ Route::middleware('auth')->group(function () {
 
 
 Route::get('/', [HomeController::class, 'index']);
+
+//ROute Admin Sekolah
+Route::get('/sekolah/dashboard', [AdminSekolahController::class, 'index']);
 
 
 

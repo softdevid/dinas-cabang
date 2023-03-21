@@ -16,11 +16,12 @@
     @viteReactRefresh
     @vite(['resources/js/app.jsx', "resources/js/Pages/{$page['component']}.jsx"])
     @inertiaHead
+    {{-- <link rel="stylesheet" href="{{ asset('flowbite.min.css') }}"> --}}
+
 </head>
 
 <body class="font-sans antialiased">
     @inertia
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script> --}}
 </body>
 
 </html>

@@ -13,4 +13,39 @@ class HomeController extends Controller
             'title' => 'Dinas Cabang',
         ]);
     }
+
+    public function profilPejabat()
+    {
+        return Inertia::render('Home/ProfilPejabat', [
+            'title' => 'Profil Pejabat',
+        ]);
+    }
+
+    public function sejarah()
+    {
+        return Inertia::render('Home/Sejarah', [
+            'title' => 'Sejarah',
+        ]);
+    }
+
+    public function berita()
+    {
+        return Inertia::render('Home/Berita', [
+            'title' => 'Berita',
+        ]);
+    }
+
+    public function visiMisi()
+    {
+        return Inertia::render('Home/VisiMisi', [
+            'title' => 'Visi dan Misi',
+        ]);
+    }
+
+    public function galeri()
+    {
+        return Inertia::render('Home/Galeri', [
+            'title' => 'Galeri',
+        ]);
+    }
 }

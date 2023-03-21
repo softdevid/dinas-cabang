@@ -2,13 +2,22 @@ import Main from "@/Components/HomePage/Main";
 import { Head } from "@inertiajs/react";
 
 const Sejarah = (props) => {
-    // console.log(props);
     return (
         <>
             <Head title={props.title} />
-            <h1 className="text-5xl text-center mt-5">{props.title}</h1>
-            <div className="border-2 border-black w-[7%] mx-auto my-2"></div>
-            <div className="hidden md:block mt-3">
+            <div className="bg-black">
+                <div className="w-full overflow-auto h-[40vh] md:h-[60vh] z-0 bg-cover bg-center bg-opacity-80" style={{ backgroundImage: `url(${'https://source.unsplash.com/600x400?random'})` }}>
+                    <div className="items-center justify-center flex h-[40vh] md:h-[60vh]">
+                        <div className="h-auto w-full text-center md:text-left md:ml-32">
+                            <h1 className="text-6xl sm:text-center md:text-left text-white z-50">{props.title}</h1>
+                            <b className="text-2xl text-white">Selamat datang di {props.title}</b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/* <h1 className="text-5xl text-center mt-5">{props.title}</h1>
+            <div className="border-2 border-black w-[7%] mx-auto my-2"></div> */}
+            <div className="hidden md:block mt-3" id="sejarah">
                 <div className="flex">
                     <div className="w-[35%] m-5 flex justify-end items-end">
                         <div className="grid-cols-1 gap-8 grid">

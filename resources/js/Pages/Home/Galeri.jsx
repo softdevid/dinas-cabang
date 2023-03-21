@@ -32,18 +32,24 @@ const Galeri = (props) => {
             <div>
                 {galeri.data === "video" ? (
                     <>
-                        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mx-5 md:mx-[90px]">
-                            <div className="bg-black opacity-[0.9] max-w-sm mx-auto shadow-lg border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
-                                <img className="rounded-lg sm:h-[200px] sm:w-[350px] md:h-[200px] md:w-[250px] lg:h-[260px] lg:w-[400px] object-cover object-center mx-auto" src="https://source.unsplash.com/600x400?random" alt="" />
+                        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 mx-5 md:mx-[90px]">
+                            <div className="object-cover">
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/4EE0TlFBXMM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                             </div>
-                            <div className="bg-black opacity-[0.9] max-w-sm mx-auto shadow-lg border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
-                                <img className="rounded-lg sm:h-[200px] sm:w-[350px] md:h-[200px] md:w-[250px] lg:h-[260px] lg:w-[400px] object-cover object-center mx-auto" src="https://source.unsplash.com/600x400?random" alt="" />
+                            <div className="object-cover">
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/4EE0TlFBXMM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                             </div>
-                            <div className="bg-black opacity-[0.9] max-w-sm mx-auto shadow-lg border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
-                                <img className="rounded-lg sm:h-[200px] sm:w-[350px] md:h-[200px] md:w-[250px] lg:h-[260px] lg:w-[400px] object-cover object-center mx-auto" src="https://source.unsplash.com/600x400?random" alt="" />
+                            <div className="object-cover">
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/4EE0TlFBXMM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                             </div>
-                            <div className="bg-black opacity-[0.9] max-w-sm mx-auto shadow-lg border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
-                                <img className="rounded-lg sm:h-[200px] sm:w-[350px] md:h-[200px] md:w-[250px] lg:h-[260px] lg:w-[400px] object-cover object-center mx-auto" src="https://source.unsplash.com/600x400?random" alt="" />
+                            <div className="object-cover">
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/4EE0TlFBXMM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            </div>
+                            <div className="object-cover">
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/4EE0TlFBXMM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            </div>
+                            <div className="object-cover">
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/4EE0TlFBXMM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                             </div>
                         </div>
                     </>

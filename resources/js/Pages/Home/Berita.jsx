@@ -8,15 +8,15 @@ const Berita = (props) => {
         <>
             <Head title={props.title} />
             <div className="bg-black">
-                <div className="w-full overflow-auto h-[60vh] z-30 bg-cover bg-center opacity-60" style={{ backgroundImage: `url(${'https://source.unsplash.com/600x400?random'})` }}>
-                    <div className="items-center justify-center flex h-[50vh]">
-                        <div className="w-auto h-auto">
-                            <h1 className="text-4xl text-black z-50">Berita</h1>
+                <div className="w-full overflow-auto h-[60vh] z-0 bg-cover bg-center" style={{ backgroundImage: `url(${'https://source.unsplash.com/600x400?random'})` }}>
+                    <div className="items-center justify-center flex h-[60vh]">
+                        <div className="h-auto w-full text-center md:text-left md:ml-32">
+                            <h1 className="text-6xl sm:text-center md:text-left text-white z-50">{props.title}</h1>
                         </div>
                     </div>
-                    <div className="items-center justify-center flex h-[60vh] md:-mt-[50vh]">
+                    {/* <div className="items-center justify-center flex h-[60vh] md:-mt-[50vh]">
                         <h1 className="text-3xl text-black z-50">Selamat datang di Berita artikel seputar pendidikan</h1>
-                    </div>
+                    </div> */}
                 </div>
             </div>
 
@@ -34,8 +34,8 @@ const Berita = (props) => {
 
 
             <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 sm:mx-2 gap-8 my-8 md:mx-[90px]">
-                <div className="max-w-sm mx-auto shadow-lg bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
-                    <img className="rounded-t-lg h-[280px] w-[380px] object-cover object-top mx-auto" src="https://source.unsplash.com/600x400?random" alt="" />
+                <div className="max-w-sm sm:mx-5 md:mx-2 justify-center items-center shadow-lg bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+                    <img className="rounded-t-lg h-200 w-340 md:h-[280px] md:w-[380px] object-cover object-top mx-auto" src="https://source.unsplash.com/600x400?random" alt="" />
                     <div className="p-5">
                         <div className="grid grid-cols-2 gap-4 mb-2">
                             <div className="flex" title="Waktu Posting">
@@ -48,8 +48,7 @@ const Berita = (props) => {
                                 <NewspaperIcon className="w-5 h-5" /> <b className="text-xs ml-2">Berita</b>
                             </div>
                         </div>
-                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-                        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                        <h5 className="mb-2 text-lg md:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
                         <div className="border-2 border-black w-[90%] mx-auto"></div>
 
                         <div className="justify-center items-center flex mt-3">
@@ -74,8 +73,7 @@ const Berita = (props) => {
                                 <NewspaperIcon className="w-5 h-5" /> <b className="text-xs ml-2">Berita</b>
                             </div>
                         </div>
-                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-                        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                        <h5 className="mb-2 text-lg md:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
                         <div className="border-2 border-black w-[90%] mx-auto"></div>
 
                         <div className="justify-center items-center flex mt-3">
@@ -100,8 +98,7 @@ const Berita = (props) => {
                                 <NewspaperIcon className="w-5 h-5" /> <b className="text-xs ml-2">Berita</b>
                             </div>
                         </div>
-                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-                        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                        <h5 className="mb-2 text-lg md:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
                         <div className="border-2 border-black w-[90%] mx-auto"></div>
 
                         <div className="justify-center items-center flex mt-3">
@@ -126,8 +123,7 @@ const Berita = (props) => {
                                 <NewspaperIcon className="w-5 h-5" /> <b className="text-xs ml-2">Berita</b>
                             </div>
                         </div>
-                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-                        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                        <h5 className="mb-2 text-lg md:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
                         <div className="border-2 border-black w-[90%] mx-auto"></div>
 
                         <div className="justify-center items-center flex mt-3">
@@ -152,8 +148,7 @@ const Berita = (props) => {
                                 <NewspaperIcon className="w-5 h-5" /> <b className="text-xs ml-2">Berita</b>
                             </div>
                         </div>
-                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-                        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                        <h5 className="mb-2 text-lg md:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
                         <div className="border-2 border-black w-[90%] mx-auto"></div>
 
                         <div className="justify-center items-center flex mt-3">
@@ -178,8 +173,7 @@ const Berita = (props) => {
                                 <NewspaperIcon className="w-5 h-5" /> <b className="text-xs ml-2">Berita</b>
                             </div>
                         </div>
-                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-                        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                        <h5 className="mb-2 text-lg md:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
                         <div className="border-2 border-black w-[90%] mx-auto"></div>
 
                         <div className="justify-center items-center flex mt-3">

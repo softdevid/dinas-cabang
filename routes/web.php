@@ -50,5 +50,6 @@ Route::get('/layanan-publik', [HomeController::class, 'layananPublik'])->name('h
 Route::get('/index-kepuasan-masyarakat', [HomeController::class, 'indexKepuasanMasyarakat'])->name('home.indexKepuasanMasyarakat');
 Route::get('/formulir-pengaduan', [HomeController::class, 'formulirPengaduan'])->name('home.formulirPengaduan');
 Route::get('/prestasi', [HomeController::class, 'prestasi'])->name('home.prestasi');
+Route::get('/survey-kepuasan-masyarakat', [HomeController::class, 'surveyKepuasanMasyarakat'])->name('home.surveyKepuasanMasyarakat');
 
 require __DIR__ . '/auth.php';

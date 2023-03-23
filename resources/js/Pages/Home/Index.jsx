@@ -215,7 +215,62 @@ const Index = (props) => {
         </div>
       </div>
 
-      {/* <div className="w-full h-52 bg-cover bg-center" style={{ backgroundImage: `url(${gambarList[gambarIndex]})` }}></div> */}
+
+      <h1 className="text-center text-3xl">Galeri</h1>
+      <div className="border-[1px] border-black w-[6%] mx-auto mb-3"></div>
+      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mx-5 md:mx-[90px]">
+        <div className="bg-black opacity-[0.9] max-w-sm mx-auto shadow-lg border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+          <img
+            className="rounded-lg sm:h-[200px] sm:w-[350px] md:h-[200px] md:w-[250px] lg:h-[260px] lg:w-[400px] object-cover object-center mx-auto"
+            src="https://source.unsplash.com/600x400?random"
+            alt=""
+          />
+        </div>
+        <div className="bg-black opacity-[0.9] max-w-sm mx-auto shadow-lg border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+          <img
+            className="rounded-lg sm:h-[200px] sm:w-[350px] md:h-[200px] md:w-[250px] lg:h-[260px] lg:w-[400px] object-cover object-center mx-auto"
+            src="https://source.unsplash.com/600x400?random"
+            alt=""
+          />
+        </div>
+        <div className="bg-black opacity-[0.9] max-w-sm mx-auto shadow-lg border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+          <img
+            className="rounded-lg sm:h-[200px] sm:w-[350px] md:h-[200px] md:w-[250px] lg:h-[260px] lg:w-[400px] object-cover object-center mx-auto"
+            src="https://source.unsplash.com/600x400?random"
+            alt=""
+          />
+        </div>
+      </div>
+
+      <div className="mt-5 md:my-16">
+        <h1 className="text-center text-3xl">Mitra</h1>
+        <div className="border-[1px] border-black w-[6%] mx-auto mb-3"></div>
+        <div className="grid sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-8 mx-5 md:mx-[90px]">
+          <div className="bg-black opacity-[0.9] max-w-sm mx-auto shadow-lg border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+            <img
+              className="rounded-lg sm:h-[200px] sm:w-[200px] md:h-[250px] md:w-[250px] lg:h-[200px] lg:w-[200px] object-cover object-center mx-auto"
+              src="https://source.unsplash.com/600x400?random"
+              alt=""
+            />
+          </div>
+          <div className="bg-black opacity-[0.9] max-w-sm mx-auto shadow-lg border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+            <img
+              className="rounded-lg sm:h-[200px] sm:w-[200px] md:h-[250px] md:w-[250px] lg:h-[200px] lg:w-[200px] object-cover object-center mx-auto"
+              src="https://source.unsplash.com/600x400?random"
+              alt=""
+            />
+          </div>
+          <div className="bg-black opacity-[0.9] max-w-sm mx-auto shadow-lg border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+            <img
+              className="rounded-lg sm:h-[200px] sm:w-[200px] md:h-[250px] md:w-[250px] lg:h-[200px] lg:w-[200px] object-cover object-center mx-auto"
+              src="https://source.unsplash.com/600x400?random"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* <div className="w-52 h-52 bg-cover bg-center mx-auto" style={{ backgroundImage: `url(${gambarList[gambarIndex]})` }}></div> */}
     </>
   )
 }

@@ -90,4 +90,11 @@ class HomeController extends Controller
       'title' => 'Prestasi',
     ]);
   }
+
+  public function surveyKepuasanMasyarakat()
+  {
+    return Inertia::render('Home/SurveyKepuasanMasyarakat', [
+      'title' => 'Survey Kepuasan Masyarakat',
+    ]);
+  }
 }

@@ -77,9 +77,9 @@ const Navbar = () => {
                         <li>
                           <Link href="/index-kepuasan-masyarakat" className="block px-4 py-2 hover:bg-gray-100">IKM (Index kepuasan Masyarakat)</Link>
                         </li>
-                        {/* <li>
-                          <a href="#" className="block px-4 py-2 hover:bg-gray-100">Survey Kepuasan Masyarakat</a>
-                        </li> */}
+                        <li>
+                          <Link href="/survey-kepuasan-masyarakat" className="block px-4 py-2 hover:bg-gray-100">Survey Kepuasan Masyarakat</Link>
+                        </li>
                       </ul>
                     </div>
                   )}
@@ -152,9 +152,9 @@ const Navbar = () => {
                           <li>
                             <Link href="/index-kepuasan-masyarakat" className="block px-4 py-2 hover:bg-gray-100">IKM (Index kepuasan Masyarakat)</Link>
                           </li>
-                          {/* <li>
-                            <a href="#" className="block px-4 py-2 hover:bg-gray-100">Survey Kepuasan Masyarakat</a>
-                          </li> */}
+                          <li>
+                            <Link href="/survey-kepuasan-masyarakat" className="block px-4 py-2 hover:bg-gray-100">Survey Kepuasan Masyarakat</Link>
+                          </li>
                         </ul>
                       </div>
                     )}

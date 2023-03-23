@@ -10,10 +10,22 @@ module.exports = {
   ],
 
   theme: {
+    container: {
+      center: true,
+    },
     extend: {
       fontFamily: {
         sans: ["Figtree", ...defaultTheme.fontFamily.sans],
       },
+      screens: {
+        "2xl": "1400px",
+        "3xl": "1536px",
+      },
+    },
+    screens: {
+      "2xs": "360px",
+      xs: "475px",
+      ...defaultTheme.screens,
     },
   },
 

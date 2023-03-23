@@ -18,6 +18,7 @@ import { Link } from "@inertiajs/react";
 const navigation = [
   {
     name: "Beranda",
+    href: "/",
   },
   {
     name: "Profil",
@@ -80,6 +81,7 @@ const navigation = [
   },
   {
     name: "Prestasi",
+    href: "#",
   },
 ];
 
@@ -87,9 +89,9 @@ const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <div className="container px-4 sm:px-6 lg:px-8">
-      <div className="relative flex h-16 items-center justify-between">
-        <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+    <nav className="container px-4 sm:px-6 lg:px-8 py-5">
+      <div className="flex sm:flex-1">
+        <div className="flex sm:hidden">
           <button
             type="button"
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
@@ -99,29 +101,65 @@ const Navbar = () => {
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
-        <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-          <div className="flex flex-shrink-0 items-center">
+        <div className="flex flex-1 items-center justify-start">
+          <div className="flex flex-shrink-0 items-center mr-4">
             <img
               className="h-8 w-auto"
               src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
               alt=""
             />
           </div>
-          <div className="hidden sm:ml-6 sm:block">
-            <div className="flex space-x-4">
-              {navigation.map((item, index) => (
-                <Link
-                  key={index}
-                  href={item.href}
-                  className={
-                    "text-slate-300 hover:bg-slate-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
-                  }
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </div>
-          </div>
+          <Popover.Group className="hidden sm:ml-6 sm:flex sm:space-x-12">
+            {navigation.map((item, index) => (
+              <div key={index} className="flex items-center">
+                {item.option != null ? (
+                  <Popover className="relative">
+                    <Popover.Button className="flex items-center gap-x-1 text-base font-semibold leading-6 text-slate-900">
+                      {item.name}
+                      <ChevronDownIcon className="h-4 w-4" />
+                    </Popover.Button>
+                    <Transition
+                      as={Fragment}
+                      enter="transition ease-out duration-200"
+                      enterFrom="opacity-0 translate-y-1"
+                      enterTo="opacity-100 translate-y-0"
+                      leave="transition ease-in duration-150"
+                      leaveFrom="opacity-100 translate-y-0"
+                      leaveTo="opacity-0 translate-y-1"
+                    >
+                      <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-0">
+                        <div className="p-4">
+                          {item.option.map((item, index) => (
+                            <div
+                              key={item.name}
+                              className="group relative flex items-center gap-x-6 rounded-lg p-4 text-base leading-6 hover:bg-gray-50"
+                            >
+                              <div className="flex-auto">
+                                <a
+                                  href={item.href}
+                                  className="block font-semibold text-gray-900"
+                                >
+                                  {item.name}
+                                </a>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </Popover.Panel>
+                    </Transition>
+                  </Popover>
+                ) : (
+                  <Link
+                    as="button"
+                    href={item.href}
+                    className="text-base font-semibold leading-6 text-slate-900"
+                  >
+                    {item.name}
+                  </Link>
+                )}
+              </div>
+            ))}
+          </Popover.Group>
         </div>
         <Dialog
           as="div"
@@ -171,7 +209,7 @@ const Navbar = () => {
                                 {item.option.map((item, index) => (
                                   <Disclosure.Button
                                     key={index}
-                                    as="a"
+                                    as={Link}
                                     href={item.href}
                                     className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                                   >
@@ -183,7 +221,9 @@ const Navbar = () => {
                           )}
                         </Disclosure>
                       ) : (
-                        <div>{item.name}</div>
+                        <Link as="button" href={item.href}>
+                          {item.name}
+                        </Link>
                       )}
                     </div>
                   ))}
@@ -193,7 +233,7 @@ const Navbar = () => {
           </Dialog.Panel>
         </Dialog>
       </div>
-    </div>
+    </nav>
   );
 };
 

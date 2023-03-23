@@ -48,4 +48,25 @@ class HomeController extends Controller
       'title' => 'Galeri',
     ]);
   }
+
+  public function kalenderPendidikan()
+  {
+    return Inertia::render('Home/KalenderPendidikan', [
+      'title' => 'Kalender Pendidikan',
+    ]);
+  }
+
+  public function layananPublik()
+  {
+    return Inertia::render('Home/LayananPublik', [
+      'title' => 'Layanan Publik',
+    ]);
+  }
+
+  public function daftarInformasi()
+  {
+    return Inertia::render('Home/DaftarInformasi', [
+      'title' => 'Daftar Informasi Dinas',
+    ]);
+  }
 }

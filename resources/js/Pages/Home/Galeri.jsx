@@ -1,3 +1,4 @@
+import Main from "@/Components/HomePage/Main";
 import HomeLayout from "@/Layouts/HomeLayout";
 import { Head } from "@inertiajs/react";
 import { useState } from "react";
@@ -12,21 +13,21 @@ const Galeri = (props) => {
       <Head title={props.title} />
       <div className="bg-black">
         <div
-          className="w-full overflow-auto h-[60vh] z-0 bg-cover bg-center"
+          className="w-full h-[40vh] md:h-[60vh] z-0 bg-cover bg-center bg-opacity-80"
           style={{
-            backgroundImage: `url(${"https://source.unsplash.com/600x400?random"})`,
+            backgroundImage: `url(${"https://source.unsplash.com/600x400?random"})`
           }}
         >
-          <div className="items-center justify-center flex h-[60vh]">
+          <div className="items-center justify-center flex h-[40vh] md:h-[60vh]">
             <div className="h-auto w-full text-center md:text-left md:ml-32">
               <h1 className="text-6xl sm:text-center md:text-left text-white z-50">
-                Galeri
+                {props.title}
               </h1>
+              <b className="text-2xl text-white">
+                Selamat datang di {props.title}
+              </b>
             </div>
           </div>
-          {/* <div className="items-center justify-center flex h-[60vh] md:-mt-[50vh]">
-                        <h1 className="text-3xl text-black z-50">Selamat datang di Berita artikel seputar pendidikan</h1>
-                    </div> */}
         </div>
       </div>
 
@@ -55,7 +56,7 @@ const Galeri = (props) => {
         {galeri.data === "video" ? (
           <>
             <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 mx-5 md:mx-[90px]">
-              <div className="object-cover">
+              {/* <div className="object-cover mx-3">
                 <iframe
                   width="560"
                   height="315"
@@ -65,61 +66,27 @@ const Galeri = (props) => {
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowfullscreen
                 ></iframe>
+              </div> */}
+              <div className="bg-black opacity-[0.9] max-w-sm mx-auto shadow-lg border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+                <img
+                  className="rounded-lg sm:h-[200px] sm:w-[350px] md:h-[200px] md:w-[250px] lg:h-[260px] lg:w-[400px] object-cover object-center mx-auto"
+                  src="https://source.unsplash.com/600x400?random"
+                  alt=""
+                />
               </div>
-              <div className="object-cover">
-                <iframe
-                  width="560"
-                  height="315"
-                  src="https://www.youtube.com/embed/4EE0TlFBXMM"
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowfullscreen
-                ></iframe>
+              <div className="bg-black opacity-[0.9] max-w-sm mx-auto shadow-lg border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+                <img
+                  className="rounded-lg sm:h-[200px] sm:w-[350px] md:h-[200px] md:w-[250px] lg:h-[260px] lg:w-[400px] object-cover object-center mx-auto"
+                  src="https://source.unsplash.com/600x400?random"
+                  alt=""
+                />
               </div>
-              <div className="object-cover">
-                <iframe
-                  width="560"
-                  height="315"
-                  src="https://www.youtube.com/embed/4EE0TlFBXMM"
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowfullscreen
-                ></iframe>
-              </div>
-              <div className="object-cover">
-                <iframe
-                  width="560"
-                  height="315"
-                  src="https://www.youtube.com/embed/4EE0TlFBXMM"
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowfullscreen
-                ></iframe>
-              </div>
-              <div className="object-cover">
-                <iframe
-                  width="560"
-                  height="315"
-                  src="https://www.youtube.com/embed/4EE0TlFBXMM"
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowfullscreen
-                ></iframe>
-              </div>
-              <div className="object-cover">
-                <iframe
-                  width="560"
-                  height="315"
-                  src="https://www.youtube.com/embed/4EE0TlFBXMM"
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowfullscreen
-                ></iframe>
+              <div className="bg-black opacity-[0.9] max-w-sm mx-auto shadow-lg border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+                <img
+                  className="rounded-lg sm:h-[200px] sm:w-[350px] md:h-[200px] md:w-[250px] lg:h-[260px] lg:w-[400px] object-cover object-center mx-auto"
+                  src="https://source.unsplash.com/600x400?random"
+                  alt=""
+                />
               </div>
             </div>
           </>
@@ -195,5 +162,6 @@ const Galeri = (props) => {
   );
 };
 
-Galeri.layout = (page) => <HomeLayout children={page} />;
+// Galeri.layout = (page) => <HomeLayout children={page} />;
+Galeri.layout = (page) => <Main children={page} />;
 export default Galeri;

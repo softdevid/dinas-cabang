@@ -1,3 +1,4 @@
+import Main from "@/Components/HomePage/Main";
 import HomeLayout from "@/Layouts/HomeLayout";
 import { Head } from "@inertiajs/react";
 
@@ -7,9 +8,9 @@ const Sejarah = (props) => {
       <Head title={props.title} />
       <div className="bg-black">
         <div
-          className="w-full overflow-auto h-[40vh] md:h-[60vh] z-0 bg-cover bg-center bg-opacity-80"
+          className="w-full h-[40vh] md:h-[60vh] z-0 bg-cover bg-center bg-opacity-80"
           style={{
-            backgroundImage: `url(${"https://source.unsplash.com/600x400?random"})`,
+            backgroundImage: `url(${"https://source.unsplash.com/600x400?random"})`
           }}
         >
           <div className="items-center justify-center flex h-[40vh] md:h-[60vh]">
@@ -31,11 +32,11 @@ const Sejarah = (props) => {
           <div className="w-[35%] m-5 flex justify-end items-end">
             <div className="grid-cols-1 gap-8 grid">
               <img
-                src="/ardianto.jpg"
+                src="https://source.unsplash.com/600x400?random"
                 className="w-[300px] h-[300px] object-cover object-center rounded-lg shadow-lg"
               />
               <img
-                src="/ardianto.jpg"
+                src="https://source.unsplash.com/600x400?random"
                 className="w-[300px] h-[300px] object-cover object-center rounded-lg shadow-lg"
               />
             </div>
@@ -76,7 +77,7 @@ const Sejarah = (props) => {
       <div className="block md:hidden my-5">
         <div className="mx-auto justify-center items-center">
           <img
-            src="/ardianto.jpg"
+            src="https://source.unsplash.com/600x400?random"
             className="w-[300px] h-[300px] object-cover object-center mx-auto rounded-md shadow-lg"
           />
           <p className="m-3">
@@ -99,6 +100,7 @@ const Sejarah = (props) => {
   );
 };
 
-Sejarah.layout = (page) => <HomeLayout children={page} />;
+// Sejarah.layout = (page) => <HomeLayout children={page} />;
+Sejarah.layout = (page) => <Main children={page} />;
 
 export default Sejarah;

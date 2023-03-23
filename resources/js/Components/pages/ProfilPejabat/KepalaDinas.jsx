@@ -12,7 +12,7 @@ const KepalaDinas = () => {
           <div className="w-[40%] m-3">
             <div className="h-auto w-full justify-center items-center flex">
               <img
-                src="/ardianto.jpg"
+                src="https://source.unsplash.com/600x400?random"
                 className="w-[250px] h-[350px] object-cover object-top rounded-lg"
               />
             </div>
@@ -279,7 +279,7 @@ const KepalaDinas = () => {
         </h1>
         <div className="grid grid-cols-1 gap-8 m-5">
           <img
-            src="/ardianto.jpg"
+            src="https://source.unsplash.com/600x400?random"
             className="w-[250px] h-[400px] object-cover object-top mx-auto"
           />
           <div

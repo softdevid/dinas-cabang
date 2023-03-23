@@ -44,5 +44,8 @@ Route::get('/sejarah', [HomeController::class, 'sejarah'])->name('home.sejarah')
 Route::get('/berita', [HomeController::class, 'berita'])->name('home.berita');
 Route::get('/visi-misi', [HomeController::class, 'visiMisi'])->name('home.visiMisi');
 Route::get('/galeri', [HomeController::class, 'galeri'])->name('home.galeri');
+Route::get('/kalender-pendidikan', [HomeController::class, 'kalenderPendidikan'])->name('home.kalenderPendidikan');
+Route::get('/daftar-informasi', [HomeController::class, 'daftarInformasi'])->name('home.daftarInformasi');
+Route::get('/layanan-publik', [HomeController::class, 'layananPublik'])->name('home.layananPublik');
 
 require __DIR__ . '/auth.php';

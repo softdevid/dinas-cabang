@@ -59,7 +59,7 @@ const HomeLayout = ({ children }) => {
             </div>
           </div>
         </div>
-        <div className="container py-5">{children}</div>
+        <div>{children}</div>
       </div>
       <Footer />
     </>

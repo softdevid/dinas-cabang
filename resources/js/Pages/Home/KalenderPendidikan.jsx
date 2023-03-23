@@ -1,13 +1,7 @@
-import HomeLayout from "@/Layouts/HomeLayout";
-import KepalaDinas from "@/Components/pages/ProfilPejabat/KepalaDinas";
-import SekretarisDinas from "@/Components/pages/ProfilPejabat/SekretarisDinas";
-import { Head } from "@inertiajs/react";
-import { useState } from "react";
 import Main from "@/Components/HomePage/Main";
+import { Head } from "@inertiajs/react";
 
-const ProfilPejabat = (props) => {
-  const [pejabat1, setPejabat1] = useState({ data: "" });
-
+const KalenderPendidikan = (props) => {
   return (
     <>
       <Head title={props.title} />
@@ -31,7 +25,7 @@ const ProfilPejabat = (props) => {
         <div className="w-full h-64 block md:hidden">
           <div className="grid grid-cols-1 md:grid-cols-2">
             <div className="items-center justify-center flex h-64">
-              <b className="text-3xl text-blue-600">{props.title}</b>
+              <b className="text-3xl">{props.title}</b>
             </div>
             <div className=" items-center justify-center flex">
               <div className="border-[1px] border-black w-[10%] -mt-48"></div>
@@ -40,13 +34,13 @@ const ProfilPejabat = (props) => {
         </div>
       </div>
 
-      <KepalaDinas />
-      <SekretarisDinas />
+      <div className="md:mx-[95px] mx-5">
+        <img src="/kalender1.jpg" className="" />
+        <img src="/kalender.jpg" className="" />
+      </div>
     </>
-  );
-};
+  )
+}
 
-// ProfilPejabat.layout = (page) => <HomeLayout children={page} />;
-ProfilPejabat.layout = (page) => <Main children={page} />;
-
-export default ProfilPejabat;
+KalenderPendidikan.layout = (page) => <Main children={page} />
+export default KalenderPendidikan;

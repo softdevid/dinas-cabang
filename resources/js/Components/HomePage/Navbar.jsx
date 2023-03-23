@@ -66,20 +66,20 @@ const Navbar = () => {
                     <div id="dropdownNavbar" className="z-10 absolute font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
                       <ul className="py-2 text-sm text-gray-700" aria-labelledby="dropdownLargeButton">
                         <li>
-                          <a href="/daftar-informasi" className="block px-4 py-2 hover:bg-gray-100">Daftar Informasi</a>
+                          <Link href="/daftar-informasi" className="block px-4 py-2 hover:bg-gray-100">Daftar Informasi</Link>
                         </li>
                         <li>
-                          <a href="#" className="block px-4 py-2 hover:bg-gray-100">Formulir Pengaduan</a>
+                          <Link href="/formulir-pengaduan" className="block px-4 py-2 hover:bg-gray-100">Formulir Pengaduan</Link>
                         </li>
-                        <li>
+                        {/* <li>
                           <a href="#" className="block px-4 py-2 hover:bg-gray-100">Formulir Permohonan Informasi</a>
-                        </li>
+                        </li> */}
                         <li>
-                          <a href="#" className="block px-4 py-2 hover:bg-gray-100">IKM (Index kepuasan Masyarakat)</a>
+                          <Link href="/index-kepuasan-masyarakat" className="block px-4 py-2 hover:bg-gray-100">IKM (Index kepuasan Masyarakat)</Link>
                         </li>
-                        <li>
+                        {/* <li>
                           <a href="#" className="block px-4 py-2 hover:bg-gray-100">Survey Kepuasan Masyarakat</a>
-                        </li>
+                        </li> */}
                       </ul>
                     </div>
                   )}
@@ -106,7 +106,7 @@ const Navbar = () => {
                   )}
                 </li>
                 <li>
-                  <Link href="#" className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:dark:hover:text-white md:dark:hover:bg-transparent">Prestasi</Link>
+                  <Link href="/prestasi" className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:dark:hover:text-white md:dark:hover:bg-transparent">Prestasi</Link>
                 </li>
               </ul>
             </div>
@@ -141,20 +141,20 @@ const Navbar = () => {
                       <div id="dropdownNavbar" className="z-10 absolute font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
                         <ul className="py-2 text-sm text-gray-700" aria-labelledby="dropdownLargeButton">
                           <li>
-                            <a href="/daftar-informasi" className="block px-4 py-2 hover:bg-gray-100">Daftar Informasi</a>
+                            <Link href="/daftar-informasi" className="block px-4 py-2 hover:bg-gray-100">Daftar Informasi</Link>
                           </li>
                           <li>
-                            <a href="#" className="block px-4 py-2 hover:bg-gray-100">Formulir Pengaduan</a>
+                            <Link href="/formulir-pengaduan" className="block px-4 py-2 hover:bg-gray-100">Formulir Pengaduan</Link>
                           </li>
-                          <li>
+                          {/* <li>
                             <a href="#" className="block px-4 py-2 hover:bg-gray-100">Formulir Permohonan Informasi</a>
-                          </li>
+                          </li> */}
                           <li>
-                            <a href="#" className="block px-4 py-2 hover:bg-gray-100">IKM (Index kepuasan Masyarakat)</a>
+                            <Link href="/index-kepuasan-masyarakat" className="block px-4 py-2 hover:bg-gray-100">IKM (Index kepuasan Masyarakat)</Link>
                           </li>
-                          <li>
+                          {/* <li>
                             <a href="#" className="block px-4 py-2 hover:bg-gray-100">Survey Kepuasan Masyarakat</a>
-                          </li>
+                          </li> */}
                         </ul>
                       </div>
                     )}
@@ -181,7 +181,7 @@ const Navbar = () => {
                     )}
                   </li>
                   <li>
-                    <Link href="#" className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:dark:hover:text-white md:dark:hover:bg-transparent">Prestasi</Link>
+                    <Link href="/prestasi" className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:dark:hover:text-white md:dark:hover:bg-transparent">Prestasi</Link>
                   </li>
                 </ul>
               </div>

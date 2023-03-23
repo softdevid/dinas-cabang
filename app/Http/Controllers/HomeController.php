@@ -69,4 +69,25 @@ class HomeController extends Controller
       'title' => 'Daftar Informasi Dinas',
     ]);
   }
+
+  public function indexKepuasanMasyarakat()
+  {
+    return Inertia::render('Home/IndexKepuasanMasyarakat', [
+      'title' => 'Index Kepuasan Masyarakat',
+    ]);
+  }
+
+  public function formulirPengaduan()
+  {
+    return Inertia::render('Home/FormulirPengaduan', [
+      'title' => 'Formulir Pengaduan',
+    ]);
+  }
+
+  public function prestasi()
+  {
+    return Inertia::render('Home/Prestasi', [
+      'title' => 'Prestasi',
+    ]);
+  }
 }

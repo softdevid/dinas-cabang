@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
-const SuperAdminTemplate = () => {
-  return (
-    <div>SuperAdminTemplate</div>
-  )
-}
+const SuperAdminTemplate = ({ children }) => {
+  return <div>{children}</div>;
+};
 
-export default SuperAdminTemplate
+export default SuperAdminTemplate;

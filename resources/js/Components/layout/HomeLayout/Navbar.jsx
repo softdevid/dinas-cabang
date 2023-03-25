@@ -42,11 +42,11 @@ const navigation = [
     option: [
       {
         name: "Daftar Informasi",
-        href: "#",
+        href: "/daftar-informasi",
       },
       {
         name: "Formulir Pengaduan",
-        href: "#",
+        href: "/formulir-pengaduan",
       },
       {
         name: "Formulir Permohonan Informasi",
@@ -54,11 +54,11 @@ const navigation = [
       },
       {
         name: "IKM (Index kepuasan Masyarakat)",
-        href: "#",
+        href: "/index-kepuasan-masyarakat",
       },
       {
         name: "SKM (Survey Kepuasan Masyarakat)",
-        href: "#",
+        href: "/survey-kepuasan-masyarakat",
       },
     ],
   },
@@ -81,7 +81,7 @@ const navigation = [
   },
   {
     name: "Prestasi",
-    href: "#",
+    href: "/prestasi",
   },
 ];
 
@@ -89,9 +89,9 @@ const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <nav className="container px-4 sm:px-6 lg:px-8 py-5">
-      <div className="flex sm:flex-1">
-        <div className="flex sm:hidden">
+    <nav className="px-4 md:px-6 lg:px-8 py-5">
+      <div className="flex md:flex-1 justify-between">
+        <div className="flex md:hidden">
           <button
             type="button"
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
@@ -101,7 +101,7 @@ const Navbar = () => {
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
-        <div className="flex flex-1 items-center justify-start">
+        <div className="flex flex-1 items-center justify-end md:justify-start">
           <div className="flex flex-shrink-0 items-center mr-4">
             <img
               className="h-8 w-auto"
@@ -109,7 +109,7 @@ const Navbar = () => {
               alt=""
             />
           </div>
-          <Popover.Group className="hidden sm:ml-6 sm:flex sm:space-x-12">
+          <Popover.Group className="hidden md:ml-6 md:flex md:space-x-12">
             {navigation.map((item, index) => (
               <div key={index} className="flex items-center">
                 {item.option != null ? (
@@ -163,12 +163,12 @@ const Navbar = () => {
         </div>
         <Dialog
           as="div"
-          className="sm:hidden"
+          className="md:hidden"
           open={mobileMenuOpen}
           onClose={setMobileMenuOpen}
         >
           <div className="fixed inset-0 z-10" />
-          <Dialog.Panel className="fixed inset-y-0 left-0 z-10 w-full overflow-y-auto bg-white px-4 py-4 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+          <Dialog.Panel className="fixed inset-y-0 left-0 z-10 w-full overflow-y-auto bg-white px-4 py-4 md:max-w-md md:ring-1 md:ring-gray-900/10">
             <div className="flex items-center justify-between">
               <button
                 type="button"
@@ -211,7 +211,7 @@ const Navbar = () => {
                                     key={index}
                                     as={Link}
                                     href={item.href}
-                                    className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                                    className="block rounded-lg py-2 pl-6 pr-3 text-md font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                                   >
                                     {item.name}
                                   </Disclosure.Button>

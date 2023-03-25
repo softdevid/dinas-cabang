@@ -1,4 +1,3 @@
-import Main from "@/Components/HomePage/Main";
 import HomeLayout from "@/Layouts/HomeLayout";
 import { QuestionMarkCircleIcon } from "@heroicons/react/20/solid";
 import { Head, Link } from "@inertiajs/react";
@@ -275,6 +274,5 @@ const Index = (props) => {
   )
 }
 
-// Index.layout = (page) => <HomeLayout children={page} />
-Index.layout = (page) => <Main children={page} />
+Index.layout = (page) => <HomeLayout children={page} />
 export default Index;

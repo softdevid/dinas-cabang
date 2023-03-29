@@ -11,14 +11,15 @@ return new class extends Migration
    */
   public function up(): void
   {
-    Schema::create('users', function (Blueprint $table) {
+    Schema::create('artikels', function (Blueprint $table) {
       $table->id();
-      $table->string('name');
-      $table->string('email')->unique();
-      $table->timestamp('email_verified_at')->nullable();
-      $table->string('password');
-      $table->string('level')->default('sekolah'); //admin, sekolah
-      $table->rememberToken();
+      $table->string('namaPenulis');
+      $table->string('jenisArtikel'); //berita
+      $table->string('judulArtikel');
+      $table->string('slug');
+      $table->text('deskripsi');
+      $table->string('imgName');
+      $table->string('imgUrl');
       $table->timestamps();
     });
   }
@@ -28,6 +29,6 @@ return new class extends Migration
    */
   public function down(): void
   {
-    Schema::dropIfExists('users');
+    Schema::dropIfExists('artikels');
   }
 };

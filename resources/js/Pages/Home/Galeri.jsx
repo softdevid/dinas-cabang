@@ -1,4 +1,3 @@
-import Main from "@/Components/HomePage/Main";
 import HomeLayout from "@/Layouts/HomeLayout";
 import { Head } from "@inertiajs/react";
 import { useState } from "react";
@@ -8,6 +7,7 @@ const Galeri = (props) => {
   const openGaleri = (data) => {
     setGaleri(data);
   };
+
   return (
     <>
       <Head title={props.title} />
@@ -162,6 +162,5 @@ const Galeri = (props) => {
   );
 };
 
-// Galeri.layout = (page) => <HomeLayout children={page} />;
-Galeri.layout = (page) => <Main children={page} />;
+Galeri.layout = (page) => <HomeLayout children={page} />;
 export default Galeri;

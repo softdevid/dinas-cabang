@@ -1,4 +1,3 @@
-import Main from "@/Components/HomePage/Main";
 import HomeLayout from "@/Layouts/HomeLayout";
 import { Head } from "@inertiajs/react";
 
@@ -71,6 +70,5 @@ const VisiMisi = (props) => {
   );
 };
 
-// VisiMisi.layout = (page) => <HomeLayout children={page} />;
-VisiMisi.layout = (page) => <Main children={page} />;
+VisiMisi.layout = (page) => <HomeLayout children={page} />;
 export default VisiMisi;

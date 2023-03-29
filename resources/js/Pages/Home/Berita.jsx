@@ -1,4 +1,3 @@
-import Main from "@/Components/HomePage/Main";
 import HomeLayout from "@/Layouts/HomeLayout";
 import {
   CalendarDaysIcon,
@@ -21,10 +20,10 @@ const Berita = (props) => {
         >
           <div className="items-center justify-center flex h-[40vh] md:h-[60vh]">
             <div className="h-auto w-full text-center md:text-left md:ml-32">
-              <h1 className="text-6xl sm:text-center md:text-left text-white z-50">
+              <h1 className="text-lg md:text-6xl sm:text-center md:text-left text-white z-50">
                 {props.title}
               </h1>
-              <b className="text-2xl text-white">
+              <b className="text-md md:text-2xl text-white">
                 Selamat datang di {props.title}
               </b>
             </div>
@@ -75,7 +74,7 @@ const Berita = (props) => {
 
 
       <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-2 gap-4 md:gap-8 my-8 md:mx-[90px]">
-        <div className="max-w-sm mx-auto shadow-lg bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+        <div className="max-w-xs md:max-w-sm mx-auto shadow-lg bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
           <img className="rounded-t-lg h-[280px] w-[380px] object-cover object-top mx-auto" src="https://source.unsplash.com/600x400?random" alt="" />
           <div className="p-5">
             <div className="grid grid-cols-2 gap-4 mb-2">
@@ -105,6 +104,5 @@ const Berita = (props) => {
     </>
   )
 }
-// Berita.layout = (page) => <HomeLayout children={page} />;
-Berita.layout = (page) => <Main children={page} />;
+Berita.layout = (page) => <HomeLayout children={page} />;
 export default Berita;

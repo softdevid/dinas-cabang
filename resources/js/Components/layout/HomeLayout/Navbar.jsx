@@ -80,6 +80,10 @@ const navigation = [
     ],
   },
   {
+    name: "Layanan Publik",
+    href: "/layanan-publik",
+  },
+  {
     name: "Prestasi",
     href: "/prestasi",
   },
@@ -91,6 +95,12 @@ const Navbar = () => {
   return (
     <nav className="px-4 md:px-6 lg:px-8 py-5">
       <div className="flex md:flex-1 justify-between">
+        <div className="hidden md:flex lg:flex-1">
+          <a href="#" className="-m-1.5 p-1.5">
+            <span className="sr-only">Your Company</span>
+            <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
+          </a>
+        </div>
         <div className="flex md:hidden">
           <button
             type="button"
@@ -102,14 +112,14 @@ const Navbar = () => {
           </button>
         </div>
         <div className="flex flex-1 items-center justify-end md:justify-start">
-          <div className="flex flex-shrink-0 items-center mr-4">
+          <div className="md:hidden flex flex-shrink-0 items-center mr-4">
             <img
               className="h-8 w-auto"
               src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
               alt=""
             />
           </div>
-          <Popover.Group className="hidden md:ml-6 md:flex md:space-x-12">
+          <Popover.Group className="hidden md:ml-6 md:flex md:justify-end md:space-x-12">
             {navigation.map((item, index) => (
               <div key={index} className="flex items-center">
                 {item.option != null ? (
@@ -135,12 +145,12 @@ const Navbar = () => {
                               className="group relative flex items-center gap-x-6 rounded-lg p-4 text-base leading-6 hover:bg-gray-50"
                             >
                               <div className="flex-auto">
-                                <a
+                                <Link as="button"
                                   href={item.href}
                                   className="block font-semibold text-gray-900"
                                 >
                                   {item.name}
-                                </a>
+                                </Link>
                               </div>
                             </div>
                           ))}
@@ -199,9 +209,8 @@ const Navbar = () => {
                               <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-gray-50">
                                 {item.name}
                                 <ChevronDownIcon
-                                  className={`${
-                                    open ? "rotate-180" : ""
-                                  } h-5 w-5 flex-none`}
+                                  className={`${open ? "rotate-180" : ""
+                                    } h-5 w-5 flex-none`}
                                   aria-hidden="true"
                                 />
                               </Disclosure.Button>

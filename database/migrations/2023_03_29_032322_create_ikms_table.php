@@ -11,14 +11,12 @@ return new class extends Migration
    */
   public function up(): void
   {
-    Schema::create('users', function (Blueprint $table) {
+    Schema::create('ikms', function (Blueprint $table) {
       $table->id();
-      $table->string('name');
-      $table->string('email')->unique();
-      $table->timestamp('email_verified_at')->nullable();
-      $table->string('password');
-      $table->string('level')->default('sekolah'); //admin, sekolah
-      $table->rememberToken();
+      $table->text('dasarHukum');
+      $table->text('pengertian');
+      $table->text('imgName'); //index kepuasan masyarakat image name
+      $table->text('imgUrl'); //index kepuasan masyarakat image url
       $table->timestamps();
     });
   }
@@ -28,6 +26,6 @@ return new class extends Migration
    */
   public function down(): void
   {
-    Schema::dropIfExists('users');
+    Schema::dropIfExists('ikms');
   }
 };

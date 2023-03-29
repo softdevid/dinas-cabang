@@ -1,4 +1,4 @@
-import Main from "@/Components/HomePage/Main";
+import HomeLayout from "@/Layouts/HomeLayout";
 import { Head } from "@inertiajs/react";
 const FormulirPengaduan = (props) => {
   return (
@@ -36,5 +36,5 @@ const FormulirPengaduan = (props) => {
   )
 }
 
-FormulirPengaduan.layout = (page) => <Main children={page} />
+FormulirPengaduan.layout = (page) => <HomeLayout children={page} />
 export default FormulirPengaduan;

@@ -1,4 +1,4 @@
-import Main from "@/Components/HomePage/Main";
+import HomeLayout from "@/Layouts/HomeLayout";
 import { Head } from "@inertiajs/react";
 
 const SurveyKepuasanMasyarakat = (props) => {
@@ -63,5 +63,5 @@ const SurveyKepuasanMasyarakat = (props) => {
   )
 }
 
-SurveyKepuasanMasyarakat.layout = (page) => <Main children={page} />
+SurveyKepuasanMasyarakat.layout = (page) => <HomeLayout children={page} />
 export default SurveyKepuasanMasyarakat;

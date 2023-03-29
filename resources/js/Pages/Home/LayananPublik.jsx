@@ -1,4 +1,4 @@
-import Main from "@/Components/HomePage/Main"
+import HomeLayout from "@/Layouts/HomeLayout";
 import { Head } from "@inertiajs/react";
 
 const LayananPublik = (props) => {
@@ -52,5 +52,5 @@ const LayananPublik = (props) => {
   )
 }
 
-LayananPublik.layout = (page) => <Main children={page} />
+LayananPublik.layout = (page) => <HomeLayout children={page} />
 export default LayananPublik;

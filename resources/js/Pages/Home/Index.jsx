@@ -4,6 +4,7 @@ import { Head, Link } from "@inertiajs/react";
 import { useEffect, useState } from "react";
 
 const Index = (props) => {
+  console.log(props);
   const [visiMisi, setVisiMisi] = useState({ data: "visi" });
   const handleVisiMisi = (data) => {
     setVisiMisi(data);

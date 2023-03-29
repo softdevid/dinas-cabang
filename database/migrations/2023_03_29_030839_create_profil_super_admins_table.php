@@ -13,16 +13,19 @@ return new class extends Migration
   {
     Schema::create('profil_super_admins', function (Blueprint $table) {
       $table->id();
+      $table->foreignId('idUser');
       $table->string('namaSuperAdmin');
       $table->text('alamatLengkap');
+      $table->text('noHp');
+      $table->string('email')->unique();
       $table->text('lingkupKegiatan');
       $table->text('visi');
       $table->text('misi');
-      $table->text('tugasPokok');
-      $table->text('fungsi');
-      $table->text('unitKerjaDibawahnya');
-      $table->text('imgName'); //struktur Organisasi name image
-      $table->text('imgUrl'); //struktur organisasi url image
+      $table->text('tugasPokok')->nullable();
+      $table->text('fungsi')->nullable();
+      $table->text('unitKerjaDibawahnya')->nullable();
+      $table->text('imgName')->nullable(); //struktur Organisasi name image
+      $table->text('imgUrl')->nullable(); //struktur organisasi url image
       $table->timestamps();
     });
   }

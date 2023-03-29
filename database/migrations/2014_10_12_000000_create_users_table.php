@@ -17,7 +17,7 @@ return new class extends Migration
       $table->string('email')->unique();
       $table->timestamp('email_verified_at')->nullable();
       $table->string('password');
-      $table->string('level')->default('sekolah'); //admin, sekolah
+      $table->string('level')->default('sekolah'); //super admin, sekolah
       $table->rememberToken();
       $table->timestamps();
     });

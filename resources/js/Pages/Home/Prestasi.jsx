@@ -1,29 +1,43 @@
 import HomeLayout from "@/Layouts/HomeLayout";
+import { Head } from "@inertiajs/react";
 import { useState } from "react";
 
 const Prestasi = (props) => {
   const [olahraga, setOlahraga] = useState(false);
   const openOlahraga = () => {
     setOlahraga(!olahraga);
+    setSenibudaya(false);
+    setTeknologi(false);
+    setSosial(false);
   }
 
   const [senibudaya, setSenibudaya] = useState(false);
   const openSenibudaya = () => {
     setSenibudaya(!senibudaya);
+    setOlahraga(false);
+    setTeknologi(false);
+    setSosial(false);
   }
 
   const [teknologi, setTeknologi] = useState(false);
   const openTeknologi = () => {
     setTeknologi(!teknologi);
+    setSenibudaya(false);
+    setOlahraga(false);
+    setSosial(false);
   }
 
   const [sosial, setSosial] = useState(false);
   const openSosial = () => {
     setSosial(!sosial);
+    setSenibudaya(false);
+    setOlahraga(false);
+    setTeknologi(false);
   }
 
   return (
     <>
+      <Head title={props.title} />
       <div>
         <div className="w-full h-64 hidden md:block">
           <div className="grid grid-cols-1 md:grid-cols-2">

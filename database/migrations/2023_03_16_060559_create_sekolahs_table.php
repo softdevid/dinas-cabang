@@ -18,7 +18,7 @@ return new class extends Migration
       $table->text('misi');
       $table->text('noHp');
       $table->text('email')->unique();
-      $table->text('sejarah')->nullable();
+      // $table->text('sejarah')->nullable();
       $table->text('desa');
       $table->text('kecamatan');
       $table->text('kabupaten');

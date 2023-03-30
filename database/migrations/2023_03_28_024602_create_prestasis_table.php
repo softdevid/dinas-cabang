@@ -20,9 +20,9 @@ return new class extends Migration
       $table->string('asalInstansi');
       $table->string('penanggungJawab');
       $table->string('targetCapaian');
-      $table->string('jadwalPelaksanaan');
+      $table->date('jadwalPelaksanaan');
       $table->string('sumberAnggaran');
-      $table->string('tingkatPrestasi');
+      $table->string('tingkatPrestasi'); //kecamatan, kabupaten/kota, provinsi, nasional, internasional
       $table->string('jenisPrestasi'); // olahraga, teknologi, seni budaya, ilmu sosial
       $table->timestamps();
     });

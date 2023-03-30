@@ -26,7 +26,7 @@ const HomeLayout = ({ children }) => {
     <>
       <Navbar />
       <div>
-        <div className="z-50 bg-white rounded-tr-xl rounded-br-xl h-auto w-16 fixed my-48 hidden md:block">
+        <div className="z-50 bg-white rounded-tr-xl rounded-br-xl h-auto w-16 fixed my-32 hidden md:block">
           <div className="mx-auto grid grid-cols-1 justify-items-center">
             {sosmed.map((item, index) => (
               <div

@@ -98,20 +98,20 @@ const Prestasi = (props) => {
             id="accordion-flush-body-2"
             aria-labelledby="accordion-flush-heading-2"
           >
-            <div className="py-5 font-light border-b border-gray-200 dark:border-gray-700">
-              <table className="overflow-x-auto">
+            <div className="overflow-x-auto py-5 font-light border-b border-gray-200 dark:border-gray-700">
+              <table>
                 <tr>
-                  <th>#</th>
-                  <th>Nama Lomba</th>
-                  <th>Kategori Lomba</th>
-                  <th>Nama Peserta</th>
-                  <th>Status Peserta</th>
-                  <th>Asal Instansi</th>
-                  <th>Penanggung jawab dan pelaksana</th>
-                  <th>Target Capaian</th>
-                  <th>Jadwal Pelaksanaan</th>
-                  <th>Sumber Anggaran</th>
-                  <th>Tingkat prestasi</th>
+                  <th className="px-3 text-sm">#</th>
+                  <th className="px-3 text-sm">Nama Lomba</th>
+                  <th className="px-3 text-sm">Kategori Lomba</th>
+                  <th className="px-3 text-sm">Nama Peserta</th>
+                  <th className="px-3 text-sm">Status Peserta</th>
+                  <th className="px-3 text-sm">Asal Instansi</th>
+                  <th className="px-3 text-sm">Penanggung jawab dan pelaksana</th>
+                  <th className="px-3 text-sm">Target Capaian</th>
+                  <th className="px-3 text-sm">Jadwal Pelaksanaan</th>
+                  <th className="px-3 text-sm">Sumber Anggaran</th>
+                  <th className="px-3 text-sm">Tingkat prestasi</th>
                 </tr>
               </table>
             </div>
@@ -149,20 +149,20 @@ const Prestasi = (props) => {
             id="accordion-flush-body-2"
             aria-labelledby="accordion-flush-heading-2"
           >
-            <div className="py-5 font-light border-b border-gray-200 dark:border-gray-700">
-              <table className="overflow-x-auto">
+            <div className="overflow-x-auto py-5 font-light border-b border-gray-200 dark:border-gray-700">
+              <table>
                 <tr>
-                  <th>#</th>
-                  <th>Nama Lomba</th>
-                  <th>Kategori Lomba</th>
-                  <th>Nama Peserta</th>
-                  <th>Status Peserta</th>
-                  <th>Asal Instansi</th>
-                  <th>Penanggung jawab dan pelaksana</th>
-                  <th>Target Capaian</th>
-                  <th>Jadwal Pelaksanaan</th>
-                  <th>Sumber Anggaran</th>
-                  <th>Tingkat prestasi</th>
+                  <th className="px-2">#</th>
+                  <th className="px-2">Nama Lomba</th>
+                  <th className="px-2">Kategori Lomba</th>
+                  <th className="px-2">Nama Peserta</th>
+                  <th className="px-2">Status Peserta</th>
+                  <th className="px-2">Asal Instansi</th>
+                  <th className="px-2">Penanggung jawab dan pelaksana</th>
+                  <th className="px-2">Target Capaian</th>
+                  <th className="px-2">Jadwal Pelaksanaan</th>
+                  <th className="px-2">Sumber Anggaran</th>
+                  <th className="px-3 text-sm">Tingkat prestasi</th>
                 </tr>
               </table>
             </div>
@@ -200,20 +200,20 @@ const Prestasi = (props) => {
             id="accordion-flush-body-2"
             aria-labelledby="accordion-flush-heading-2"
           >
-            <div className="py-5 font-light border-b border-gray-200 dark:border-gray-700">
-              <table className="overflow-x-auto">
+            <div className="overflow-x-auto py-5 font-light border-b border-gray-200 dark:border-gray-700">
+              <table>
                 <tr>
-                  <th>#</th>
-                  <th>Nama Lomba</th>
-                  <th>Kategori Lomba</th>
-                  <th>Nama Peserta</th>
-                  <th>Status Peserta</th>
-                  <th>Asal Instansi</th>
-                  <th>Penanggung jawab dan pelaksana</th>
-                  <th>Target Capaian</th>
-                  <th>Jadwal Pelaksanaan</th>
-                  <th>Sumber Anggaran</th>
-                  <th>Tingkat prestasi</th>
+                  <th className="px-2">#</th>
+                  <th className="px-2">Nama Lomba</th>
+                  <th className="px-2">Kategori Lomba</th>
+                  <th className="px-2">Nama Peserta</th>
+                  <th className="px-2">Status Peserta</th>
+                  <th className="px-2">Asal Instansi</th>
+                  <th className="px-2">Penanggung jawab dan pelaksana</th>
+                  <th className="px-2">Target Capaian</th>
+                  <th className="px-2">Jadwal Pelaksanaan</th>
+                  <th className="px-2">Sumber Anggaran</th>
+                  <th className="px-3 text-sm">Tingkat prestasi</th>
                 </tr>
               </table>
             </div>
@@ -252,20 +252,20 @@ const Prestasi = (props) => {
             id="accordion-flush-body-2"
             aria-labelledby="accordion-flush-heading-2"
           >
-            <div className="py-5 font-light border-b border-gray-200 dark:border-gray-700">
-              <table className="overflow-x-auto">
+            <div className="overflow-x-auto py-5 font-light border-b border-gray-200 dark:border-gray-700">
+              <table>
                 <tr>
-                  <th>#</th>
-                  <th>Nama Lomba</th>
-                  <th>Kategori Lomba</th>
-                  <th>Nama Peserta</th>
-                  <th>Status Peserta</th>
-                  <th>Asal Instansi</th>
-                  <th>Penanggung jawab dan pelaksana</th>
-                  <th>Target Capaian</th>
-                  <th>Jadwal Pelaksanaan</th>
-                  <th>Sumber Anggaran</th>
-                  <th>Tingkat prestasi</th>
+                  <th className="px-2">#</th>
+                  <th className="px-2">Nama Lomba</th>
+                  <th className="px-2">Kategori Lomba</th>
+                  <th className="px-2">Nama Peserta</th>
+                  <th className="px-2">Status Peserta</th>
+                  <th className="px-2">Asal Instansi</th>
+                  <th className="px-2">Penanggung jawab dan pelaksana</th>
+                  <th className="px-2">Target Capaian</th>
+                  <th className="px-2">Jadwal Pelaksanaan</th>
+                  <th className="px-2">Sumber Anggaran</th>
+                  <th className="px-3 text-sm">Tingkat prestasi</th>
                 </tr>
               </table>
             </div>

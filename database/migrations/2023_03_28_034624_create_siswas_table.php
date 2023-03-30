@@ -14,11 +14,14 @@ return new class extends Migration
     Schema::create('siswas', function (Blueprint $table) {
       $table->id();
       $table->foreignId('idSekolah');
+      $table->string('nisn');
+      $table->string('nis');
       $table->string('namaSiswa');
       $table->string('jurusan')->nullable();
       $table->string('kelas');
       $table->date('tglLahir');
       $table->string('jenisKelamin');
+      $table->text('alamatLengkap');
       $table->timestamps();
     });
   }

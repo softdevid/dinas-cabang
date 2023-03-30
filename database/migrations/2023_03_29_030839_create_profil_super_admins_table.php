@@ -21,6 +21,7 @@ return new class extends Migration
       $table->text('lingkupKegiatan');
       $table->text('visi');
       $table->text('misi');
+      $table->longText('sejarah');
       $table->text('tugasPokok')->nullable();
       $table->text('fungsi')->nullable();
       $table->text('unitKerjaDibawahnya')->nullable();

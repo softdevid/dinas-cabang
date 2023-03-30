@@ -32,7 +32,7 @@ const navigation = [
         href: "/sejarah",
       },
       {
-        name: "Visi Misi",
+        name: "Visi dan Misi",
         href: "/visi-misi",
       },
     ],

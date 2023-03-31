@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Artikel;
+use App\Models\Berita;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class ArtikelController extends Controller
+class BeritaController extends Controller
 {
   /**
    * Display a listing of the resource.
@@ -38,7 +39,7 @@ class ArtikelController extends Controller
       'imgUrl' => 'required',
     ]);
 
-    Artikel::create([
+    Berita::create([
       'namaPenulis' => $request->namaPenulis,
       'jenisArtikel' => $request->jenisArtikel,
       'judulArtikel' => $request->judulArtikel,
@@ -54,7 +55,7 @@ class ArtikelController extends Controller
   /**
    * Display the specified resource.
    */
-  public function show(Artikel $artikel)
+  public function show(Berita $berita)
   {
     //
   }
@@ -62,7 +63,7 @@ class ArtikelController extends Controller
   /**
    * Show the form for editing the specified resource.
    */
-  public function edit(Artikel $artikel)
+  public function edit(Berita $berita)
   {
     //
   }
@@ -70,7 +71,7 @@ class ArtikelController extends Controller
   /**
    * Update the specified resource in storage.
    */
-  public function update(Request $request, Artikel $artikel, $id)
+  public function update(Request $request, Berita $berita, $id)
   {
     $request->validate([
       'namaPenulis' => 'required',
@@ -81,8 +82,8 @@ class ArtikelController extends Controller
       'imgUrl' => 'required',
     ]);
 
-    $artikel = Artikel::find($id);
-    $artikel->update([
+    $berita = Berita::find($id);
+    $berita->update([
       'namaPenulis' => $request->namaPenulis,
       'jenisArtikel' => $request->jenisArtikel,
       'judulArtikel' => $request->judulArtikel,
@@ -92,15 +93,16 @@ class ArtikelController extends Controller
       'imgUrl' => $request->imgUrl,
     ]);
 
-    return back()->with('message', 'Berhasil menambah Artikel');
+    return back()->with('message', 'Berhasil mengubah Berita');
   }
 
   /**
    * Remove the specified resource from storage.
    */
-  public function destroy(Artikel $artikel, $id)
+  public function destroy(Berita $berita, $id)
   {
-    $artikel = Artikel::find($id);
-    $artikel->delete();
+    $berita = Berita::find($id);
+    Cloudinary::destroy($berita->imgName);
+    $berita->delete();
   }
 }

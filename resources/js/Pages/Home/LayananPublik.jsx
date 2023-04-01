@@ -1,5 +1,5 @@
 import HomeLayout from "@/Layouts/HomeLayout";
-import { Head } from "@inertiajs/react";
+import { Head, Link } from "@inertiajs/react";
 
 const LayananPublik = (props) => {
   return (
@@ -24,27 +24,7 @@ const LayananPublik = (props) => {
           </div>
           <div className="mx-3 my-3 text-blue-600">- Layanan Tanpa Biaya (Gratis)</div>
           <div className="justify-center items-center flex">
-            <button as="button" className="rounded-lg p-2 bg-blue-600 text-white">Selengkapnya</button>
-          </div>
-        </div>
-        <div className="w-60 h-96 border-2 mx-auto">
-          <img src="https://source.unsplash.com/600x400?random" />
-          <div className="mt-3 mx-3">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste, maxime?
-          </div>
-          <div className="mx-3 my-3 text-blue-600">- Layanan Tanpa Biaya (Gratis)</div>
-          <div className="justify-center items-center flex">
-            <button as="button" className="rounded-lg p-2 bg-blue-600 text-white">Selengkapnya</button>
-          </div>
-        </div>
-        <div className="w-60 h-96 border-2 mx-auto">
-          <img src="https://source.unsplash.com/600x400?random" />
-          <div className="mt-3 mx-3">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste, maxime?
-          </div>
-          <div className="mx-3 my-3 text-blue-600">- Layanan Tanpa Biaya (Gratis)</div>
-          <div className="justify-center items-center flex">
-            <button as="button" className="rounded-lg p-2 bg-blue-600 text-white">Selengkapnya</button>
+            <Link href="/layanan-publik/detail/data1" as="button" className="rounded-lg p-2 bg-blue-600 text-white">Selengkapnya</Link>
           </div>
         </div>
       </div>

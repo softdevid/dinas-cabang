@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminSekolahController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -26,15 +27,15 @@ use App\Http\Controllers\HomeController;
 //     ]);
 // });
 
-Route::get('/dashboard', function () {
-  return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//   return Inertia::render('Dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-  Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-  Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-  Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+// Route::middleware('auth')->group(function () {
+//   Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//   Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//   Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
 
 
 
@@ -52,4 +53,13 @@ Route::get('/formulir-pengaduan', [HomeController::class, 'formulirPengaduan'])-
 Route::get('/prestasi', [HomeController::class, 'prestasi'])->name('home.prestasi');
 Route::get('/survey-kepuasan-masyarakat', [HomeController::class, 'surveyKepuasanMasyarakat'])->name('home.surveyKepuasanMasyarakat');
 
-require __DIR__ . '/auth.php';
+Route::prefix('/admin-sekolah')->group(function () {
+  Route::get('/', [AdminSekolahController::class, 'index'])->name('admin-sekolah.index');
+  Route::get('/profil', [AdminSekolahController::class, 'profil'])->name('admin-sekolah.profil');
+  Route::get('/prestasi', [AdminSekolahController::class, 'prestasi'])->name('admin-sekolah.prestasi');
+  Route::get('/guru', [AdminSekolahController::class, 'guru'])->name('admin-sekolah.guru');
+  Route::get('/siswa', [AdminSekolahController::class, 'siswa'])->name('admin-sekolah.siswa');
+  Route::get('/berita', [AdminSekolahController::class, 'berita'])->name('admin-sekolah.berita');
+});
+
+// require __DIR__ . '/auth.php';

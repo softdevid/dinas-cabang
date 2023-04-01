@@ -1,4 +1,4 @@
-import Main from "@/Components/HomePage/Main";
+import HomeLayout from "@/Layouts/HomeLayout";
 import { Head } from "@inertiajs/react";
 import { useState } from "react";
 
@@ -88,5 +88,5 @@ const DaftarInformasi = (props) => {
   )
 }
 
-DaftarInformasi.layout = (page) => <Main children={page} />
+DaftarInformasi.layout = (page) => <HomeLayout children={page} />
 export default DaftarInformasi;

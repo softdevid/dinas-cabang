@@ -1,4 +1,4 @@
-import Main from "@/Components/HomePage/Main";
+import HomeLayout from "@/Layouts/HomeLayout";
 import { Head } from "@inertiajs/react";
 
 const KalenderPendidikan = (props) => {
@@ -42,5 +42,5 @@ const KalenderPendidikan = (props) => {
   )
 }
 
-KalenderPendidikan.layout = (page) => <Main children={page} />
+KalenderPendidikan.layout = (page) => <HomeLayout children={page} />
 export default KalenderPendidikan;

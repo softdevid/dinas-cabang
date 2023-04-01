@@ -3,7 +3,7 @@ import KepalaDinas from "@/Components/pages/ProfilPejabat/KepalaDinas";
 import SekretarisDinas from "@/Components/pages/ProfilPejabat/SekretarisDinas";
 import { Head } from "@inertiajs/react";
 import { useState } from "react";
-import Main from "@/Components/HomePage/Main";
+// import Main from "@/Components/HomePage/Main";
 
 const ProfilPejabat = (props) => {
   const [pejabat1, setPejabat1] = useState({ data: "" });
@@ -46,7 +46,7 @@ const ProfilPejabat = (props) => {
   );
 };
 
-// ProfilPejabat.layout = (page) => <HomeLayout children={page} />;
-ProfilPejabat.layout = (page) => <Main children={page} />;
+ProfilPejabat.layout = (page) => <HomeLayout children={page} />;
+// ProfilPejabat.layout = (page) => <Main children={page} />;
 
 export default ProfilPejabat;

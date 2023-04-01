@@ -1,4 +1,3 @@
-import Main from "@/Components/HomePage/Main";
 import HomeLayout from "@/Layouts/HomeLayout";
 import { Head } from "@inertiajs/react";
 
@@ -100,7 +99,6 @@ const Sejarah = (props) => {
   );
 };
 
-// Sejarah.layout = (page) => <HomeLayout children={page} />;
-Sejarah.layout = (page) => <Main children={page} />;
+Sejarah.layout = (page) => <HomeLayout children={page} />;
 
 export default Sejarah;

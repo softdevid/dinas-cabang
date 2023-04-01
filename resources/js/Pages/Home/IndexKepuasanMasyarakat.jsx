@@ -1,4 +1,4 @@
-import Main from "@/Components/HomePage/Main";
+import HomeLayout from "@/Layouts/HomeLayout";
 import { Head } from "@inertiajs/react";
 import { useState } from "react";
 
@@ -171,5 +171,5 @@ const IndexKepuasanMasyarakat = (props) => {
   )
 }
 
-IndexKepuasanMasyarakat.layout = (page) => <Main children={page} />
+IndexKepuasanMasyarakat.layout = (page) => <HomeLayout children={page} />
 export default IndexKepuasanMasyarakat;

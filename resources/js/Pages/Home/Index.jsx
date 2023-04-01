@@ -4,6 +4,7 @@ import { Head, Link } from "@inertiajs/react";
 import { useEffect, useState } from "react";
 
 const Index = (props) => {
+
   const [visiMisi, setVisiMisi] = useState({ data: "visi" });
   const handleVisiMisi = (data) => {
     setVisiMisi(data);
@@ -42,10 +43,10 @@ const Index = (props) => {
         >
           <div className="items-center justify-center flex h-[40vh] md:h-[60vh]">
             <div className="h-auto w-full text-center md:text-left md:ml-32">
-              <h1 className="text-6xl sm:text-center md:text-left text-white z-50">
+              <h1 className="text-lg md:text-6xl sm:text-center md:text-left text-white z-50">
                 {props.title}
               </h1>
-              <b className="text-2xl text-white">
+              <b className="text-md md:text-2xl text-white">
                 Selamat datang di {props.title}
               </b>
             </div>
@@ -58,7 +59,7 @@ const Index = (props) => {
           <p className="text-white text-center text-3xl font-serif">Lihat apa yang Terjadi Baca Berita Terbaru</p>
         </div>
         <div className="m-auto">
-          <Link className="p-2 rounded-xl bg-yellow-400 text-black hover:bg-yellow-500 text-xl">Lihat Semua Berita</Link>
+          <Link href="/berita" className="p-2 rounded-xl bg-yellow-400 text-black hover:bg-yellow-500 text-xl">Lihat Semua Berita</Link>
         </div>
       </div>
       <div className="hidden md:block">

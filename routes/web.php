@@ -5,6 +5,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SuperAdmin;
+use App\Http\Controllers\SuperAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,5 +53,6 @@ Route::get('/index-kepuasan-masyarakat', [HomeController::class, 'indexKepuasanM
 Route::get('/formulir-pengaduan', [HomeController::class, 'formulirPengaduan'])->name('home.formulirPengaduan');
 Route::get('/prestasi', [HomeController::class, 'prestasi'])->name('home.prestasi');
 Route::get('/survey-kepuasan-masyarakat', [HomeController::class, 'surveyKepuasanMasyarakat'])->name('home.surveyKepuasanMasyarakat');
+Route::get('/super-admin', [SuperAdminController::class, 'index'])->name('home.index');
 
 require __DIR__ . '/auth.php';

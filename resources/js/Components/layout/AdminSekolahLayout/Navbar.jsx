@@ -1,5 +1,5 @@
 import { Menu, Transition } from "@headlessui/react";
-import { UserIcon } from "@heroicons/react/20/solid";
+import { UserIcon, XMarkIcon } from "@heroicons/react/20/solid";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import React, { Fragment, useContext, useState } from "react";
 import { AdminSekolahContext } from "@/context/admin-sekolah-context";
@@ -17,16 +17,20 @@ const Navbar = () => {
               className="-m-2.5 inline-flex md:hidden items-center justify-center rounded-md p-2.5 text-gray-700"
               onClick={() => context.setMobileMenuOpen(true)}
             >
-              <span className="sr-only">Open main menu</span>
-              <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+              <span className="sr-only">open/close main menu</span>
+              {context.mobileMenuOpen ? (
+                <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+              ) : (
+                <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+              )}
             </button>
             <a href="https://flowbite.com" className="flex ml-2 md:mr-24">
-              <img
+              {/* <img
                 src="https://flowbite.com/docs/images/logo.svg"
                 className="h-8 mr-3"
                 alt="FlowBite Logo"
-              />
-              <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
+              /> */}
+              <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white focus:outline-none">
                 Admin Sekolah - ...
               </span>
             </a>
@@ -34,13 +38,9 @@ const Navbar = () => {
           <div className="flex items-center">
             <Menu as="div" className="relative ml-3">
               <div>
-                <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                <Menu.Button className="flex rounded-full bg-slate-500 text-sm focus:outline-none">
                   <span className="sr-only">Open user menu</span>
-                  <img
-                    className="h-8 w-8 rounded-full"
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                    alt=""
-                  />
+                  <UserIcon className="h-8 w-8 p-1 rounded-full text-slate-50" />
                 </Menu.Button>
               </div>
               <Transition

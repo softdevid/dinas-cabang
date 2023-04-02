@@ -41,11 +41,6 @@ const Sidebar = () => {
       href: "/admin-sekolah/siswa",
       icon: UserGroupIcon,
     },
-    {
-      name: "Berita",
-      href: "/admin-sekolah/berita",
-      icon: NewspaperIcon,
-    },
   ];
 
   return (

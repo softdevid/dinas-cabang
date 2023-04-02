@@ -62,7 +62,6 @@ Route::prefix('/admin-sekolah')->group(function () {
   Route::get('/prestasi', [AdminSekolahController::class, 'prestasi'])->name('admin-sekolah.prestasi');
   Route::get('/guru', [AdminSekolahController::class, 'guru'])->name('admin-sekolah.guru');
   Route::get('/siswa', [AdminSekolahController::class, 'siswa'])->name('admin-sekolah.siswa');
-  Route::get('/berita', [AdminSekolahController::class, 'berita'])->name('admin-sekolah.berita');
 });
 
 // require __DIR__ . '/auth.php';

@@ -54,7 +54,15 @@ Route::get('/index-kepuasan-masyarakat', [HomeController::class, 'indexKepuasanM
 Route::get('/formulir-pengaduan', [HomeController::class, 'formulirPengaduan'])->name('home.formulirPengaduan');
 Route::get('/prestasi', [HomeController::class, 'prestasi'])->name('home.prestasi');
 Route::get('/survey-kepuasan-masyarakat', [HomeController::class, 'surveyKepuasanMasyarakat'])->name('home.surveyKepuasanMasyarakat');
-Route::get('/super-admin', [SuperAdminController::class, 'index'])->name('home.index');
+
+Route::prefix('/super-admin')->group(function () {
+  Route::get('/', [SuperAdminController::class, 'index'])->name('super-admin.index');
+  Route::get('/profil', [SuperAdminController::class, 'profil'])->name('super-admin.profil');
+  Route::get('/prestasi', [SuperAdminController::class, 'prestasi'])->name('super-admin.prestasi');
+  Route::get('/guru', [SuperAdminController::class, 'guru'])->name('super-admin.guru');
+  Route::get('/siswa', [SuperAdminController::class, 'siswa'])->name('super-admin.siswa');
+  Route::get('/berita', [SuperAdminController::class, 'berita'])->name('super-admin.berita');
+});
 
 Route::prefix('/admin-sekolah')->group(function () {
   Route::get('/', [AdminSekolahController::class, 'index'])->name('admin-sekolah.index');

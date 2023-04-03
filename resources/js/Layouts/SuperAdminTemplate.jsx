@@ -1,20 +1,26 @@
+import Navbar from "@/Components/layout/SuperAdminLayout/Navbar";
+import Sidebar from "@/Components/layout/SuperAdminLayout/Sidebar";
+import { Link, usePage } from "@inertiajs/react";
 import { useState } from "react";
-import { HiBars4 } from "react-icons/hi";
+import { SuperAdminContext } from "@/context/super-admin-context";
 
-const SuperAdminTemplate = (props) => {
-  const [open, setOpen] = useState(true);
+const SuperAdminTemplate = ({ children }) => {
+  const { props, url } = usePage();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const superAdminContextValue = {
+    props,
+    url,
+    mobileMenuOpen,
+    setMobileMenuOpen,
+  };
+
   return (
     <>
-      <section className="flex gap-6">
-        <div className="bg-[#0e0e0e] min-h-screen w-72">
-          <div className="py-3 flex justify-end">
-            <HiBars4 size={26} className="cursor-pointer" />
-          </div>
-        </div>
-        <div className="m-3 text-xl text-gray-900 font-semibold">
-          REACT TAILWIND
-        </div>
-      </section>
+      <SuperAdminContext.Provider value={superAdminContextValue}>
+        <Navbar />
+        <Sidebar />
+        <div className="p-4 md:ml-64">{children}</div>
+      </SuperAdminContext.Provider>
     </>
   );
 };

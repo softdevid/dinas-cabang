@@ -16,7 +16,7 @@ class AdminSekolahController extends Controller
 
   public function profil()
   {
-    return Inertia::render('AdminSekolah/Index', [
+    return Inertia::render('AdminSekolah/Profil', [
       'title' => 'Profil',
     ]);
   }
@@ -30,22 +30,15 @@ class AdminSekolahController extends Controller
 
   public function guru()
   {
-    return Inertia::render('AdminSekolah/Index', [
+    return Inertia::render('AdminSekolah/Guru', [
       'title' => 'Guru',
     ]);
   }
 
   public function siswa()
   {
-    return Inertia::render('AdminSekolah/Index', [
+    return Inertia::render('AdminSekolah/Siswa', [
       'title' => 'Siswa',
-    ]);
-  }
-
-  public function berita()
-  {
-    return Inertia::render('AdminSekolah/Index', [
-      'title' => 'Berita',
     ]);
   }
 

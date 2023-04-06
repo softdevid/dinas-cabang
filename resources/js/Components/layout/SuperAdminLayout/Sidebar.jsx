@@ -3,6 +3,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import {
   ComputerDesktopIcon,
   NewspaperIcon,
+  PhotoIcon,
   TrophyIcon,
   UserCircleIcon,
   UserGroupIcon,
@@ -45,6 +46,11 @@ const Sidebar = () => {
       name: "Berita",
       href: "/super-admin/berita",
       icon: NewspaperIcon,
+    },
+    {
+      name: "Banner",
+      href: "/super-admin/banner",
+      icon: PhotoIcon,
     },
   ];
 

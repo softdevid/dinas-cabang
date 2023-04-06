@@ -62,6 +62,12 @@ Route::prefix('/super-admin')->group(function () {
   Route::get('/guru', [SuperAdminController::class, 'guru'])->name('super-admin.guru');
   Route::get('/siswa', [SuperAdminController::class, 'siswa'])->name('super-admin.siswa');
   Route::get('/berita', [SuperAdminController::class, 'berita'])->name('super-admin.berita');
+
+  //route tabs banner
+  Route::get('/banner', [SuperAdminController::class, 'banner'])->name('super-admin.banner');
+  Route::get('/banner/sejarah', [SuperAdminController::class, 'bannerSejarah'])->name('super-admin.banner.sejarah');
+  Route::get('/banner/berita', [SuperAdminController::class, 'bannerBerita'])->name('super-admin.banner.berita');
+  Route::get('/banner/galeri', [SuperAdminController::class, 'bannerGaleri'])->name('super-admin.banner.galeri');
 });
 
 Route::prefix('/admin-sekolah')->group(function () {

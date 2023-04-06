@@ -19,7 +19,7 @@ const SuperAdminTemplate = ({ children }) => {
       <SuperAdminContext.Provider value={superAdminContextValue}>
         <Navbar />
         <Sidebar />
-        <div className="p-4 md:ml-64">{children}</div>
+        <div className="p-4 md:ml-64 md:mt-14 mt-12">{children}</div>
       </SuperAdminContext.Provider>
     </>
   );

@@ -13,4 +13,10 @@ class SuperAdminController extends Controller
             'title' => 'Dashboard',
         ]);
     }
+    public function profil()
+    {
+        return Inertia::render('SuperAdmin/Profile', [
+            'title' => 'Profile',
+        ]);
+    }
 }

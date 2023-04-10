@@ -16,7 +16,7 @@ return [
     */
 
   // 'name' => env('APP_NAME', 'Laravel'),
-  'name' => 'Dinas Cabang Wilayah IX',
+  'name' => 'Dinas Cabang Pendidikan Wilayah IX',
 
   /*
     |--------------------------------------------------------------------------

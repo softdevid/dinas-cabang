@@ -14,7 +14,8 @@ class BeritaController extends Controller
    */
   public function index()
   {
-    //
+    $berita = Berita::orderBy('created_at', 'desc')->get();
+    return response()->json($berita);
   }
 
   /**
@@ -32,21 +33,26 @@ class BeritaController extends Controller
   {
     $request->validate([
       'namaPenulis' => 'required',
-      'jenisArtikel' => 'required',
-      'judulArtikel' => 'required',
+      'kategoriBerita' => 'required',
+      'judulBerita' => 'required',
       'deskripsi' => 'required',
       'imgName' => 'required',
-      'imgUrl' => 'required',
+    ], [
+      'namaPenulis.required' => 'Nama penulis harus diisi',
+      'kategoriBerita.required' => 'Kategori harus dipilih',
+      'judulBerita.required' => 'Judul Berita harus diisi',
+      'deskripsi.required' => 'Deskripsi Berita harus diisi',
+      'imgName.required' => 'Gambar Sampul Berita harus diupload',
     ]);
 
     Berita::create([
       'namaPenulis' => $request->namaPenulis,
-      'jenisArtikel' => $request->jenisArtikel,
-      'judulArtikel' => $request->judulArtikel,
+      'kategoriBerita' => $request->kategoriBerita,
+      'judulBerita' => $request->judulBerita,
       'slug' => Str::slug($request->judulArtike),
       'deskripsi' => $request->deskripsi,
-      'imgName' => $request->imgName,
-      'imgUrl' => $request->imgUrl,
+      'imgName' => $request->imgName ?? '',
+      'imgUrl' => $request->imgUrl ?? '',
     ]);
 
     return back()->with('message', 'Berhasil menambah Artikel');
@@ -75,8 +81,8 @@ class BeritaController extends Controller
   {
     $request->validate([
       'namaPenulis' => 'required',
-      'jenisArtikel' => 'required',
-      'judulArtikel' => 'required',
+      'kategoriBerita' => 'required',
+      'judulBerita' => 'required',
       'deskripsi' => 'required',
       'imgName' => 'required',
       'imgUrl' => 'required',
@@ -85,8 +91,8 @@ class BeritaController extends Controller
     $berita = Berita::find($id);
     $berita->update([
       'namaPenulis' => $request->namaPenulis,
-      'jenisArtikel' => $request->jenisArtikel,
-      'judulArtikel' => $request->judulArtikel,
+      'kategoriBerita' => $request->kategoriBerita,
+      'judulBerita' => $request->judulBerita,
       'slug' => Str::slug($request->judulArtike),
       'deskripsi' => $request->deskripsi,
       'imgName' => $request->imgName,
@@ -101,8 +107,16 @@ class BeritaController extends Controller
    */
   public function destroy(Berita $berita, $id)
   {
-    $berita = Berita::find($id);
+    $berita = Berita::where('id', $id)->first();
+    // dd($berita);
     Cloudinary::destroy($berita->imgName);
     $berita->delete();
+    return back()->with('message', 'Berhasil di hapus');
+  }
+
+  public function deleteImage(Request $request)
+  {
+    Cloudinary::destroy($request->imgName);
+    return back();
   }
 }

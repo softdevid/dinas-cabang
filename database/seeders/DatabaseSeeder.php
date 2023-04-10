@@ -37,21 +37,21 @@ class DatabaseSeeder extends Seeder
       'level' => 'sekolah'
     ]);
 
-    ProfilSuperAdmin::create([
-      'idUser' => '1',
-      'namaSuperAdmin' => 'Softdev Admin',
-      'alamatLengkap' => 'Selabaya RT 2/5, Kalimanah, Purbalingga',
-      'noHp' => '08888882',
-      'email' => 'softdev@gamil.com',
-      'lingkupKegiatan' => 'Mengerjakan program aplikasi berupa website dan aplikasi desktop',
-      'visi' => 'Membuat perubahan, pembaruan, dan pembuatan teknologi yang lebih terbarukan',
-      'misi' => 'lorem ipsumgeogjeotjuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu',
-      'tugasPokok' => 'lorem',
-      'fungsi' => 'lorem',
-      'unitKerjaDibawahnya' => 'lorem',
-      'unitKerjaDibawahnya' => 'lorem',
-      'imgName' => null,
-      'imgUrl' => null,
-    ]);
+    // ProfilSuperAdmin::create([
+    //   'idUser' => '1',
+    //   'namaSuperAdmin' => 'Softdev Admin',
+    //   'alamatLengkap' => 'Selabaya RT 2/5, Kalimanah, Purbalingga',
+    //   'noHp' => '08888882',
+    //   'email' => 'softdev@gamil.com',
+    //   'lingkupKegiatan' => 'Mengerjakan program aplikasi berupa website dan aplikasi desktop',
+    //   'visi' => 'Membuat perubahan, pembaruan, dan pembuatan teknologi yang lebih terbarukan',
+    //   'misi' => 'lorem ipsumgeogjeotjuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu',
+    //   'tugasPokok' => 'lorem',
+    //   'fungsi' => 'lorem',
+    //   'unitKerjaDibawahnya' => 'lorem',
+    //   'unitKerjaDibawahnya' => 'lorem',
+    //   'imgName' => null,
+    //   'imgUrl' => null,
+    // ]);
   }
 }

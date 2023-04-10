@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Berita;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -25,6 +26,31 @@ class SuperAdminController extends Controller
   {
     return Inertia::render('SuperAdmin/Prestasi', [
       'title' => 'Prestasi Sekolah',
+    ]);
+  }
+
+  public function guru()
+  {
+    return Inertia::render('SuperAdmin/Guru', [
+      'title' => 'Guru',
+    ]);
+  }
+
+  public function siswa()
+  {
+    return Inertia::render('SuperAdmin/Siswa', [
+      'title' => 'Siswa',
+    ]);
+  }
+
+  public function berita()
+  {
+    // $berita = Berita::latest()->paginate(20);
+    $berita = Berita::orderBy('created_at', 'desc')->get();
+    // dd($berita);
+    return Inertia::render('SuperAdmin/Berita/Index', [
+      'title' => 'Berita',
+      'berita' => $berita,
     ]);
   }
 

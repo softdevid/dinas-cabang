@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminSekolahController;
+use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -61,7 +62,10 @@ Route::prefix('/super-admin')->group(function () {
   Route::get('/prestasi', [SuperAdminController::class, 'prestasi'])->name('super-admin.prestasi');
   Route::get('/guru', [SuperAdminController::class, 'guru'])->name('super-admin.guru');
   Route::get('/siswa', [SuperAdminController::class, 'siswa'])->name('super-admin.siswa');
+
   Route::get('/berita', [SuperAdminController::class, 'berita'])->name('super-admin.berita');
+  Route::post('/berita', [BeritaController::class, 'store'])->name('berita.store');
+  Route::post('/berita/{id}', [BeritaController::class, 'destroy'])->name('berita.destroy');
 
   //route tabs banner
   Route::get('/banner', [SuperAdminController::class, 'banner'])->name('super-admin.banner');
@@ -78,4 +82,8 @@ Route::prefix('/admin-sekolah')->group(function () {
   Route::get('/siswa', [AdminSekolahController::class, 'siswa'])->name('admin-sekolah.siswa');
 });
 
+Route::post('/delete-image-berita', [BeritaController::class, 'deleteImage']);
+Route::get('/api/berita', [BeritaController::class, 'index']);
+
 // require __DIR__ . '/auth.php';
+// require __DIR__ . '/api.php';

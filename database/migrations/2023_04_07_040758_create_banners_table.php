@@ -11,15 +11,11 @@ return new class extends Migration
    */
   public function up(): void
   {
-    Schema::create('beritas', function (Blueprint $table) {
+    Schema::create('banners', function (Blueprint $table) {
       $table->id();
-      $table->string('namaPenulis');
-      $table->string('kategoriBerita'); //berita
-      $table->string('judulBerita');
-      $table->string('slug');
-      $table->text('deskripsi');
       $table->string('imgName');
       $table->string('imgUrl');
+      $table->text('deskripsi')->default('#');
       $table->timestamps();
     });
   }
@@ -29,6 +25,6 @@ return new class extends Migration
    */
   public function down(): void
   {
-    Schema::dropIfExists('beritas');
+    Schema::dropIfExists('banners');
   }
 };

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Berita;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -30,8 +31,10 @@ class HomeController extends Controller
 
   public function berita()
   {
+    $berita = Berita::orderBy('created_at', 'desc')->get();
     return Inertia::render('Home/Berita', [
       'title' => 'Berita',
+      'berita' => $berita,
     ]);
   }
 

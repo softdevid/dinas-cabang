@@ -18,27 +18,27 @@ const Sidebar = () => {
   const links = [
     {
       name: "Dashboard",
-      href: "/admin-sekolah",
+      href: `/admin-sekolah/${context.dtSekolah.id}`,
       icon: ComputerDesktopIcon,
     },
     {
       name: "Profil",
-      href: "/admin-sekolah/profil",
+      href: `/admin-sekolah/${context.dtSekolah.id}/profil`,
       icon: UserCircleIcon,
     },
     {
       name: "Prestasi",
-      href: "/admin-sekolah/prestasi",
+      href: `/admin-sekolah/${context.dtSekolah.id}/prestasi`,
       icon: TrophyIcon,
     },
     {
       name: "Guru",
-      href: "/admin-sekolah/guru",
+      href: `/admin-sekolah/${context.dtSekolah.id}/guru`,
       icon: UsersIcon,
     },
     {
       name: "Siswa",
-      href: "/admin-sekolah/siswa",
+      href: `/admin-sekolah/${context.dtSekolah.id}/siswa`,
       icon: UserGroupIcon,
     },
   ];

@@ -3,16 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\Guru;
+use App\Models\Sekolah;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class GuruController extends Controller
 {
   /**
    * Display a listing of the resource.
    */
-  public function index()
+  public function index(Sekolah $sekolah)
   {
-    //
+    return Inertia::render('AdminSekolah/Guru/GuruIndex', [
+      'title' => 'Guru',
+      'dataSekolah' => $sekolah,
+      'dataGuru' => $sekolah->gurus()->get(),
+    ]);
   }
 
   /**
@@ -63,9 +69,13 @@ class GuruController extends Controller
   /**
    * Show the form for editing the specified resource.
    */
-  public function edit(Guru $guru)
+  public function edit(Sekolah $sekolah, Guru $guru)
   {
-    //
+    return Inertia::render('AdminSekolah/Guru/GuruEdit', [
+      'title' => 'Guru Edit',
+      'dataSekolah' => $sekolah,
+      'dataGuru' => $guru,
+    ]);
   }
 
   /**

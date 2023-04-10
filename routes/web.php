@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminSekolahController;
 use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\GuruController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -74,11 +75,11 @@ Route::prefix('/super-admin')->group(function () {
   Route::get('/banner/galeri', [SuperAdminController::class, 'bannerGaleri'])->name('super-admin.banner.galeri');
 });
 
-Route::prefix('/admin-sekolah')->group(function () {
+Route::prefix('/admin-sekolah/{sekolah:id}')->group(function () {
   Route::get('/', [AdminSekolahController::class, 'index'])->name('admin-sekolah.index');
   Route::get('/profil', [AdminSekolahController::class, 'profil'])->name('admin-sekolah.profil');
   Route::get('/prestasi', [AdminSekolahController::class, 'prestasi'])->name('admin-sekolah.prestasi');
-  Route::get('/guru', [AdminSekolahController::class, 'guru'])->name('admin-sekolah.guru');
+  Route::resource('guru', GuruController::class);
   Route::get('/siswa', [AdminSekolahController::class, 'siswa'])->name('admin-sekolah.siswa');
 });
 

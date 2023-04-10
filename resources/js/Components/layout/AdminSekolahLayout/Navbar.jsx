@@ -31,7 +31,7 @@ const Navbar = () => {
                 alt="FlowBite Logo"
               /> */}
               <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white focus:outline-none">
-                Admin Sekolah - ...
+                Admin Sekolah - {context.dtSekolah.namaSekolah}
               </span>
             </a>
           </div>

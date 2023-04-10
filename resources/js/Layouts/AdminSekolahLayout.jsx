@@ -7,11 +7,15 @@ import { AdminSekolahContext } from "@/context/admin-sekolah-context";
 const AdminSekolahLayout = ({ children }) => {
   const { props, url } = usePage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [dtSekolah, setDtSekolah] = useState({});
+
   const adminSekolahContextValue = {
     props,
     url,
     mobileMenuOpen,
     setMobileMenuOpen,
+    dtSekolah,
+    setDtSekolah,
   };
 
   return (

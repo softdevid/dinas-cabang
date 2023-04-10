@@ -1,13 +1,21 @@
 import AdminSekolahLayout from "@/Layouts/AdminSekolahLayout";
+import { AdminSekolahContext } from "@/context/admin-sekolah-context";
 import { Head } from "@inertiajs/react";
+import { useContext, useEffect } from "react";
 
-const Index = (props) => {
+const Index = ({ title, dataSekolah }) => {
+  const context = useContext(AdminSekolahContext);
+
+  useEffect(() => {
+    context.setDtSekolah(dataSekolah);
+  }, []);
+
   return (
     <>
-      <Head title={props.title} />
+      <Head title={title} />
       <div className="mt-14">
         <div className="mb-3">
-          <h1 className="text-xl md:text-2xl font-bold">{props.title}</h1>
+          <h1 className="text-xl md:text-2xl font-bold">{title}</h1>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 lg:gap-8 mb-3">
           <div className="col-span-2 md:col-span-1 text-white bg-purple-600 w-full h-20 rounded-lg md:rounded-2xl">

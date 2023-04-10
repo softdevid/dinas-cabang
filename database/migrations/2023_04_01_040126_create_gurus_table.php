@@ -13,13 +13,14 @@ return new class extends Migration
   {
     Schema::create('gurus', function (Blueprint $table) {
       $table->foreignId('idSekolah');
-      $table->string('nip');
+      $table->id('nip');
       $table->string('namaGuru');
       $table->string('mapel'); //mata pelajaran gurunya, misal matematika, ppkn
       $table->string('jabatan'); //kepala sekolah, guru, wakil kepala sekolah
       $table->date('tglLahir');
       $table->string('jenisKelamin');
       $table->text('alamatLengkap');
+      $table->timestamps();
     });
   }
 

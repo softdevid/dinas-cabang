@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sekolah;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class AdminSekolahController extends Controller
 {
-  public function index()
+  public function index(Sekolah $sekolah)
   {
     return Inertia::render('AdminSekolah/Index', [
       'title' => 'Dashboard',
+      'dataSekolah' => $sekolah
     ]);
   }
 
@@ -25,13 +27,6 @@ class AdminSekolahController extends Controller
   {
     return Inertia::render('AdminSekolah/Index', [
       'title' => 'Prestasi',
-    ]);
-  }
-
-  public function guru()
-  {
-    return Inertia::render('AdminSekolah/Guru', [
-      'title' => 'Guru',
     ]);
   }
 

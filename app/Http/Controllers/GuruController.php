@@ -24,9 +24,12 @@ class GuruController extends Controller
   /**
    * Show the form for creating a new resource.
    */
-  public function create()
+  public function create(Sekolah $sekolah)
   {
-    //
+    return Inertia::render('AdminSekolah/Guru/GuruTambah', [
+      'title' => 'Tambah Guru',
+      'dataSekolah' => $sekolah,
+    ]);
   }
 
   /**
@@ -34,6 +37,7 @@ class GuruController extends Controller
    */
   public function store(Request $request)
   {
+    $idSekolah = $request->idSekolah;
     $request->validate([
       'nip' => 'required',
       'namaGuru' => 'required',
@@ -42,6 +46,8 @@ class GuruController extends Controller
       'tglLahir' => 'required',
       'jenisKelamin' => 'required',
       'alamatLengkap' => 'required',
+    ], [
+      'nip.required' => 'NIP harus diisi',
     ]);
 
     Guru::create([
@@ -55,7 +61,8 @@ class GuruController extends Controller
       'alamatLengkap' => $request->alamatLengkap,
     ]);
 
-    return back()->with('message', 'Guru berhasil ditambah!');
+    // return redirect()->to('/admin-sekolah/' . $idSekolah . '/guru')->with('message', 'Guru berhasil ditambah!');
+    return response()->json(["data" => "Berhasil menambah guru"]);
   }
 
   /**
@@ -81,7 +88,7 @@ class GuruController extends Controller
   /**
    * Update the specified resource in storage.
    */
-  public function update(Request $request, Guru $guru, $id)
+  public function update(Request $request, $idSekolah, $nip)
   {
     $request->validate([
       'nip' => 'required',
@@ -93,7 +100,7 @@ class GuruController extends Controller
       'alamatLengkap' => 'required',
     ]);
 
-    Guru::where('id', $id)
+    Guru::where(['nip' => $nip, 'idSekolah' => $idSekolah])
       ->update([
         'idSekolah' => $request->idSekolah,
         'nip' => $request->nip,
@@ -105,16 +112,26 @@ class GuruController extends Controller
         'alamatLengkap' => $request->alamatLengkap,
       ]);
 
-    return back()->with('message', 'Guru berhasil diubah!');
+    return response()->json(['data' => 'Berhasi diubah']);
+    // return back()->with('message', 'Guru berhasil diubah!');
   }
 
   /**
    * Remove the specified resource from storage.
    */
-  public function destroy(Guru $guru, $id)
+  public function destroy($idSekolah, $nip)
   {
-    $guru = Guru::where('id', $id)->first();
+    $guru = Guru::where('idSekolah', $idSekolah)->where('nip', $nip)->firstOrFail();
+    // $guru = Guru::where('id', $id)->findOrFail();
+    // dd($guru);
+
     $guru->delete();
-    return back()->with('message', 'Guru berhasil dihapus!');
+
+    return response()->json([
+      'message' => 'Data guru berhasil dihapus'
+    ]);
+    // $guru = Guru::where('nip', $nip)->first();
+    // $guru->delete();
+    // return response()->json(['data' => 'Guru berhasil dihapus']);
   }
 }

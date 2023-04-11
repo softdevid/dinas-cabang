@@ -37,4 +37,18 @@ class AdminSekolahController extends Controller
     ]);
   }
 
+  public function editProfilSekolah(Sekolah $sekolah) //edit profil sekolah
+  {
+    return Inertia::render('AdminSekolah/Profil/ProfilEdit', [
+      'title' => 'Edit Profil',
+      'dataSekolah' => $sekolah,
+    ]);
+  }
+
+  public function updateProfilSekolah() //update profil sekolah
+  {
+    return Inertia::render('AdminSekolah/Siswa', [
+      'title' => 'Siswa',
+    ]);
+  }
 }

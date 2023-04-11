@@ -13,8 +13,9 @@ return new class extends Migration
   {
     Schema::create('prestasis', function (Blueprint $table) {
       $table->id();
+      $table->foreignId('idSekolah');
       $table->string('namaLomba');
-      $table->string('kategoriLomba');
+      $table->string('kategoriLomba'); // olahraga, teknologi, seni budaya, ilmu sosial
       $table->string('namaPeserta');
       $table->string('statusPeserta');
       $table->string('asalInstansi');
@@ -23,7 +24,6 @@ return new class extends Migration
       $table->date('jadwalPelaksanaan');
       $table->string('sumberAnggaran');
       $table->string('tingkatPrestasi'); //kecamatan, kabupaten/kota, provinsi, nasional, internasional
-      $table->string('jenisPrestasi'); // olahraga, teknologi, seni budaya, ilmu sosial
       $table->timestamps();
     });
   }

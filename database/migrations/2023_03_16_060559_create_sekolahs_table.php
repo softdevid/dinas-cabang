@@ -18,10 +18,8 @@ return new class extends Migration
       $table->text('misi');
       $table->text('noHp');
       $table->text('email')->unique();
+      $table->string('password');
       // $table->text('sejarah')->nullable();
-      $table->text('desa');
-      $table->text('kecamatan');
-      $table->text('kabupaten');
       $table->text('alamatLengkap');
       $table->timestamps();
     });

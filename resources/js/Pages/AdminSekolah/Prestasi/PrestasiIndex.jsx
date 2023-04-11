@@ -5,7 +5,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const GuruIndex = ({ title, dataGuru, dataSekolah }) => {
+const PrestasiIndex = ({ title, dataPrestasi, dataSekolah }) => {
   const context = useContext(AdminSekolahContext);
   const [errors, setErrors] = useState({});
 
@@ -13,19 +13,18 @@ const GuruIndex = ({ title, dataGuru, dataSekolah }) => {
     context.setDtSekolah(dataSekolah);
   }, []);
 
-  const urlCreate = `/admin-sekolah/${dataSekolah.id}/guru/create`
+  const urlCreate = `/admin-sekolah/${dataSekolah.id}/prestasi/create`
 
   const handleDelete = (data) => {
     axios
-      .delete(`/admin-sekolah/${dataSekolah.id}/guru/${data.nip}`)
+      .delete(`/admin-sekolah/${dataSekolah.id}/prestasi/${data.id}`)
       .then((res) => {
         toast.success(res.data.data, {
           position: toast.POSITION.TOP_CENTER
         });
         setTimeout(() => {
-          router.get(`/admin-sekolah/${dataSekolah.id}/guru`);
+          router.get(`/admin-sekolah/${dataSekolah.id}/prestasi`);
         }, 2000);
-        // console.log(res)
       })
       .catch((err) => setErrors(err));
   }
@@ -50,25 +49,31 @@ const GuruIndex = ({ title, dataGuru, dataSekolah }) => {
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
                 <th scope="col" className="px-6 py-3">
-                  NIP
+                  Nama Lomba
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  Nama
+                  Kategori Lomba
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  Mengampu
+                  Nama Peserta
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  Jabatan
+                  Status Peserta
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  <span className="sr-only">Edit</span>
+                  Tingkat Prestasi
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Target Capaian
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  <span className="sr-only">Aksi</span>
                 </th>
               </tr>
             </thead>
             <tbody>
-              {dataGuru ? (
-                dataGuru.map((data, index) => (
+              {dataPrestasi ? (
+                dataPrestasi.map((data, index) => (
                   <tr
                     key={index}
                     className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
@@ -77,22 +82,24 @@ const GuruIndex = ({ title, dataGuru, dataSekolah }) => {
                       scope="row"
                       className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                     >
-                      {data.nip}
+                      {data.namaLomba}
                     </th>
-                    <td className="px-6 py-4">{data.namaGuru}</td>
-                    <td className="px-6 py-4">{data.mapel}</td>
-                    <td className="px-6 py-4">{data.jabatan}</td>
+                    <td className="px-6 py-4">{data.kategoriLomba}</td>
+                    <td className="px-6 py-4">{data.namaPeserta}</td>
+                    <td className="px-6 py-4">{data.statusPeserta}</td>
+                    <td className="px-6 py-4">{data.tingkatPrestasi}</td>
+                    <td className="px-6 py-4">{data.targetCapaian}</td>
                     <td className="px-6 py-4 text-right">
                       <Link
                         as="button"
-                        href={`guru/${data.nip}/edit`}
+                        href={`prestasi/${data.id}/edit`}
                         className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                       >
                         Edit
                       </Link>
                       <button onClick={() => handleDelete(data)}
                         as="button"
-                        className="font-medium text-red-600 dark:text-red-500 hover:underline"
+                        className="font-medium text-red-600 dark:text-red-500 hover:underline ml-2"
                       >
                         Hapus
                       </button>
@@ -101,7 +108,7 @@ const GuruIndex = ({ title, dataGuru, dataSekolah }) => {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="6">tidak ada data guru</td>
+                  <td colSpan="6">tidak ada data prestasi</td>
                 </tr>
               )}
             </tbody>
@@ -112,5 +119,5 @@ const GuruIndex = ({ title, dataGuru, dataSekolah }) => {
   );
 };
 
-GuruIndex.layout = (page) => <AdminSekolahLayout children={page} />;
-export default GuruIndex;
+PrestasiIndex.layout = (page) => <AdminSekolahLayout children={page} />;
+export default PrestasiIndex;

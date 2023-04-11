@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Prestasi;
+use App\Models\Sekolah;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -11,21 +12,24 @@ class PrestasiController extends Controller
   /**
    * Display a listing of the resource.
    */
-  public function index()
+  public function index(Sekolah $sekolah)
   {
-    $prestasi = Prestasi::latest()->paginate(10);
-    return Inertia::render('', [
+    return Inertia::render('AdminSekolah/Prestasi/PrestasiIndex', [
       'title' => 'Prestasi',
-      'prestasi' => $prestasi,
+      'dataSekolah' => $sekolah,
+      'dataPrestasi' => $sekolah->prestasis()->get(),
     ]);
   }
 
   /**
    * Show the form for creating a new resource.
    */
-  public function create()
+  public function create(Sekolah $sekolah)
   {
-    //
+    return Inertia::render('AdminSekolah/Prestasi/PrestasiTambah', [
+      'title' => 'Tambah Prestasi',
+      'dataSekolah' => $sekolah,
+    ]);
   }
 
   /**
@@ -34,6 +38,7 @@ class PrestasiController extends Controller
   public function store(Request $request)
   {
     $data = $request->validate([
+      'idSekolah' => 'required',
       'namaLomba' => 'required',
       'kategoriLomba' => 'required',
       'namaPeserta' => 'required',
@@ -44,11 +49,10 @@ class PrestasiController extends Controller
       'jadwalPelaksanaan' => 'required',
       'sumberAnggaran' => 'required',
       'tingkatPrestasi' => 'required',
-      'jenisPrestasi' => 'required',
     ]);
 
     Prestasi::create($data);
-    return back()->with('message', 'Berhasil menambah Prestasi');
+    return response()->json(['data' => 'Berhasil menambah prestasi']);
   }
 
   /**
@@ -62,17 +66,22 @@ class PrestasiController extends Controller
   /**
    * Show the form for editing the specified resource.
    */
-  public function edit(Prestasi $prestasi)
+  public function edit(Sekolah $sekolah, Prestasi $prestasi)
   {
-    //
+    return Inertia::render('AdminSekolah/Prestasi/PrestasiEdit', [
+      'title' => 'Edit Prestasi',
+      'dataSekolah' => $sekolah,
+      'dataPrestasi' => $prestasi,
+    ]);
   }
 
   /**
    * Update the specified resource in storage.
    */
-  public function update(Request $request, Prestasi $prestasi, $id)
+  public function update(Request $request, $idSekolah, $id)
   {
     $data = $request->validate([
+      'idSekolah' => 'required',
       'namaLomba' => 'required',
       'kategoriLomba' => 'required',
       'namaPeserta' => 'required',
@@ -83,21 +92,20 @@ class PrestasiController extends Controller
       'jadwalPelaksanaan' => 'required',
       'sumberAnggaran' => 'required',
       'tingkatPrestasi' => 'required',
-      'jenisPrestasi' => 'required',
     ]);
 
-    $prestasi = Prestasi::find($id);
+    $prestasi = Prestasi::where(['id' => $id, 'idSekolah' => $idSekolah])->first();
     $prestasi->update($data);
-    return back()->with('message', 'Berhasil menambah Prestasi');
+    return response()->json(['data' => 'Berhasil diubah']);
   }
 
   /**
    * Remove the specified resource from storage.
    */
-  public function destroy(Prestasi $prestasi, $id)
+  public function destroy($idSekolah, $id)
   {
-    $prestasi = Prestasi::find($id);
+    $prestasi = Prestasi::where(['id' => $id, 'idSekolah' => $idSekolah])->first();
     $prestasi->delete();
-    return back()->with('message', 'Prestasi Berhasil dihapus!');
+    return response()->json(['data' => 'Prestasi berhasil dihapus']);
   }
 }

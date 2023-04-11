@@ -16,15 +16,14 @@ const GuruTambah = ({ title, dataGuru, dataSekolah }) => {
 
   const [values, setValues] = useState({
     idSekolah: dataSekolah.id,
-    namaGuru: dataGuru.namaGuru,
-    nip: dataGuru.nip,
-    mapel: dataGuru.mapel,
-    jabatan: dataGuru.jabatan,
-    tglLahir: dataGuru.tglLahir,
-    jenisKelamin: dataGuru.jenisKelamin,
-    alamatLengkap: dataGuru.alamatLengkap,
+    namaGuru: "",
+    nip: "",
+    mapel: "",
+    jabatan: "",
+    tglLahir: "",
+    jenisKelamin: "",
+    alamatLengkap: "",
   });
-  console.log(values);
 
   function handleChange(e) {
     const key = e.target.id;
@@ -36,13 +35,8 @@ const GuruTambah = ({ title, dataGuru, dataSekolah }) => {
   }
 
   function handleSubmit() {
-    // router.patch(`/admin-sekolah/${dataSekolah.id}/guru/${dataGuru.nip}`, values)
-    // toast.success(res.data.data, {
-    //   position: toast.POSITION.TOP_CENTER
-    // });
-
     axios
-      .patch(`/admin-sekolah/${dataSekolah.id}/guru/${dataGuru.nip}`, values)
+      .post(`/admin-sekolah/${dataSekolah.id}/guru`, values)
       .then((res) => {
         toast.success(res.data.data, {
           position: toast.POSITION.TOP_CENTER

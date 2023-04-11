@@ -15,4 +15,14 @@ class Sekolah extends Model
   {
     return $this->hasMany(Guru::class, 'idSekolah', 'id');
   }
+
+  public function siswas(): HasMany
+  {
+    return $this->hasMany(Siswa::class, 'idSekolah', 'id');
+  }
+
+  public function prestasis(): HasMany
+  {
+    return $this->hasMany(Prestasi::class, 'idSekolah', 'id');
+  }
 }

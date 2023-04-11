@@ -11,6 +11,7 @@ class Guru extends Model
   use HasFactory;
   protected $primaryKey = 'nip';
   protected $guarded = ['nip'];
+  protected $keyType = 'string';
   public $incrementing = false;
 
   public function sekolah(): BelongsTo

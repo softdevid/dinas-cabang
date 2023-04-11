@@ -6,7 +6,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 
-const GuruTambah = ({ title, dataGuru, dataSekolah }) => {
+const SiswaEdit = ({ title, dataSiswa, dataSekolah }) => {
   const context = useContext(AdminSekolahContext);
   const [errors, setErorrs] = useState({});
 
@@ -16,13 +16,14 @@ const GuruTambah = ({ title, dataGuru, dataSekolah }) => {
 
   const [values, setValues] = useState({
     idSekolah: dataSekolah.id,
-    namaGuru: dataGuru.namaGuru,
-    nip: dataGuru.nip,
-    mapel: dataGuru.mapel,
-    jabatan: dataGuru.jabatan,
-    tglLahir: dataGuru.tglLahir,
-    jenisKelamin: dataGuru.jenisKelamin,
-    alamatLengkap: dataGuru.alamatLengkap,
+    namaSiswa: dataSiswa.namaSiswa,
+    nis: dataSiswa.nis,
+    nisn: dataSiswa.nisn,
+    kelas: dataSiswa.kelas,
+    tglLahir: dataSiswa.tglLahir,
+    jurusan: dataSiswa.jurusan,
+    jenisKelamin: dataSiswa.jenisKelamin,
+    alamatLengkap: dataSiswa.alamatLengkap,
   });
   console.log(values);
 
@@ -36,19 +37,14 @@ const GuruTambah = ({ title, dataGuru, dataSekolah }) => {
   }
 
   function handleSubmit() {
-    // router.patch(`/admin-sekolah/${dataSekolah.id}/guru/${dataGuru.nip}`, values)
-    // toast.success(res.data.data, {
-    //   position: toast.POSITION.TOP_CENTER
-    // });
-
     axios
-      .patch(`/admin-sekolah/${dataSekolah.id}/guru/${dataGuru.nip}`, values)
+      .patch(`/admin-sekolah/${dataSekolah.id}/siswa/${dataSiswa.nip}`, values)
       .then((res) => {
         toast.success(res.data.data, {
           position: toast.POSITION.TOP_CENTER
         });
         setTimeout(() => {
-          router.get(`/admin-sekolah/${dataSekolah.id}/guru`);
+          router.get(`/admin-sekolah/${dataSekolah.id}/siswa`);
         }, 2000);
         console.log(res)
       })
@@ -71,44 +67,44 @@ const GuruTambah = ({ title, dataGuru, dataSekolah }) => {
           >
             <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-3">
               <div>
-                <label htmlFor="namaGuru" className="block text-sm font-semibold leading-6 text-gray-900">Nama Guru</label>
+                <label htmlFor="namaSiswa" className="block text-sm font-semibold leading-6 text-gray-900">Nama Siswa</label>
                 <div className="mt-2.5">
-                  <input value={values.namaGuru} onChange={handleChange} type="text" name="namaGuru" id="namaGuru" autoComplete="given-name" className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                  <input value={values.namaSiswa} onChange={handleChange} type="text" name="namaSiswa" id="namaSiswa" autoComplete="given-name" className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                 </div>
-                {errors.namaGuru && (
-                  <span style={{ color: "red" }}>{errors.namaGuru[0]}</span>
+                {errors.namaSiswa && (
+                  <span style={{ color: "red" }}>{errors.namaSiswa[0]}</span>
                 )}
               </div>
               <div>
-                <label htmlFor="nip" className="block text-sm font-semibold leading-6 text-gray-900">NIP</label>
+                <label htmlFor="nisn" className="block text-sm font-semibold leading-6 text-gray-900">NISN</label>
                 <div className="mt-2.5">
-                  <input value={values.nip} onChange={handleChange} type="text" name="nip" id="nip" autoComplete="family-name" className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                  <input value={values.nisn} onChange={handleChange} type="text" name="nisn" id="nisn" autoComplete="family-name" className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                 </div>
-                {errors.nip && (
-                  <span style={{ color: "red" }}>{errors.nip[0]}</span>
+                {errors.nisn && (
+                  <span style={{ color: "red" }}>{errors.nisn[0]}</span>
                 )}
               </div>
               <div>
-                <label htmlFor="mapel" className="block text-sm font-semibold leading-6 text-gray-900">
-                  Mengampu Mapel
+                <label htmlFor="nis" className="block text-sm font-semibold leading-6 text-gray-900">
+                  NIS
                 </label>
                 <div className="mt-2.5">
-                  <input value={values.mapel} onChange={handleChange} type="text" name="mapel" id="mapel" autoComplete="family-name" className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                  <input value={values.nis} onChange={handleChange} type="text" name="nis" id="nis" autoComplete="family-name" className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                 </div>
-                {errors.mapel && (
-                  <span style={{ color: "red" }}>{errors.mapel[0]}</span>
+                {errors.nis && (
+                  <span style={{ color: "red" }}>{errors.nis[0]}</span>
                 )}
               </div>
             </div>
 
             <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-3 mt-5">
               <div>
-                <label htmlFor="jabatan" className="block text-sm font-semibold leading-6 text-gray-900">Jabatan</label>
+                <label htmlFor="kelas" className="block text-sm font-semibold leading-6 text-gray-900">Kelas</label>
                 <div className="mt-2.5">
-                  <input value={values.jabatan} onChange={handleChange} type="text" name="jabatan" id="jabatan" autoComplete="given-name" className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                  <input value={values.kelas} onChange={handleChange} type="text" name="kelas" id="kelas" autoComplete="given-name" className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                 </div>
-                {errors.jabatan && (
-                  <span style={{ color: "red" }}>{errors.jabatan[0]}</span>
+                {errors.kelas && (
+                  <span style={{ color: "red" }}>{errors.kelas[0]}</span>
                 )}
               </div>
               <div>
@@ -133,6 +129,15 @@ const GuruTambah = ({ title, dataGuru, dataSekolah }) => {
                 </div>
                 {errors.jenisKelamin && (
                   <span style={{ color: "red" }}>{errors.jenisKelamin[0]}</span>
+                )}
+              </div>
+              <div>
+                <label htmlFor="jurusan" className="block text-sm font-semibold leading-6 text-gray-900">Jurusan</label>
+                <div className="mt-2.5">
+                  <input value={values.jurusan} onChange={handleChange} type="text" name="jurusan" id="jurusan" autoComplete="given-name" className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                </div>
+                {errors.jurusan && (
+                  <span style={{ color: "red" }}>{errors.jurusan[0]}</span>
                 )}
               </div>
             </div>
@@ -170,5 +175,5 @@ const GuruTambah = ({ title, dataGuru, dataSekolah }) => {
   );
 };
 
-GuruTambah.layout = (page) => <AdminSekolahLayout children={page} />;
-export default GuruTambah;
+SiswaEdit.layout = (page) => <AdminSekolahLayout children={page} />;
+export default SiswaEdit;

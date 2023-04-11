@@ -5,8 +5,10 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Guru;
+use App\Models\Prestasi;
 use App\Models\ProfilSuperAdmin;
 use App\Models\Sekolah;
+use App\Models\Siswa;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -34,6 +36,8 @@ class DatabaseSeeder extends Seeder
 
     Sekolah::factory(10)->create();
     Guru::factory(100)->create();
+    Siswa::factory(10)->create();
+    Prestasi::factory(10)->create();
 
     // ProfilSuperAdmin::create([
     //   'idUser' => '1',

@@ -8,6 +8,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PrestasiController;
+use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\SuperAdmin;
 use App\Http\Controllers\SuperAdminController;
 
@@ -77,14 +79,19 @@ Route::prefix('/super-admin')->group(function () {
 
 Route::prefix('/admin-sekolah/{sekolah:id}')->group(function () {
   Route::get('/', [AdminSekolahController::class, 'index'])->name('admin-sekolah.index');
+
+  // route profil sekolah
   Route::get('/profil', [AdminSekolahController::class, 'profil'])->name('admin-sekolah.profil');
-  Route::get('/prestasi', [AdminSekolahController::class, 'prestasi'])->name('admin-sekolah.prestasi');
+  Route::patch('/profil/{id}', [AdminSekolahController::class, 'updateProfilSekolah'])->name('updateProfilSekolah');
+  Route::get('/profil/{id}/edit', [AdminSekolahController::class, 'editProfilSekolah'])->name('updateProfilSekolah');
+
+  Route::resource('prestasi', PrestasiController::class);
   Route::resource('guru', GuruController::class);
-  Route::get('/siswa', [AdminSekolahController::class, 'siswa'])->name('admin-sekolah.siswa');
+  Route::resource('siswa', SiswaController::class);
 });
 
 Route::post('/delete-image-berita', [BeritaController::class, 'deleteImage']);
 Route::get('/api/berita', [BeritaController::class, 'index']);
 
-// require __DIR__ . '/auth.php';
-// require __DIR__ . '/api.php';
+require __DIR__ . '/auth.php';
+require __DIR__ . '/api.php';

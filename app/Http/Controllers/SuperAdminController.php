@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Berita;
+use App\Models\Guru;
+use App\Models\Prestasi;
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -26,6 +29,7 @@ class SuperAdminController extends Controller
   {
     return Inertia::render('SuperAdmin/Prestasi', [
       'title' => 'Prestasi Sekolah',
+      'prestasi' => Prestasi::latest()->get(),
     ]);
   }
 
@@ -33,21 +37,44 @@ class SuperAdminController extends Controller
   {
     return Inertia::render('SuperAdmin/Guru', [
       'title' => 'Guru',
+      'guru' => Guru::orderBy('namaGuru', 'desc')->get(),
     ]);
   }
 
-  public function siswa()
+  public function siswa(Request $request)
   {
+    $siswa = Siswa::query();
+
+    if ($request->has('search')) {
+      $search = $request->query('search');
+      $siswa->where('namaSiswa', 'like', '%' . $search . '%');
+    }
+
+    if ($request->has('kategoriBerita')) {
+      $kategoriBerita = $request->query('kategoriBerita');
+      if ($kategoriBerita === 'all') {
+        $siswa->where(function ($query) {
+          $query->where('kategoriBerita', 'berita')
+            ->orWhere('kategoriBerita', 'informasi')
+            ->orWhereNull('kategoriBerita');
+        });
+      } else {
+        $siswa->where('kategoriBerita', $kategoriBerita);
+      }
+    }
+
+    $siswa = $siswa->get();
+
     return Inertia::render('SuperAdmin/Siswa', [
       'title' => 'Siswa',
+      'siswa' => $siswa,
     ]);
   }
 
   public function berita()
   {
-    // $berita = Berita::latest()->paginate(20);
+
     $berita = Berita::orderBy('created_at', 'desc')->get();
-    // dd($berita);
     return Inertia::render('SuperAdmin/Berita/Index', [
       'title' => 'Berita',
       'berita' => $berita,

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,15 +18,14 @@ class SekolahFactory extends Factory
   public function definition(): array
   {
     return [
+      "idUser" => User::pluck('id')->random(),
       "namaSekolah" => $this->faker->word(),
       "visi" => $this->faker->sentence(9),
       "misi" => $this->faker->paragraphs(3, true),
       "noHp" => $this->faker->phoneNumber(),
       "email" => $this->faker->email(),
-      "desa" => $this->faker->citySuffix(),
-      "kecamatan" => $this->faker->city(),
-      "kabupaten" => $this->faker->country(),
-      "alamatLengkap" => $this->faker->address()
+      "password" => $this->faker->password(),
+      "alamatLengkap" => $this->faker->address(),
     ];
   }
 }

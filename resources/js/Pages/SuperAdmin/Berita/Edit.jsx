@@ -1,21 +1,24 @@
 import SuperAdminTemplate from "@/Layouts/SuperAdminTemplate";
-import { Head, router, usePage } from "@inertiajs/react";
+import { Head, Link, router, usePage } from "@inertiajs/react";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const Edit = ({ closeOpen, data, props }) => {
+const Edit = (props) => {
   // const { errors } = usePage().props
   const [errors, setErorrs] = useState({});
 
   const [values, setValues] = useState({
-    judulBerita: data.data.judulBerita,
-    namaPenulis: data.data.namaPenulis,
-    kategoriBerita: data.data.kategoriBerita,
-    deskripsi: data.data.deskripsi,
-    imgName: data.data.imgName,
-    imgUrl: data.data.imgUrl,
+    id: props.berita.id,
+    judulBerita: props.berita.judulBerita,
+    namaPenulis: props.berita.namaPenulis,
+    kategoriBerita: props.berita.kategoriBerita,
+    deskripsi: props.berita.deskripsi,
+    imgName: props.berita.imgName,
+    imgUrl: props.berita.imgUrl,
   })
-  console.log(data);
+  console.log(props, values);
 
   function handleChange(e) {
     const key = e.target.id;
@@ -27,16 +30,20 @@ const Edit = ({ closeOpen, data, props }) => {
   }
 
   function handleSubmit() {
+    console.log(values)
     axios
-      .post("/super-admin/berita/update", values)
-      .then((res) => closeOpen())
-      .catch((err) => {
-        if (err.response) {
-          setErorrs(err.response.data.errors);
-        } else {
-          closeOpen();
-        }
-      });
+      .patch(`/super-admin/berita/${props.berita.id}`, values)
+      .then((res) => {
+        toast.success(res.data.data, {
+          position: toast.POSITION.TOP_CENTER
+        });
+
+        setTimeout(() => {
+          router.get(`/super-admin/berita`);
+        }, 2000);
+
+      })
+      .catch((err) => setErorrs(err.response.data.errors));
   }
 
   function deleteImage() {
@@ -49,6 +56,7 @@ const Edit = ({ closeOpen, data, props }) => {
       }))
       .catch((err) => "")
   }
+
   const uploadImage = () => {
     var myWidget = window.cloudinary.createUploadWidget({
       cloudName: 'dthan3ueu',
@@ -72,12 +80,13 @@ const Edit = ({ closeOpen, data, props }) => {
   return (
     <>
       <Head title="Edit Artikel" />
+      <ToastContainer autoClose={2000} />
       <div className="grid grid-cols-2">
         <div>
           <h1 className="text-lg md:text-2xl">Edit Artikel</h1>
         </div>
         <div className="justify-end items-end flex">
-          <button onClick={() => closeOpen()} className="bg-gray-600 hover:bg-gray-700 text-white p-2 rounded-lg">Kembali</button>
+          <Link href="/super-admin/berita" className="bg-gray-600 hover:bg-gray-700 text-white p-2 rounded-lg">Kembali</Link>
         </div>
       </div>
 

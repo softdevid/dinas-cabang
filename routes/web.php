@@ -66,9 +66,7 @@ Route::prefix('/super-admin')->group(function () {
   Route::get('/guru', [SuperAdminController::class, 'guru'])->name('super-admin.guru');
   Route::get('/siswa', [SuperAdminController::class, 'siswa'])->name('super-admin.siswa');
 
-  Route::get('/berita', [SuperAdminController::class, 'berita'])->name('super-admin.berita');
-  Route::post('/berita', [BeritaController::class, 'store'])->name('berita.store');
-  Route::post('/berita/{id}', [BeritaController::class, 'destroy'])->name('berita.destroy');
+  Route::resource('berita', BeritaController::class);
 
   //route tabs banner
   Route::get('/banner', [SuperAdminController::class, 'banner'])->name('super-admin.banner');

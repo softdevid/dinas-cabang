@@ -1,144 +1,148 @@
 import SuperAdminTemplate from "@/Layouts/SuperAdminTemplate";
-import { PlusCircleIcon } from "@heroicons/react/20/solid";
-import { Head } from "@inertiajs/react";
-import { useState } from "react";
+import { Head, Link, router } from "@inertiajs/react";
+import { useEffect, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const Prestasi = (props) => {
+const Prestasi = ({ title, prestasi }) => {
 
-  const [data, setData] = useState("");
-  const [open, setOpen] = useState(false);
-  const handleOpen = (data) => {
-    setData(data);
-    setOpen(true);
+  const handleDelete = ({ id }) => {
+    axios
+      .delete(`/super-admin/berita/${id}`)
+      .then((res) => {
+        toast.success(res.data.data, {
+          position: toast.POSITION.TOP_CENTER
+        });
+
+        setTimeout(() => {
+          router.get(`/super-admin/berita`);
+        }, 1000);
+      })
   }
 
-  const handleClose = () => {
-    setData({});
-    setOpen(false);
-  }
-  return (
-    <>
-      {data.status === "tambah" ? (
-        <>
-          <Add handleClose={handleClose} />
-        </>
-      ) : data.status === "edit" ? (
-        <>
-          <Edit />
-        </>
-      ) : (
-        <Index handleClose={handleClose} handleOpen={handleOpen} data={data} props={props} />
-      )}
-    </>
-  )
-}
+  const [search, setSearch] = useState('');
+  const [targetCapaian, setTargetCapaian] = useState('all');
+  const [kategoriLomba, setKategoriLomba] = useState('all');
 
-function Index({ handleClose, handleOpen, data, props }) {
+
+  const filteredPrestasi = prestasi.filter(prestasi =>
+    prestasi.namaPeserta.toLowerCase().includes(search.toLowerCase())
+    && (targetCapaian === 'all' || prestasi.targetCapaian === targetCapaian)
+    && (kategoriLomba === 'all' || prestasi.kategoriLomba === kategoriLomba)
+    // && prestasi.mapel.toLowerCase().includes(mapel.toLowerCase())
+  );
+
+  const pageSize = 20;
+  const pageCount = Math.ceil(filteredPrestasi.length / pageSize);
+
+  function getPageItems(page) {
+    const startIndex = (page - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    return filteredPrestasi.slice(startIndex, endIndex);
+  }
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const currentPageItems = getPageItems(currentPage);
+
   return (
     <>
-      <Head title={props.title} />
-      <div className="grid grid-cols-2">
+      <Head title={title} />
+      <ToastContainer autoClose={2000} />
+      <div className="grid grid-cols-2 mb-4">
         <div>
-          <h1 className="text-xl md:text-2xl">{props.title}</h1>
+          <h1 className="text-lg md:text-2xl">{title}</h1>
         </div>
-        <div className="flex justify-end items-end">
-          <button onClick={() => handleOpen({ status: "tambah" })} className="text-white bg-blue-500 p-2 rounded-lg flex"><PlusCircleIcon className="w-5 h-5" /> Tambah</button>
-        </div>
+        {/* <div className="justify-end items-end flex">
+          <Link href="/super-admin/berita/create" className="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-lg">Tambah</Link>
+        </div> */}
       </div>
 
+      <input placeholder="Cari Nama Peserta" type="text" value={search} onChange={e => setSearch(e.target.value)} className="rounded-lg" />
 
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+      <select value={targetCapaian} onChange={e => setTargetCapaian(e.target.value)} className="rounded-lg ml-2">
+        <option value="all">Semua Peringkat</option>
+        <option value="Juara 1">Juara 1</option>
+        <option value="Juara 2">Juara 2</option>
+        <option value="Juara 3">Juara 3</option>
+        <option value="Juara 4">Juara 4</option>
+        <option value="Juara 5">Juara 5</option>
+      </select>
+      <select value={kategoriLomba} onChange={e => setKategoriLomba(e.target.value)} className="rounded-lg ml-2">
+        <option value="all">Semua Kategori Lomba</option>
+        <option value="Olahraga">Olahraga</option>
+        <option value="Teknologi">Teknologi</option>
+        <option value="Seni budaya">Seni budaya</option>
+        <option value="Ilmu sosial">Ilmu sosial</option>
+        {/* <option value="Juara 5">Juara 5</option> */}
+      </select>
+
+      <div className="relative overflow-x-auto">
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-              <th scope="col" className="p-4">
-                <div className="flex items-center">
-                  <input id="checkbox-all-search" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                  <label htmlFor="checkbox-all-search" className="sr-only">checkbox</label>
-                </div>
+              <th scope="col" className="px-2 py-4">
+                #
               </th>
-              <th scope="col" className="px-6 py-3">
-                Product name
+              <th scope="col" className="px-2 py-4">
+                Nama Lomba
               </th>
-              <th scope="col" className="px-6 py-3">
-                Color
+              <th scope="col" className="px-2 py-4">
+                Nama Peserta
               </th>
-              <th scope="col" className="px-6 py-3">
-                Category
+              <th scope="col" className="px-2 py-4">
+                Peringkat
               </th>
-              <th scope="col" className="px-6 py-3">
-                Accesories
+              <th scope="col" className="px-2 py-4">
+                Asal Instansi
               </th>
-              <th scope="col" className="px-6 py-3">
-                Available
+              <th scope="col" className="px-2 py-4">
+                Kategori Lomba
               </th>
-              <th scope="col" className="px-6 py-3">
-                Price
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Weight
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Action
+              <th scope="col" className="px-2 py-4">
+                Aksi
               </th>
             </tr>
           </thead>
           <tbody>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-              <td className="w-4 p-4">
-                <div className="flex items-center">
-                  <input id="checkbox-table-search-1" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                  <label htmlFor="checkbox-table-search-1" className="sr-only">checkbox</label>
-                </div>
-              </td>
-              <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                Apple MacBook Pro 17"
-              </th>
-              <td className="px-6 py-4">
-                Silver
-              </td>
-              <td className="px-6 py-4">
-                Laptop
-              </td>
-              <td className="px-6 py-4">
-                Yes
-              </td>
-              <td className="px-6 py-4">
-                Yes
-              </td>
-              <td className="px-6 py-4">
-                $2999
-              </td>
-              <td className="px-6 py-4">
-                3.0 lb.
-              </td>
-              <td className="flex items-center px-6 py-4 space-x-3">
-                <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                <a href="#" className="font-medium text-red-600 dark:text-red-500 hover:underline">Remove</a>
-              </td>
-            </tr>
+            {currentPageItems.map((data, i) => {
+              return (
+                <>
+                  <tr key={i} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th scope="row" className="px-2 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                      {i + 1}
+                    </th>
+                    <td className="px-2 py-4">
+                      {data.namaLomba}
+                    </td>
+                    <td className="px-2 py-4">
+                      {data.namaPeserta}
+                    </td>
+                    <td className="px-2 py-4">
+                      {data.targetCapaian}
+                    </td>
+                    <td className="px-2 py-4">
+                      {data.asalInstansi}
+                    </td>
+                    <td className="px-2 py-4">
+                      {data.kategoriLomba}
+                    </td>
+                    <td className="px-2 py-4">
+                      <Link href={`/super-admin/berita/${data.id}/edit`} className="bg-yellow-500 text-black p-2 rounded-lg mx-1">Edit</Link>
+                      <button className="bg-sky-500 text-white p-2 rounded-lg mx-1">Detail</button>
+                      <button onClick={() => handleDelete({ id: data.id })} className="bg-red-500 mx-1 text-white p-2 rounded-lg">Hapus</button>
+                    </td>
+                  </tr>
+                </>
+              )
+            })}
           </tbody>
         </table>
       </div>
-    </>
-  )
-}
-
-function Add({ handleClose }) {
-  return (
-    <>
-      <Head title="Tambah Prestasi" />
-      <div className="grid grid-cols-2">
-        <div>
-          <h1 className="text-xl md:text-2xl">Tambah Prestasi</h1>
-        </div>
-        <div className="flex justify-end items-end">
-          <button onClick={handleClose} className="p-2 bg-gray-500 hover:bg-gray-600 text-white rounded-lg">Kembali</button>
-        </div>
-      </div>
 
     </>
   )
 }
+
+
 Prestasi.layout = (page) => <SuperAdminTemplate children={page} />
 export default Prestasi;

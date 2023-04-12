@@ -13,6 +13,7 @@ return new class extends Migration
   {
     Schema::create('sekolahs', function (Blueprint $table) {
       $table->id();
+      $table->foreignId('idUser');
       $table->string('namaSekolah');
       $table->text('visi');
       $table->text('misi');
@@ -21,6 +22,8 @@ return new class extends Migration
       $table->string('password');
       // $table->text('sejarah')->nullable();
       $table->text('alamatLengkap');
+      $table->string('imgName')->nullable();
+      $table->string('imgUrl')->nullable();
       $table->timestamps();
     });
   }

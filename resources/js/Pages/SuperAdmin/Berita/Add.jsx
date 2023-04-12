@@ -2,8 +2,10 @@ import SuperAdminTemplate from "@/Layouts/SuperAdminTemplate";
 import { Head, router, usePage } from "@inertiajs/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const Add = ({ closeOpen, data, props, dataBerita, setDataBerita }) => {
+const Add = (profil) => {
   // const { errors } = usePage().props
   const [errors, setErorrs] = useState({});
 
@@ -15,11 +17,7 @@ const Add = ({ closeOpen, data, props, dataBerita, setDataBerita }) => {
     imgName: "",
     imgUrl: "",
   })
-  console.log(errors, values);
-
-  useEffect(() => {
-    setDataBerita(props.berita);
-  }, [props.berita]);
+  console.log(values);
 
   function handleChange(e) {
     const key = e.target.id;
@@ -32,15 +30,16 @@ const Add = ({ closeOpen, data, props, dataBerita, setDataBerita }) => {
 
   function handleSubmit() {
     axios
-      .post("/super-admin/berita", values)
-      .then((res) => closeOpen())
-      .catch((err) => {
-        if (err.response) {
-          setErorrs(err.response.data.errors);
-        } else {
-          closeOpen();
-        }
-      });
+      .post(`/super-admin/berita`, values)
+      .then((res) => {
+        toast.success(res.data.data, {
+          position: toast.POSITION.TOP_CENTER
+        });
+
+        router.get(`/super-admin/berita`);
+
+      })
+      .catch((err) => setErorrs(err.response.data.errors));
   }
 
   function deleteImage() {
@@ -53,6 +52,7 @@ const Add = ({ closeOpen, data, props, dataBerita, setDataBerita }) => {
       }))
       .catch((err) => "")
   }
+
   const uploadImage = () => {
     var myWidget = window.cloudinary.createUploadWidget({
       cloudName: 'dthan3ueu',
@@ -76,6 +76,7 @@ const Add = ({ closeOpen, data, props, dataBerita, setDataBerita }) => {
   return (
     <>
       <Head title="Tambah Artikel" />
+      <ToastContainer autoClose={2000} />
       <div className="grid grid-cols-2">
         <div>
           <h1 className="text-lg md:text-2xl">Tambah Artikel</h1>

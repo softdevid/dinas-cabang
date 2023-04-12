@@ -23,6 +23,8 @@ const ProfilEdit = ({ title, dataSiswa, dataSekolah }) => {
     email: dataSekolah.email,
     password: dataSekolah.password,
     alamatLengkap: dataSekolah.alamatLengkap,
+    imgName: dataSekolah.imgName,
+    imgUrl: dataSekolah.imgUrl,
   });
   console.log(values);
 
@@ -37,17 +39,38 @@ const ProfilEdit = ({ title, dataSiswa, dataSekolah }) => {
 
   function handleSubmit() {
     axios
-      .patch(`/admin-sekolah/${dataSekolah.id}/siswa/${dataSiswa.nip}`, values)
+      .patch(`/admin-sekolah/${dataSekolah.id}/profil/${dataSekolah.id}`, values)
       .then((res) => {
         toast.success(res.data.data, {
           position: toast.POSITION.TOP_CENTER
         });
         setTimeout(() => {
-          router.get(`/admin-sekolah/${dataSekolah.id}/siswa`);
+          router.get(`/admin-sekolah/${dataSekolah.id}/profil`);
         }, 2000);
         console.log(res)
       })
       .catch((err) => setErorrs(err.response.data.errors));
+  }
+
+  const uploadImage = () => {
+    var myWidget = window.cloudinary.createUploadWidget({
+      cloudName: 'dthan3ueu',
+      uploadPreset: 'cbtgoh6l',
+      maxFiles: 1,
+      sources: ['local', 'camera', 'unsplash'],
+      folder: 'logo sekolah'
+    }, (error, result) => {
+      if (!error && result && result.event === "success") {
+        console.log('Done! Here is the image info: ', result.info);
+        setValues({
+          ...values,
+          imgUrl: result.info.url,
+          imgName: result.info.public_id,
+        });
+      }
+    }
+    )
+    myWidget.open();
   }
 
   return (
@@ -96,53 +119,65 @@ const ProfilEdit = ({ title, dataSiswa, dataSekolah }) => {
               </div>
               <div>
                 <label htmlFor="password" className="block text-sm font-semibold leading-6 text-gray-900">
-                  Password
+                  Password Baru?
                 </label>
                 <div className="mt-2.5">
-                  <input value={values.password} onChange={handleChange} type="text" name="password" id="password" autoComplete="family-name" className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                  <input value={values.password} onChange={handleChange} type="password" name="password" id="password" autoComplete="family-name" className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                 </div>
                 {errors.password && (
                   <span style={{ color: "red" }}>{errors.password[0]}</span>
                 )}
               </div>
-              <div className="sm:col-span-2 mt-5">
-                <label
-                  htmlFor="visi"
-                  className="block text-sm font-semibold leading-6 text-gray-900"
-                >
-                  Visi
+              <div>
+                <label htmlFor="logo" className="block text-sm font-semibold leading-6 text-gray-900">
+                  Logo
                 </label>
                 <div className="mt-2.5">
-                  <textarea value={values.visi} onChange={handleChange}
-                    name="visi"
-                    id="visi"
-                    rows={4}
-                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
+                  <button onClick={uploadImage} type="button" name="logo" id="logo" autoComplete="family-name" className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">Upload</button>
                 </div>
-                {errors.visi && (
-                  <span style={{ color: "red" }}>{errors.visi[0]}</span>
+                {errors.password && (
+                  <span style={{ color: "red" }}>{errors.password[0]}</span>
                 )}
               </div>
-              <div className="sm:col-span-2 mt-5">
-                <label
-                  htmlFor="visi"
-                  className="block text-sm font-semibold leading-6 text-gray-900"
-                >
-                  Misi
-                </label>
-                <div className="mt-2.5">
-                  <textarea value={values.misi} onChange={handleChange}
-                    name="misi"
-                    id="misi"
-                    rows={4}
-                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
-                </div>
-                {errors.misi && (
-                  <span style={{ color: "red" }}>{errors.misi[0]}</span>
-                )}
+            </div>
+
+            <div className="sm:col-span-2 mt-5">
+              <label
+                htmlFor="visi"
+                className="block text-sm font-semibold leading-6 text-gray-900"
+              >
+                Visi
+              </label>
+              <div className="mt-2.5">
+                <textarea value={values.visi} onChange={handleChange}
+                  name="visi"
+                  id="visi"
+                  rows={4}
+                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
               </div>
+              {errors.visi && (
+                <span style={{ color: "red" }}>{errors.visi[0]}</span>
+              )}
+            </div>
+            <div className="sm:col-span-2 mt-5">
+              <label
+                htmlFor="visi"
+                className="block text-sm font-semibold leading-6 text-gray-900"
+              >
+                Misi
+              </label>
+              <div className="mt-2.5">
+                <textarea value={values.misi} onChange={handleChange}
+                  name="misi"
+                  id="misi"
+                  rows={4}
+                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+              </div>
+              {errors.misi && (
+                <span style={{ color: "red" }}>{errors.misi[0]}</span>
+              )}
             </div>
 
             <div className="sm:col-span-2 mt-5">

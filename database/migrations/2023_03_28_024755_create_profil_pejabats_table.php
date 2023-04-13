@@ -19,6 +19,8 @@ return new class extends Migration
       $table->text('pendidikan');
       $table->text('karir');
       $table->text('penghargaan');
+      $table->string('imgName')->nullable();
+      $table->string('imgUrl')->nullable();
       $table->timestamps();
     });
   }

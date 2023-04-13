@@ -7,6 +7,7 @@ namespace Database\Seeders;
 use App\Models\Berita;
 use App\Models\Guru;
 use App\Models\Prestasi;
+use App\Models\ProfilPejabat;
 use App\Models\ProfilSuperAdmin;
 use App\Models\Sekolah;
 use App\Models\Siswa;
@@ -40,6 +41,7 @@ class DatabaseSeeder extends Seeder
     Siswa::factory(10)->create();
     Prestasi::factory(10)->create();
     Berita::factory(100)->create();
+    ProfilPejabat::factory(10)->create();
 
     ProfilSuperAdmin::create([
       'idUser' => '1',

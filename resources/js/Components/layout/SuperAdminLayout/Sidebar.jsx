@@ -7,6 +7,7 @@ import {
   TrophyIcon,
   UserCircleIcon,
   UserGroupIcon,
+  UserMinusIcon,
   UsersIcon,
 } from "@heroicons/react/20/solid";
 import { XMarkIcon } from "@heroicons/react/24/outline";
@@ -51,6 +52,11 @@ const Sidebar = () => {
       name: "Banner",
       href: "/super-admin/banner",
       icon: PhotoIcon,
+    },
+    {
+      name: "Pejabat",
+      href: "/super-admin/pejabat",
+      icon: UserGroupIcon,
     },
   ];
 

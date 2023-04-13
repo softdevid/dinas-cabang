@@ -7,6 +7,7 @@ use App\Models\Prestasi;
 use App\Models\Sekolah;
 use App\Models\Siswa;
 use App\Models\User;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -64,6 +65,9 @@ class AdminSekolahController extends Controller
       'noHp' => 'required',
       'email' => 'required',
       'alamatLengkap' => 'required',
+      'imgName' => 'required',
+    ], [
+      'imgName.required' => 'Logo harus ada',
     ]);
 
     $sekolah = Sekolah::where(['id' => $id])->first();
@@ -77,6 +81,8 @@ class AdminSekolahController extends Controller
         'email' => $request->email,
         'password' => $sekolah->password ?? Hash::make($request->password),
         'alamatLengkap' => $request->alamatLengkap,
+        'imgName' => $request->imgName,
+        'imgUrl' => $request->imgUrl,
       ]);
 
       $user->update([
@@ -87,5 +93,11 @@ class AdminSekolahController extends Controller
     });
 
     return response()->json(['data' => 'Berhasil diupdate']);
+  }
+
+  public function deleteImage(Request $request)
+  {
+    Cloudinary::destroy($request->imgName);
+    return response()->json(['data' => 'Gambar Logo berhasil dihapus']);
   }
 }

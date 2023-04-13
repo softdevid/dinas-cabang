@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PrestasiController;
+use App\Http\Controllers\ProfilPejabatController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\SuperAdmin;
 use App\Http\Controllers\SuperAdminController;
@@ -67,6 +68,7 @@ Route::prefix('/super-admin')->group(function () {
   Route::get('/siswa', [SuperAdminController::class, 'siswa'])->name('super-admin.siswa');
 
   Route::resource('berita', BeritaController::class);
+  Route::resource('pejabat', ProfilPejabatController::class);
 
   //route tabs banner
   Route::get('/banner', [SuperAdminController::class, 'banner'])->name('super-admin.banner');
@@ -90,6 +92,9 @@ Route::prefix('/admin-sekolah/{sekolah:id}')->group(function () {
 
 Route::post('/delete-image-berita', [BeritaController::class, 'deleteImage']);
 Route::get('/api/berita', [BeritaController::class, 'index']);
+
+//delete image
+Route::post('/delete-image', [AdminSekolahController::class, 'deleteImage'])->name('deleteImage');
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/api.php';

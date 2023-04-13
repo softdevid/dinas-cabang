@@ -13,10 +13,9 @@ class ProfilPejabatController extends Controller
    */
   public function index()
   {
-    $pejabat = ProfilPejabat::latest()->paginate(10);
-    return Inertia::render('', [
+    return Inertia::render('SuperAdmin/ProfilPejabat/ProfilPejabatIndex', [
       'title' => 'Profil Pejabat',
-      'profilPejabat' => $pejabat,
+      'profilPejabat' => ProfilPejabat::get(),
     ]);
   }
 
@@ -25,7 +24,9 @@ class ProfilPejabatController extends Controller
    */
   public function create()
   {
-    //
+    return Inertia::render('SuperAdmin/ProfilPejabat/ProfilPejabatTambah', [
+      'title' => 'Tambah Profil Pejabat',
+    ]);
   }
 
   /**
@@ -40,10 +41,14 @@ class ProfilPejabatController extends Controller
       'pendidikan' => 'required',
       'karir' => 'required',
       'penghargaan' => 'required',
+      'imgName' => 'required',
+      'imgUrl' => 'max:255',
+    ], [
+      'imgName' => 'Foto Pejabat harus diisi',
     ]);
 
     ProfilPejabat::create($data);
-    return back()->with('message', 'Berhasil menambah Pejabat');
+    return response()->json(['data' => 'Berhasil di tambah']);
   }
 
   /**

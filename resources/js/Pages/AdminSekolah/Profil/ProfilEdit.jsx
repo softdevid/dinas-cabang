@@ -4,6 +4,7 @@ import { Head, router, usePage } from "@inertiajs/react";
 import React, { useContext, useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 
 const ProfilEdit = ({ title, dataSiswa, dataSekolah }) => {
@@ -21,7 +22,7 @@ const ProfilEdit = ({ title, dataSiswa, dataSekolah }) => {
     misi: dataSekolah.misi,
     noHp: dataSekolah.noHp,
     email: dataSekolah.email,
-    password: dataSekolah.password,
+    password: "",
     alamatLengkap: dataSekolah.alamatLengkap,
     imgName: dataSekolah.imgName,
     imgUrl: dataSekolah.imgUrl,
@@ -47,7 +48,6 @@ const ProfilEdit = ({ title, dataSiswa, dataSekolah }) => {
         setTimeout(() => {
           router.get(`/admin-sekolah/${dataSekolah.id}/profil`);
         }, 2000);
-        console.log(res)
       })
       .catch((err) => setErorrs(err.response.data.errors));
   }
@@ -72,6 +72,25 @@ const ProfilEdit = ({ title, dataSiswa, dataSekolah }) => {
     )
     myWidget.open();
   }
+
+  function deleteImage() {
+    axios
+      .post('/delete-image', values)
+      .then((res) => {
+        toast.success(res.data.data, {
+          position: toast.POSITION.TOP_CENTER
+        });
+        setValues({
+          ...values,
+          imgUrl: "",
+          imgName: "",
+
+        })
+      })
+      .catch((err) => console.log(err))
+  }
+
+  console.log(values)
 
   return (
     <>
@@ -133,10 +152,17 @@ const ProfilEdit = ({ title, dataSiswa, dataSekolah }) => {
                   Logo
                 </label>
                 <div className="mt-2.5">
-                  <button onClick={uploadImage} type="button" name="logo" id="logo" autoComplete="family-name" className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">Upload</button>
+                  {values.imgName ? (
+                    <>
+                      <img src={values.imgUrl} className="object-cover object-center w-30 h-30" />
+                      <button onClick={deleteImage}>Hapus</button>
+                    </>
+                  ) : (
+                    <button onClick={uploadImage} type="button" name="logo" id="logo" autoComplete="family-name" className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">Upload</button>
+                  )}
                 </div>
-                {errors.password && (
-                  <span style={{ color: "red" }}>{errors.password[0]}</span>
+                {errors.imgName && (
+                  <span style={{ color: "red" }}>{errors.imgName[0]}</span>
                 )}
               </div>
             </div>

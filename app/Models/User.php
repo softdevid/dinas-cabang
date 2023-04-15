@@ -44,6 +44,11 @@ class User extends Authenticatable
     'email_verified_at' => 'datetime',
   ];
 
+  public function sekolahs(): HasOne
+  {
+    return $this->hasOne(Sekolah::class, 'idUser', 'id');
+  }
+
   public function beritas(): HasMany
   {
     return $this->hasMany(Berita::class, 'idUser', 'id');

@@ -77,13 +77,18 @@ Route::prefix('/super-admin')->group(function () {
   Route::get('/banner/galeri', [SuperAdminController::class, 'bannerGaleri'])->name('super-admin.banner.galeri');
 });
 
-Route::prefix('/admin-sekolah/{sekolah:id}')->group(function () {
+Route::group([
+  'prefix' => '/admin-sekolah/{sekolah:id}',
+  // 'middleware' => ['auth', 'cek.idsekolah']
+  'middleware' => ['cek.idsekolah']
+], function () {
   Route::get('/', [AdminSekolahController::class, 'index'])->name('admin-sekolah.index');
 
   // route profil sekolah
   Route::get('/profil', [AdminSekolahController::class, 'profil'])->name('admin-sekolah.profil');
   Route::patch('/profil/{id}', [AdminSekolahController::class, 'updateProfilSekolah'])->name('updateProfilSekolah');
   Route::get('/profil/{id}/edit', [AdminSekolahController::class, 'editProfilSekolah'])->name('updateProfilSekolah');
+  Route::post('/delete-image', [AdminSekolahController::class, 'deleteImage'])->name('deleteImage');
 
   Route::resource('prestasi', PrestasiController::class);
   Route::resource('guru', GuruController::class);
@@ -94,7 +99,6 @@ Route::post('/delete-image-berita', [BeritaController::class, 'deleteImage']);
 Route::get('/api/berita', [BeritaController::class, 'index']);
 
 //delete image
-Route::post('/delete-image', [AdminSekolahController::class, 'deleteImage'])->name('deleteImage');
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/api.php';

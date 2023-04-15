@@ -10,7 +10,7 @@ const HomeLayout = ({ children }) => {
     },
     {
       nama: "twitter",
-      link: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Twitter-logo.svg",
+      link: "https://upload.wikimedia.org/wikipedia/commons/3/39/Logo_of_Twitter%2C_Inc..svg",
     },
     {
       nama: "youtube",

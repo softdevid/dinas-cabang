@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProfilPejabat;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -54,23 +55,29 @@ class ProfilPejabatController extends Controller
   /**
    * Display the specified resource.
    */
-  public function show(ProfilPejabat $profilPejabat)
+  public function show($id)
   {
-    //
+    return Inertia::render('SuperAdmin/ProfilPejabat/ProfilPejabatShow', [
+      'title' => 'Detail Pejabat',
+      'profilPejabat' => ProfilPejabat::find($id),
+    ]);
   }
 
   /**
    * Show the form for editing the specified resource.
    */
-  public function edit(ProfilPejabat $profilPejabat)
+  public function edit($id)
   {
-    //
+    return Inertia::render('SuperAdmin/ProfilPejabat/ProfilPejabatEdit', [
+      'title' => 'Edit Pejabat',
+      'profilPejabat' => ProfilPejabat::find($id),
+    ]);
   }
 
   /**
    * Update the specified resource in storage.
    */
-  public function update(Request $request, ProfilPejabat $profilPejabat, $id)
+  public function update(Request $request, $id)
   {
     $pejabat = ProfilPejabat::find($id);
     $data = $request->validate([
@@ -80,10 +87,12 @@ class ProfilPejabatController extends Controller
       'pendidikan' => 'required',
       'karir' => 'required',
       'penghargaan' => 'required',
-    ]);
+      'imgName' => 'required',
+      'imgUrl' => 'max:255',
+    ], ['imgName.required' => 'Gambar harus ada']);
 
     $pejabat->update($data);
-    return back()->with('Berhasil di ubah');
+    return response()->json(['data' => 'Berhasil diubah']);
   }
 
   /**
@@ -92,7 +101,8 @@ class ProfilPejabatController extends Controller
   public function destroy(ProfilPejabat $profilPejabat, $id)
   {
     $pejabat = ProfilPejabat::find($id);
+    Cloudinary::destroy($pejabat->imgName);
     $pejabat->delete();
-    return back()->with('message', 'Berhasil dihapus');
+    return response()->json(['data' => 'Berhasil dihapus']);
   }
 }

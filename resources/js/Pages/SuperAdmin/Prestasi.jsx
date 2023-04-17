@@ -1,6 +1,7 @@
 import SuperAdminTemplate from "@/Layouts/SuperAdminTemplate";
 import { Head, Link, router } from "@inertiajs/react";
 import { useEffect, useState } from "react";
+import ReactPaginate from "react-paginate";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -41,8 +42,14 @@ const Prestasi = ({ title, prestasi }) => {
     return filteredPrestasi.slice(startIndex, endIndex);
   }
 
+  function handlePageClick(data) {
+    const selectedPage = data.selected + 1;
+    setCurrentPage(selectedPage);
+  }
+
+
   const [currentPage, setCurrentPage] = useState(1);
-  const currentPageItems = getPageItems(currentPage);
+  const currentPageItems = filteredPrestasi.length > 0 ? getPageItems(currentPage) : [];
 
   return (
     <>
@@ -73,7 +80,6 @@ const Prestasi = ({ title, prestasi }) => {
         <option value="Teknologi">Teknologi</option>
         <option value="Seni budaya">Seni budaya</option>
         <option value="Ilmu sosial">Ilmu sosial</option>
-        {/* <option value="Juara 5">Juara 5</option> */}
       </select>
 
       <div className="relative overflow-x-auto">
@@ -138,7 +144,19 @@ const Prestasi = ({ title, prestasi }) => {
           </tbody>
         </table>
       </div>
-
+      <ReactPaginate
+        previousLabel={"<"}
+        nextLabel={">"}
+        pageCount={pageCount}
+        onPageChange={handlePageClick}
+        containerClassName={"flex justify-center mt-8"}
+        pageClassName={"mx-2 bg-white text-blue-500 rounded-full cursor-pointer hover:bg-blue-500 hover:text-white text-lg p-2"}
+        breakClassName={"mx-2 bg-white text-blue-500 rounded-full cursor-not-allowed text-lg p-2"}
+        activeClassName={"text-red-500"}
+        previousClassName={"mx-2 bg-white text-blue-500 rounded-full cursor-pointer hover:bg-blue-500 hover:text-white text-lg p-2"}
+        nextClassName={"mx-2 bg-white text-blue-500 rounded-full cursor-pointer hover:bg-blue-500 hover:text-white text-lg p-2"}
+        disabledClassName={"mx-2 bg-gray-300 text-gray-500 rounded-full cursor-not-allowed text-lg p-2"}
+      />
     </>
   )
 }

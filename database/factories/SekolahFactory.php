@@ -25,6 +25,7 @@ class SekolahFactory extends Factory
       "noHp" => $this->faker->phoneNumber(),
       "email" => $this->faker->email(),
       "password" => $this->faker->password(),
+      "jenjang" => $this->faker->randomElement(['SD', 'SMP', 'SMA/SMK']),
       "alamatLengkap" => $this->faker->address(),
     ];
   }

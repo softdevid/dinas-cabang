@@ -3,6 +3,7 @@ import { Head, Link, router } from "@inertiajs/react";
 import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ReactPaginate from "react-paginate";
 
 const ProfilPejabatIndex = ({ title, profilPejabat }) => {
   const handleDelete = ({ id }) => {
@@ -18,8 +19,6 @@ const ProfilPejabatIndex = ({ title, profilPejabat }) => {
         }, 1000);
       })
   }
-
-  console.log(profilPejabat)
 
   const [search, setSearch] = useState('');
   const [jabatan, setJabatan] = useState('');
@@ -38,8 +37,14 @@ const ProfilPejabatIndex = ({ title, profilPejabat }) => {
     return filteredPejabat.slice(startIndex, endIndex);
   }
 
+  function handlePageClick(data) {
+    const selectedPage = data.selected + 1;
+    setCurrentPage(selectedPage);
+  }
+
+
   const [currentPage, setCurrentPage] = useState(1);
-  const currentPageItems = getPageItems(currentPage);
+  const currentPageItems = filteredPejabat.length > 0 ? getPageItems(currentPage) : [];
 
   return (
     <>
@@ -98,7 +103,7 @@ const ProfilPejabatIndex = ({ title, profilPejabat }) => {
                     </td>
                     <td className="px-6 py-4">
                       <Link href={`/super-admin/pejabat/${data.id}/edit`} className="bg-yellow-500 text-black p-2 rounded-lg mx-2">Edit</Link>
-                      <button className="bg-sky-500 text-white p-2 rounded-lg mx-2">Detail</button>
+                      <Link href={`/super-admin/pejabat/${data.id}`} className="bg-sky-500 text-white p-2 rounded-lg mx-2">Detail</Link>
                       <button onClick={() => handleDelete({ id: data.id })} className="bg-red-500 mx-2 text-white p-2 rounded-lg">Hapus</button>
                     </td>
                   </tr>
@@ -108,7 +113,19 @@ const ProfilPejabatIndex = ({ title, profilPejabat }) => {
           </tbody>
         </table>
       </div>
-
+      <ReactPaginate
+        previousLabel={"<"}
+        nextLabel={">"}
+        pageCount={pageCount}
+        onPageChange={handlePageClick}
+        containerClassName={"flex justify-center mt-8"}
+        pageClassName={"mx-2 bg-white text-blue-500 rounded-full cursor-pointer hover:bg-blue-500 hover:text-white text-lg p-2"}
+        breakClassName={"mx-2 bg-white text-blue-500 rounded-full cursor-not-allowed text-lg p-2"}
+        activeClassName={"text-red-500"}
+        previousClassName={"mx-2 bg-white text-blue-500 rounded-full cursor-pointer hover:bg-blue-500 hover:text-white text-lg p-2"}
+        nextClassName={"mx-2 bg-white text-blue-500 rounded-full cursor-pointer hover:bg-blue-500 hover:text-white text-lg p-2"}
+        disabledClassName={"mx-2 bg-gray-300 text-gray-500 rounded-full cursor-not-allowed text-lg p-2"}
+      />
     </>
   )
 }

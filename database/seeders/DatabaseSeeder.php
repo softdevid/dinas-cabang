@@ -37,8 +37,8 @@ class DatabaseSeeder extends Seeder
     ]);
 
     Sekolah::factory(10)->create();
-    Guru::factory(100)->create();
-    Siswa::factory(10)->create();
+    // Guru::factory(100)->create();
+    // Siswa::factory(10)->create();
     Prestasi::factory(10)->create();
     Berita::factory(100)->create();
     ProfilPejabat::factory(10)->create();
@@ -57,8 +57,8 @@ class DatabaseSeeder extends Seeder
       'unitKerjaDibawahnya' => 'lorem',
       'unitKerjaDibawahnya' => 'lorem',
       'sejarah' => 'lorem',
-      'imgName' => null,
-      'imgUrl' => null,
+      // 'imgName' => null,
+      // 'imgUrl' => null,
     ]);
   }
 }

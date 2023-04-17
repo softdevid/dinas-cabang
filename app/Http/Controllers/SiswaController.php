@@ -46,6 +46,7 @@ class SiswaController extends Controller
       'tglLahir' => 'required',
       'jenisKelamin' => 'required',
       'jurusan' => 'max:255',
+      'agama' => 'required',
       'alamatLengkap' => 'required',
     ]);
 
@@ -87,6 +88,7 @@ class SiswaController extends Controller
       'tglLahir' => 'required',
       'jenisKelamin' => 'required',
       'jurusan' => 'max:255',
+      'agama' => 'required',
       'alamatLengkap' => 'required',
     ]);
 

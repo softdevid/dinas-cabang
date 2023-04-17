@@ -13,7 +13,7 @@ class SekolahController extends Controller
   /**
    * Display a listing of the resource.
    */
-  public function index()
+  public function index() //untuk admin sekolah, kalau super admin viewnya ad di super admin
   {
     return Inertia::render('AdminSekolah/Index', [
       'title' => 'Sekolah'

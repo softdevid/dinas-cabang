@@ -22,6 +22,9 @@ const GuruTambah = ({ title, dataGuru, dataSekolah }) => {
     jabatan: "",
     tglLahir: "",
     jenisKelamin: "",
+    agama: "",
+    email: "",
+    noHp: "",
     alamatLengkap: "",
   });
 
@@ -106,6 +109,24 @@ const GuruTambah = ({ title, dataGuru, dataSekolah }) => {
                 )}
               </div>
               <div>
+                <label htmlFor="email" className="block text-sm font-semibold leading-6 text-gray-900">Email</label>
+                <div className="mt-2.5">
+                  <input value={values.email} onChange={handleChange} type="text" name="email" id="email" autoComplete="given-name" className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                </div>
+                {errors.email && (
+                  <span style={{ color: "red" }}>{errors.email[0]}</span>
+                )}
+              </div>
+              <div>
+                <label htmlFor="noHp" className="block text-sm font-semibold leading-6 text-gray-900">No Handphone</label>
+                <div className="mt-2.5">
+                  <input value={values.noHp} onChange={handleChange} type="text" name="noHp" id="noHp" autoComplete="given-name" className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                </div>
+                {errors.noHp && (
+                  <span style={{ color: "red" }}>{errors.noHp[0]}</span>
+                )}
+              </div>
+              <div>
                 <label htmlFor="tglLahir" className="block text-sm font-semibold leading-6 text-gray-900">Tanggal Lahir</label>
                 <div className="mt-2.5">
                   <input value={values.tglLahir} onChange={handleChange} type="date" name="tglLahir" id="tglLahir" autoComplete="family-name" className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
@@ -127,6 +148,25 @@ const GuruTambah = ({ title, dataGuru, dataSekolah }) => {
                 </div>
                 {errors.jenisKelamin && (
                   <span style={{ color: "red" }}>{errors.jenisKelamin[0]}</span>
+                )}
+              </div>
+              <div>
+                <label htmlFor="agama" className="block text-sm font-semibold leading-6 text-gray-900">
+                  Agama
+                </label>
+                <div className="mt-2.5">
+                  <select id="agama" value={values.agama} onChange={handleChange} className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    <option value="">Pilih Agama</option>
+                    <option value="Islam">Islam</option>
+                    <option value="Katholik">Katholik</option>
+                    <option value="Kristen Protestan">Kristen Protestan</option>
+                    <option value="Buddha">Buddha</option>
+                    <option value="Hindhu">Hindhu</option>
+                    <option value="Konghucu">Konghucu</option>
+                  </select>
+                </div>
+                {errors.agama && (
+                  <span style={{ color: "red" }}>{errors.agama[0]}</span>
                 )}
               </div>
             </div>

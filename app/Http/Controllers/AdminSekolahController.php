@@ -58,20 +58,25 @@ class AdminSekolahController extends Controller
 
   public function updateProfilSekolah(Request $request, $id) //update profil sekolah
   {
-    $request->validate([
-      'namaSekolah' => 'required',
-      'visi' => 'required',
-      'misi' => 'required',
-      'noHp' => 'required',
-      'email' => 'required',
-      'alamatLengkap' => 'required',
-      'imgName' => 'required',
-    ], [
-      'imgName.required' => 'Logo harus ada',
-    ]);
+    $request->validate(
+      [
+        'namaSekolah' => 'required',
+        'visi' => 'required',
+        'misi' => 'required',
+        'noHp' => 'required',
+        'email' => 'required',
+        'alamatLengkap' => 'required',
+        'imgName' => 'required',
+        'jenjang' => 'required',
+      ],
+      [
+        'imgName.required' => 'Logo harus ada',
+      ]
+    );
 
-    $sekolah = Sekolah::where(['id' => $id])->first();
-    $user = User::where(['id' => $id])->first();
+    $sekolah = Sekolah::where(['id' => $request->idSekolah])->first();
+    $user = User::where(['id' => $request->idUser])->first();
+
     DB::transaction(function () use ($sekolah, $user, $request) {
       $sekolah->update([
         'namaSekolah' => $request->namaSekolah,
@@ -81,6 +86,7 @@ class AdminSekolahController extends Controller
         'email' => $request->email,
         'password' => $sekolah->password ?? Hash::make($request->password),
         'alamatLengkap' => $request->alamatLengkap,
+        'jenjang' => $request->jenjang,
         'imgName' => $request->imgName,
         'imgUrl' => $request->imgUrl,
       ]);

@@ -25,8 +25,14 @@ return new class extends Migration
       $table->text('tugasPokok')->nullable();
       $table->text('fungsi')->nullable();
       $table->text('unitKerjaDibawahnya')->nullable();
-      $table->text('imgName')->nullable(); //struktur Organisasi name image
-      $table->text('imgUrl')->nullable(); //struktur organisasi url image
+      $table->text('organisasiImgName')->nullable(); //struktur Organisasi name image
+      $table->text('organisasiImgUrl')->nullable(); //struktur organisasi url image
+      $table->text('visiImgName')->nullable(); //visi name image
+      $table->text('visiImgUrl')->nullable(); //visi url image
+      $table->text('misiImgName')->nullable(); //misi name image
+      $table->text('misiImgUrl')->nullable(); //misi url image
+      $table->text('logoImgName')->nullable(); //logo name image
+      $table->text('logoImgUrl')->nullable(); //logo url image
       $table->timestamps();
     });
   }

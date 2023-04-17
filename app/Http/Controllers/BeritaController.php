@@ -18,27 +18,7 @@ class BeritaController extends Controller
    */
   public function index(User $user, Request $request)
   {
-    $berita = Berita::query();
-
-    if ($request->has('search')) {
-      $search = $request->query('search');
-      $berita->where('judulBerita', 'like', '%' . $search . '%');
-    }
-
-    if ($request->has('kategoriBerita')) {
-      $kategoriBerita = $request->query('kategoriBerita');
-      if ($kategoriBerita === 'all') {
-        $berita->where(function ($query) {
-          $query->where('kategoriBerita', 'berita')
-            ->orWhere('kategoriBerita', 'informasi')
-            ->orWhereNull('kategoriBerita');
-        });
-      } else {
-        $berita->where('kategoriBerita', $kategoriBerita);
-      }
-    }
-
-    $berita = $berita->get();
+    $berita = Berita::latest()->get();
 
     return Inertia::render('SuperAdmin/Berita/Index', [
       'title' => 'Berita',
@@ -48,20 +28,21 @@ class BeritaController extends Controller
 
   public function dataBerita(Request $request)
   {
-    $beritas = DB::table('beritas')->select('*')->limit(100);
+    // $beritas = DB::table('beritas')->select('*')->limit(100);
 
-    $kategoriBerita = $request->input('kategoriBerita');
+    // $kategoriBerita = $request->input('kategoriBerita');
 
-    if ($kategoriBerita !== 'all') {
-      $beritas->where('kategoriBerita', $kategoriBerita);
-    }
+    // if ($kategoriBerita !== 'all') {
+    //   $beritas->where('kategoriBerita', $kategoriBerita);
+    // }
 
-    if ($request->has('search')) {
-      $search = $request->query('search');
-      $beritas->where('judulBerita', 'like', '%' . $search . '%');
-    }
+    // if ($request->has('search')) {
+    //   $search = $request->query('search');
+    //   $beritas->where('judulBerita', 'like', '%' . $search . '%');
+    // }
 
-    $beritas = $beritas->paginate(15);
+    // $beritas = $beritas->paginate(15);
+    $beritas = Berita::get();
 
     return response()->json($beritas);
   }
@@ -113,9 +94,12 @@ class BeritaController extends Controller
   /**
    * Display the specified resource.
    */
-  public function show(Berita $berita)
+  public function show($id)
   {
-    //
+    return Inertia::render('SuperAdmin/Berita/Show', [
+      'title' => 'Edit Berita',
+      'berita' => Berita::where('id', $id)->first(),
+    ]);
   }
 
   /**
@@ -170,9 +154,9 @@ class BeritaController extends Controller
     return response()->json(['data' => 'Berita berhasil dihapus']);
   }
 
-  public function deleteImage(Request $request)
+  public function deleteImage(Request $request) //HAPUS GAMBAR DARI CLOUDINARY
   {
     Cloudinary::destroy($request->imgName);
-    return back();
+    return response()->json(['data' => 'Berhasil menghapus gambar']);
   }
 }

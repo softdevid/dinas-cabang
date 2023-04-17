@@ -16,6 +16,7 @@ const ProfilEdit = ({ title, dataSiswa, dataSekolah }) => {
   }, []);
 
   const [values, setValues] = useState({
+    idUser: dataSekolah.idUser,
     idSekolah: dataSekolah.id,
     namaSekolah: dataSekolah.namaSekolah,
     visi: dataSekolah.visi,
@@ -23,6 +24,7 @@ const ProfilEdit = ({ title, dataSiswa, dataSekolah }) => {
     noHp: dataSekolah.noHp,
     email: dataSekolah.email,
     password: "",
+    jenjang: dataSekolah.jenjang,
     alamatLengkap: dataSekolah.alamatLengkap,
     imgName: dataSekolah.imgName,
     imgUrl: dataSekolah.imgUrl,
@@ -40,7 +42,7 @@ const ProfilEdit = ({ title, dataSiswa, dataSekolah }) => {
 
   function handleSubmit() {
     axios
-      .patch(`/admin-sekolah/${dataSekolah.id}/profil/${dataSekolah.id}`, values)
+      .post(`/admin-sekolah/${values.idSekolah}/profil/update`, values)
       .then((res) => {
         toast.success(res.data.data, {
           position: toast.POSITION.TOP_CENTER
@@ -145,6 +147,22 @@ const ProfilEdit = ({ title, dataSiswa, dataSekolah }) => {
                 </div>
                 {errors.password && (
                   <span style={{ color: "red" }}>{errors.password[0]}</span>
+                )}
+              </div>
+              <div>
+                <label htmlFor="jenjang" className="block text-sm font-semibold leading-6 text-gray-900">
+                  Jenjang
+                </label>
+                <div className="mt-2.5">
+                  <select value={values.jenjang} id="jenjang" onChange={handleChange} className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    <option value="">Pilih jenjang sekolah</option>
+                    <option value="SD">SD</option>
+                    <option value="SMP">SMP</option>
+                    <option value="SMA/SMK">SMA/SMK</option>
+                  </select>
+                </div>
+                {errors.jenjang && (
+                  <span style={{ color: "red" }}>{errors.jenjang[0]}</span>
                 )}
               </div>
               <div>

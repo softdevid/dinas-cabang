@@ -2,6 +2,8 @@ import { SuperAdminContext } from "@/context/super-admin-context";
 import { Dialog, Transition } from "@headlessui/react";
 import {
   ComputerDesktopIcon,
+  HomeIcon,
+  HomeModernIcon,
   NewspaperIcon,
   PhotoIcon,
   TrophyIcon,
@@ -44,6 +46,11 @@ const Sidebar = () => {
       icon: UserGroupIcon,
     },
     {
+      name: "Sekolah",
+      href: "/super-admin/sekolah",
+      icon: HomeModernIcon,
+    },
+    {
       name: "Berita",
       href: "/super-admin/berita",
       icon: NewspaperIcon,
@@ -57,6 +64,11 @@ const Sidebar = () => {
       name: "Pejabat",
       href: "/super-admin/pejabat",
       icon: UserGroupIcon,
+    },
+    {
+      name: "Layanan Publik",
+      href: "/super-admin/layanan",
+      icon: HomeIcon,
     },
   ];
 

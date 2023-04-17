@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminSekolahController;
+use App\Http\Controllers\AkunSekolahController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\ProfileController;
@@ -69,6 +70,7 @@ Route::prefix('/super-admin')->group(function () {
 
   Route::resource('berita', BeritaController::class);
   Route::resource('pejabat', ProfilPejabatController::class);
+  Route::resource('sekolah', AkunSekolahController::class);
 
   //route tabs banner
   Route::get('/banner', [SuperAdminController::class, 'banner'])->name('super-admin.banner');
@@ -86,16 +88,16 @@ Route::group([
 
   // route profil sekolah
   Route::get('/profil', [AdminSekolahController::class, 'profil'])->name('admin-sekolah.profil');
-  Route::patch('/profil/{id}', [AdminSekolahController::class, 'updateProfilSekolah'])->name('updateProfilSekolah');
-  Route::get('/profil/{id}/edit', [AdminSekolahController::class, 'editProfilSekolah'])->name('updateProfilSekolah');
-  Route::post('/delete-image', [AdminSekolahController::class, 'deleteImage'])->name('deleteImage');
+  Route::post('/profil/update', [AdminSekolahController::class, 'updateProfilSekolah'])->name('updateProfilSekolah');
+  Route::get('/profil/{id}/edit', [AdminSekolahController::class, 'editProfilSekolah'])->name('editProfilSekolah');
+  // Route::post('/delete-image', [AdminSekolahController::class, 'deleteImage'])->name('deleteImage');
 
   Route::resource('prestasi', PrestasiController::class);
   Route::resource('guru', GuruController::class);
   Route::resource('siswa', SiswaController::class);
 });
 
-Route::post('/delete-image-berita', [BeritaController::class, 'deleteImage']);
+Route::post('/delete-image', [BeritaController::class, 'deleteImage']);
 Route::get('/api/berita', [BeritaController::class, 'index']);
 
 //delete image

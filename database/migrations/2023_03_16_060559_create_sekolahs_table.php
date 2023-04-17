@@ -13,15 +13,15 @@ return new class extends Migration
   {
     Schema::create('sekolahs', function (Blueprint $table) {
       $table->id();
-      $table->foreignId('idUser');
+      $table->foreignId('idUser')->nullable();
       $table->string('namaSekolah');
-      $table->text('visi');
-      $table->text('misi');
-      $table->text('noHp');
+      $table->text('visi')->nullable();
+      $table->text('misi')->nullable();
+      $table->text('noHp')->nullable();
       $table->text('email')->unique();
       $table->string('password');
-      // $table->text('sejarah')->nullable();
-      $table->text('alamatLengkap');
+      $table->text('jenjang'); //SD, SMP, SMA/SMK
+      $table->text('alamatLengkap')->nullable();
       $table->string('imgName')->nullable();
       $table->string('imgUrl')->nullable();
       $table->timestamps();

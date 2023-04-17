@@ -46,6 +46,9 @@ class GuruController extends Controller
       'tglLahir' => 'required',
       'jenisKelamin' => 'required',
       'alamatLengkap' => 'required',
+      'agama' => 'required',
+      'email' => 'required',
+      'noHp' => 'required',
     ], [
       'nip.required' => 'NIP harus diisi',
     ]);
@@ -59,6 +62,9 @@ class GuruController extends Controller
       'tglLahir' => $request->tglLahir,
       'jenisKelamin' => $request->jenisKelamin,
       'alamatLengkap' => $request->alamatLengkap,
+      'agama' => $request->agama,
+      'email' => $request->email,
+      'noHp' => $request->noHp,
     ]);
 
     // return redirect()->to('/admin-sekolah/' . $idSekolah . '/guru')->with('message', 'Guru berhasil ditambah!');
@@ -88,7 +94,7 @@ class GuruController extends Controller
   /**
    * Update the specified resource in storage.
    */
-  public function update(Request $request, $idSekolah, $nip)
+  public function update(Request $request, $idSekolah, $id)
   {
     $request->validate([
       'nip' => 'required',
@@ -98,9 +104,12 @@ class GuruController extends Controller
       'tglLahir' => 'required',
       'jenisKelamin' => 'required',
       'alamatLengkap' => 'required',
+      'email' => 'required',
+      'noHp' => 'required',
+      'agama' => 'required',
     ]);
 
-    Guru::where(['nip' => $nip, 'idSekolah' => $idSekolah])
+    Guru::where(['id' => $id, 'idSekolah' => $idSekolah])
       ->update([
         'idSekolah' => $request->idSekolah,
         'nip' => $request->nip,
@@ -110,28 +119,25 @@ class GuruController extends Controller
         'tglLahir' => $request->tglLahir,
         'jenisKelamin' => $request->jenisKelamin,
         'alamatLengkap' => $request->alamatLengkap,
+        'agama' => $request->agama,
+        'email' => $request->email,
+        'noHp' => $request->noHp,
       ]);
 
     return response()->json(['data' => 'Berhasi diubah']);
-    // return back()->with('message', 'Guru berhasil diubah!');
   }
 
   /**
    * Remove the specified resource from storage.
    */
-  public function destroy($idSekolah, $nip)
+  public function destroy($idSekolah, $id)
   {
-    $guru = Guru::where('idSekolah', $idSekolah)->where('nip', $nip)->firstOrFail();
-    // $guru = Guru::where('id', $id)->findOrFail();
-    // dd($guru);
+    $guru = Guru::where('idSekolah', $idSekolah)->where('id', $id)->firstOrFail();
 
     $guru->delete();
 
     return response()->json([
       'message' => 'Data guru berhasil dihapus'
     ]);
-    // $guru = Guru::where('nip', $nip)->first();
-    // $guru->delete();
-    // return response()->json(['data' => 'Guru berhasil dihapus']);
   }
 }

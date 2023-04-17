@@ -110,7 +110,7 @@ const SiswaTambah = ({ title, dataPrestasi, dataSekolah }) => {
                 <label htmlFor="statusPeserta" className="block text-sm font-semibold leading-6 text-gray-900">Status Peserta</label>
                 <div className="mt-2.5">
                   <select id="statusPeserta" value={values.statusPeserta} onChange={handleChange} className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                    <option value="">Pilih Tingkat Prestasi</option>
+                    <option value="">Pilih Status siswa saat ini</option>
                     <option value="Aktif">Aktif</option>
                     <option value="Tidak Aktif">Tidak Aktif</option>
                   </select>

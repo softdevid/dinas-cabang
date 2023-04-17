@@ -1,5 +1,5 @@
 import SuperAdminTemplate from "@/Layouts/SuperAdminTemplate";
-import { Head, router, usePage } from "@inertiajs/react";
+import { Head, Link, router, usePage } from "@inertiajs/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
@@ -44,13 +44,17 @@ const Add = (profil) => {
 
   function deleteImage() {
     axios
-      .post('/delete-image-berita', values)
-      .then(setValues({
-        ...values,
-        imgUrl: "",
-        imgName: "",
-      }))
-      .catch((err) => "")
+      .post('/delete-image', values)
+      .then((res) => {
+        toast.success(res.data.data, {
+          position: toast.POSITION.TOP_CENTER
+        });
+        setValues({
+          ...values,
+          imgUrl: "",
+          imgName: "",
+        })
+      })
   }
 
   const uploadImage = () => {
@@ -82,7 +86,7 @@ const Add = (profil) => {
           <h1 className="text-lg md:text-2xl">Tambah Artikel</h1>
         </div>
         <div className="justify-end items-end flex">
-          <button onClick={() => closeOpen()} className="bg-gray-600 hover:bg-gray-700 text-white p-2 rounded-lg">Kembali</button>
+          <Link href="/super-admin/berita" className="bg-gray-600 hover:bg-gray-700 text-white p-2 rounded-lg">Kembali</Link>
         </div>
       </div>
 
@@ -135,6 +139,7 @@ const Add = (profil) => {
         </div>
       </div>
       <div className="mb-6">
+        <label htmlFor="deskripsi" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Deskripsi</label>
         <textarea id="deskripsi" value={values.deskripsi} onChange={handleChange} type="text" className="w-full min-h-[50vh] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block" />
         {errors.deskripsi && (
           <span style={{ color: "red" }}>{errors.deskripsi[0]}</span>

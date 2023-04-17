@@ -1,6 +1,7 @@
 import SuperAdminTemplate from "@/Layouts/SuperAdminTemplate";
 import { Head, Link, router } from "@inertiajs/react";
 import { useEffect, useState } from "react";
+import ReactPaginate from "react-paginate";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -26,8 +27,8 @@ const Guru = ({ title, guru }) => {
 
   const filteredGuru = guru.filter(guru =>
     guru.namaGuru.toLowerCase().includes(search.toLowerCase())
-    && (jabatan === 'all' || guru.jabatan === jabatan)
     && guru.mapel.toLowerCase().includes(mapel.toLowerCase())
+    && (jabatan === 'all' || guru.jabatan === jabatan)
   );
 
   const pageSize = 20;
@@ -39,8 +40,14 @@ const Guru = ({ title, guru }) => {
     return filteredGuru.slice(startIndex, endIndex);
   }
 
+  function handlePageClick(data) {
+    const selectedPage = data.selected + 1;
+    setCurrentPage(selectedPage);
+  }
+
+
   const [currentPage, setCurrentPage] = useState(1);
-  const currentPageItems = getPageItems(currentPage);
+  const currentPageItems = filteredGuru.length > 0 ? getPageItems(currentPage) : [];
 
   return (
     <>
@@ -50,9 +57,9 @@ const Guru = ({ title, guru }) => {
         <div>
           <h1 className="text-lg md:text-2xl">{title}</h1>
         </div>
-        {/* <div className="justify-end items-end flex">
+        <div className="justify-end items-end flex">
           <Link href="/super-admin/berita/create" className="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-lg">Tambah</Link>
-        </div> */}
+        </div>
       </div>
 
       <input placeholder="Cari Nama Guru" type="text" value={search} onChange={e => setSearch(e.target.value)} className="rounded-lg" />
@@ -119,7 +126,19 @@ const Guru = ({ title, guru }) => {
           </tbody>
         </table>
       </div>
-
+      <ReactPaginate
+        previousLabel={"<"}
+        nextLabel={">"}
+        pageCount={pageCount}
+        onPageChange={handlePageClick}
+        containerClassName={"flex justify-center mt-8"}
+        pageClassName={"mx-2 bg-white text-blue-500 rounded-full cursor-pointer hover:bg-blue-500 hover:text-white text-lg p-2"}
+        breakClassName={"mx-2 bg-white text-blue-500 rounded-full cursor-not-allowed text-lg p-2"}
+        activeClassName={"text-red-500"}
+        previousClassName={"mx-2 bg-white text-blue-500 rounded-full cursor-pointer hover:bg-blue-500 hover:text-white text-lg p-2"}
+        nextClassName={"mx-2 bg-white text-blue-500 rounded-full cursor-pointer hover:bg-blue-500 hover:text-white text-lg p-2"}
+        disabledClassName={"mx-2 bg-gray-300 text-gray-500 rounded-full cursor-not-allowed text-lg p-2"}
+      />
     </>
   )
 }

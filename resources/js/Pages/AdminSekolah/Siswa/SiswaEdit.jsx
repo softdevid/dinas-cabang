@@ -23,6 +23,7 @@ const SiswaEdit = ({ title, dataSiswa, dataSekolah }) => {
     tglLahir: dataSiswa.tglLahir,
     jurusan: dataSiswa.jurusan,
     jenisKelamin: dataSiswa.jenisKelamin,
+    agama: dataSiswa.agama,
     alamatLengkap: dataSiswa.alamatLengkap,
   });
   console.log(values);
@@ -129,6 +130,25 @@ const SiswaEdit = ({ title, dataSiswa, dataSekolah }) => {
                 </div>
                 {errors.jenisKelamin && (
                   <span style={{ color: "red" }}>{errors.jenisKelamin[0]}</span>
+                )}
+              </div>
+              <div>
+                <label htmlFor="agama" className="block text-sm font-semibold leading-6 text-gray-900">
+                  Agama
+                </label>
+                <div className="mt-2.5">
+                  <select id="agama" value={values.agama} onChange={handleChange} className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    <option value="">Pilih Agama</option>
+                    <option value="Islam">Islam</option>
+                    <option value="Katholik">Katholik</option>
+                    <option value="Kristen Protestan">Kristen Protestan</option>
+                    <option value="Buddha">Buddha</option>
+                    <option value="Hindhu">Hindhu</option>
+                    <option value="Konghucu">Konghucu</option>
+                  </select>
+                </div>
+                {errors.agama && (
+                  <span style={{ color: "red" }}>{errors.agama[0]}</span>
                 )}
               </div>
               <div>

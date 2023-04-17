@@ -48,13 +48,17 @@ const Edit = (props) => {
 
   function deleteImage() {
     axios
-      .post('/delete-image-berita', values)
-      .then(setValues({
-        ...values,
-        imgUrl: "",
-        imgName: "",
-      }))
-      .catch((err) => "")
+      .post('/delete-image', values)
+      .then((res) => {
+        toast.success(res.data.data, {
+          position: toast.POSITION.TOP_CENTER
+        });
+        setValues({
+          ...values,
+          imgUrl: "",
+          imgName: "",
+        })
+      })
   }
 
   const uploadImage = () => {
@@ -77,6 +81,7 @@ const Edit = (props) => {
     )
     myWidget.open();
   }
+
   return (
     <>
       <Head title="Edit Artikel" />

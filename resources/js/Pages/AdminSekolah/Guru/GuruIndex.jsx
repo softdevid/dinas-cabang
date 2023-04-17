@@ -17,7 +17,7 @@ const GuruIndex = ({ title, dataGuru, dataSekolah }) => {
 
   const handleDelete = (data) => {
     axios
-      .delete(`/admin-sekolah/${dataSekolah.id}/guru/${data.nip}`)
+      .delete(`/admin-sekolah/${dataSekolah.id}/guru/${data.id}`)
       .then((res) => {
         toast.success(res.data.data, {
           position: toast.POSITION.TOP_CENTER
@@ -85,7 +85,7 @@ const GuruIndex = ({ title, dataGuru, dataSekolah }) => {
                     <td className="px-6 py-4 text-right">
                       <Link
                         as="button"
-                        href={`guru/${data.nip}/edit`}
+                        href={`guru/${data.id}/edit`}
                         className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                       >
                         Edit

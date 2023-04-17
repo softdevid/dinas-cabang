@@ -3,6 +3,8 @@ import { Head, Link, router } from "@inertiajs/react";
 import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ReactPaginate from 'react-paginate';
+
 
 const Index = ({ title, beritas }) => {
   const handleDelete = ({ id }) => {
@@ -20,10 +22,12 @@ const Index = ({ title, beritas }) => {
   }
 
   const [search, setSearch] = useState('');
+  const [namaPenulis, setNamaPenulis] = useState('');
   const [kategoriBerita, setKategoriBerita] = useState('all');
 
   const filteredBeritas = beritas.filter(berita =>
     berita.judulBerita.toLowerCase().includes(search.toLowerCase())
+    && berita.namaPenulis.toLowerCase().includes(namaPenulis.toLowerCase())
     && (kategoriBerita === 'all' || berita.kategoriBerita === kategoriBerita)
   );
 
@@ -36,8 +40,14 @@ const Index = ({ title, beritas }) => {
     return filteredBeritas.slice(startIndex, endIndex);
   }
 
+  function handlePageClick(data) {
+    const selectedPage = data.selected + 1;
+    setCurrentPage(selectedPage);
+  }
+
+
   const [currentPage, setCurrentPage] = useState(1);
-  const currentPageItems = getPageItems(currentPage);
+  const currentPageItems = filteredBeritas.length > 0 ? getPageItems(currentPage) : [];
 
   return (
     <>
@@ -52,8 +62,9 @@ const Index = ({ title, beritas }) => {
         </div>
       </div>
 
-      <input placeholder="Cari Artikel" type="text" value={search} onChange={e => setSearch(e.target.value)} className="rounded-lg" />
-      <select value={kategoriBerita} onChange={e => setKategoriBerita(e.target.value)} className="rounded-lg ml-2">
+      <input placeholder="Cari Judul" type="text" value={search} onChange={e => setSearch(e.target.value)} className="rounded-lg" />
+      <input placeholder="Cari Penulis" type="text" value={namaPenulis} onChange={e => setNamaPenulis(e.target.value)} className="rounded-lg md:ml-2" />
+      <select value={kategoriBerita} onChange={e => setKategoriBerita(e.target.value)} className="rounded-lg md:ml-2">
         <option value="all">Semua Kategori</option>
         <option value="Berita">Berita</option>
         <option value="Informasi">Informasi</option>
@@ -105,7 +116,7 @@ const Index = ({ title, beritas }) => {
                     </td>
                     <td className="px-6 py-4">
                       <Link href={`/super-admin/berita/${data.id}/edit`} className="bg-yellow-500 text-black p-2 rounded-lg mx-2">Edit</Link>
-                      <button className="bg-sky-500 text-white p-2 rounded-lg mx-2">Detail</button>
+                      <Link href={`/super-admin/berita/${data.id}`} className="bg-sky-500 text-white p-2 rounded-lg mx-2">Detail</Link>
                       <button onClick={() => handleDelete({ id: data.id })} className="bg-red-500 mx-2 text-white p-2 rounded-lg">Hapus</button>
                     </td>
                   </tr>
@@ -116,6 +127,19 @@ const Index = ({ title, beritas }) => {
         </table>
       </div>
 
+      <ReactPaginate
+        previousLabel={"<"}
+        nextLabel={">"}
+        pageCount={pageCount}
+        onPageChange={handlePageClick}
+        containerClassName={"flex justify-center mt-8"}
+        pageClassName={"mx-2 bg-white text-blue-500 rounded-full cursor-pointer hover:bg-blue-500 hover:text-white text-lg p-2"}
+        breakClassName={"mx-2 bg-white text-blue-500 rounded-full cursor-not-allowed text-lg p-2"}
+        activeClassName={"bg-blue-500 text-red-500 rounded-full"}
+        previousClassName={"mx-2 bg-white text-blue-500 rounded-full cursor-pointer hover:bg-blue-500 hover:text-white text-lg p-2"}
+        nextClassName={"mx-2 bg-white text-blue-500 rounded-full cursor-pointer hover:bg-blue-500 hover:text-white text-lg p-2"}
+        disabledClassName={"mx-2 bg-gray-300 text-gray-500 rounded-full cursor-not-allowed text-lg p-2"}
+      />
     </>
   )
 }

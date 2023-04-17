@@ -21,9 +21,12 @@ class GuruFactory extends Factory
       "idSekolah" => Sekolah::pluck('id')->random(),
       "nip" => $this->faker->randomNumber(5, true),
       "namaGuru" => $this->faker->name(),
+      "email" => $this->faker->email(),
+      "noHp" => $this->faker->randomNumber(10, true),
       "mapel" => $this->faker->words(3, true),
       "jabatan" => $this->faker->randomElement(['kepala sekolah', 'guru', 'wakil kepala sekolah']),
       "tglLahir" => $this->faker->date('Y-m-d'),
+      "agama" => $this->faker->randomElement(['Islam', 'Kristen Protestan', 'Katholik', 'Hindu', 'Buddha', 'Konghucu']),
       "jenisKelamin" => $this->faker->randomElement(['laki-laki', 'perempuan']),
       "alamatLengkap" => $this->faker->address(),
     ];

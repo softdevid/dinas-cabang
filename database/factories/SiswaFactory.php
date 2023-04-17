@@ -24,6 +24,7 @@ class SiswaFactory extends Factory
       "namaSiswa" => $this->faker->name(),
       "kelas" => $this->faker->randomElement(['12 RPL 1', '12 RPL 2']),
       "tglLahir" => $this->faker->date('Y-m-d'),
+      "agama" => $this->faker->randomElement(['Islam', 'Kristen Protestan', 'Katholik', 'Hindu', 'Buddha', 'Konghucu']),
       "jenisKelamin" => $this->faker->randomElement(['laki-laki', 'perempuan']),
       "alamatLengkap" => $this->faker->address(),
     ];

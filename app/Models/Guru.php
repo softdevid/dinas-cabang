@@ -9,10 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Guru extends Model
 {
   use HasFactory;
-  protected $primaryKey = 'nip';
-  protected $guarded = ['nip'];
-  protected $keyType = 'string';
-  public $incrementing = false;
+  protected $guarded = ['id'];
 
   public function sekolah(): BelongsTo
   {

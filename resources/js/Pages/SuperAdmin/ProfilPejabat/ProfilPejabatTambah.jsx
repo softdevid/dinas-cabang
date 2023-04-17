@@ -47,12 +47,16 @@ const ProfilPejabatTambah = ({ title }) => {
   function deleteImage() {
     axios
       .post('/delete-image', values)
-      .then(setValues({
-        ...values,
-        imgUrl: "",
-        imgName: "",
-      }))
-      .catch((err) => "")
+      .then((res) => {
+        toast.success(res.data.data, {
+          position: toast.POSITION.TOP_CENTER
+        });
+        setValues({
+          ...values,
+          imgUrl: "",
+          imgName: "",
+        })
+      })
   }
 
   const uploadImage = () => {

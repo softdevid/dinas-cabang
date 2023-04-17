@@ -12,12 +12,16 @@ return new class extends Migration
   public function up(): void
   {
     Schema::create('gurus', function (Blueprint $table) {
+      $table->id();
+      $table->string('nip');
       $table->foreignId('idSekolah');
-      $table->id('nip');
       $table->string('namaGuru');
+      $table->string('email')->unique();
+      $table->string('noHp');
       $table->string('mapel'); //mata pelajaran gurunya, misal matematika, ppkn
       $table->string('jabatan'); //kepala sekolah, guru, wakil kepala sekolah
       $table->date('tglLahir');
+      $table->string('agama');
       $table->string('jenisKelamin');
       $table->text('alamatLengkap');
       $table->timestamps();

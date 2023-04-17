@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Berita;
 use App\Models\Guru;
 use App\Models\Prestasi;
+use App\Models\Sekolah;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class SuperAdminController extends Controller
@@ -16,6 +18,10 @@ class SuperAdminController extends Controller
   {
     return Inertia::render('SuperAdmin/Index', [
       'title' => 'Dashboard',
+      'prestasiCount' => Prestasi::count(),
+      'beritaCount' => Berita::count(),
+      'siswaCount' => Siswa::count(),
+      'guruCount' => Guru::count(),
     ]);
   }
   public function profil()
@@ -41,29 +47,13 @@ class SuperAdminController extends Controller
     ]);
   }
 
-  public function siswa(Request $request)
+  public function siswa(Request $request, Sekolah $sekolah)
   {
-    $siswa = Siswa::query();
-
-    if ($request->has('search')) {
-      $search = $request->query('search');
-      $siswa->where('namaSiswa', 'like', '%' . $search . '%');
-    }
-
-    if ($request->has('kategoriBerita')) {
-      $kategoriBerita = $request->query('kategoriBerita');
-      if ($kategoriBerita === 'all') {
-        $siswa->where(function ($query) {
-          $query->where('kategoriBerita', 'berita')
-            ->orWhere('kategoriBerita', 'informasi')
-            ->orWhereNull('kategoriBerita');
-        });
-      } else {
-        $siswa->where('kategoriBerita', $kategoriBerita);
-      }
-    }
-
-    $siswa = $siswa->get();
+    $siswa = DB::table('sekolahs')
+      ->join('siswas', 'siswas.idSekolah', '=', 'sekolahs.id')
+      ->select('sekolahs.namaSekolah', 'siswas.*')
+      ->orderBy('sekolahs.created_at', 'desc')
+      ->get();
 
     return Inertia::render('SuperAdmin/Siswa', [
       'title' => 'Siswa',

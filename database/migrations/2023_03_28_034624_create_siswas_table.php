@@ -20,6 +20,7 @@ return new class extends Migration
       $table->string('jurusan')->nullable();
       $table->string('kelas');
       $table->date('tglLahir');
+      $table->string('agama');
       $table->string('jenisKelamin');
       $table->text('alamatLengkap');
       $table->timestamps();

@@ -11,6 +11,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PrestasiController;
 use App\Http\Controllers\ProfilPejabatController;
+use App\Http\Controllers\ProfilSuperAdminController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\SuperAdmin;
 use App\Http\Controllers\SuperAdminController;
@@ -68,6 +69,10 @@ Route::prefix('/super-admin')->group(function () {
   Route::get('/guru', [SuperAdminController::class, 'guru'])->name('super-admin.guru');
   Route::get('/siswa', [SuperAdminController::class, 'siswa'])->name('super-admin.siswa');
 
+  //route edit profil superadmin
+  Route::get('/profil/{id}/edit', [ProfilSuperAdminController::class, 'edit'])->name('profilSuperAdmin.edit');
+  Route::patch('/profil/{id}', [ProfilSuperAdminController::class, 'update'])->name('profilSuperAdmin.update');
+
   Route::resource('berita', BeritaController::class);
   Route::resource('pejabat', ProfilPejabatController::class);
   Route::resource('sekolah', AkunSekolahController::class);
@@ -97,7 +102,13 @@ Route::group([
   Route::resource('siswa', SiswaController::class);
 });
 
+// Route delete image in cloudinary
 Route::post('/delete-image', [BeritaController::class, 'deleteImage']);
+Route::post('/delete-image-organisasi', [ProfilSuperAdminController::class, 'deleteImgOrganisasi'])->name('deleteImgOrganisasi');
+Route::post('/delete-image-visi', [ProfilSuperAdminController::class, 'deleteImgVisi'])->name('deleteImgVisi');
+Route::post('/delete-image-misi', [ProfilSuperAdminController::class, 'deleteImgMisi'])->name('deleteImgMisi');
+Route::post('/delete-image-logo', [ProfilSuperAdminController::class, 'deleteImgLogo'])->name('deleteImgLogo');
+
 Route::get('/api/berita', [BeritaController::class, 'index']);
 
 //delete image

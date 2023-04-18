@@ -58,13 +58,19 @@ class AdminSekolahController extends Controller
 
   public function updateProfilSekolah(Request $request, $id) //update profil sekolah
   {
+    $sekolah = Sekolah::where(['id' => $request->idSekolah])->first();
+    $user = User::where(['id' => $request->idUser])->first();
+
+    if ($request->email != $sekolah->email) {
+      $request->validate(['email' => 'required|unique:sekolahs,email']);
+    }
+
     $request->validate(
       [
         'namaSekolah' => 'required',
         'visi' => 'required',
         'misi' => 'required',
         'noHp' => 'required',
-        'email' => 'required',
         'alamatLengkap' => 'required',
         'imgName' => 'required',
         'jenjang' => 'required',
@@ -74,8 +80,6 @@ class AdminSekolahController extends Controller
       ]
     );
 
-    $sekolah = Sekolah::where(['id' => $request->idSekolah])->first();
-    $user = User::where(['id' => $request->idUser])->first();
 
     DB::transaction(function () use ($sekolah, $user, $request) {
       $sekolah->update([

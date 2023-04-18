@@ -18,6 +18,7 @@ return new class extends Migration
       $table->text('alamatLengkap');
       $table->text('noHp');
       $table->string('email')->unique();
+      $table->string('password');
       $table->text('lingkupKegiatan');
       $table->text('visi');
       $table->text('misi');

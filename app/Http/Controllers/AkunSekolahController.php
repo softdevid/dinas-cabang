@@ -40,7 +40,7 @@ class AkunSekolahController extends Controller
   {
     $request->validate([
       'namaSekolah' => 'required',
-      'email' => 'required|unique:sekolahs,email|unique:users,email',
+      'email' => 'required|unique:sekolahs,email',
       'password' => 'required|min:6',
       'jenjang' => 'required',
     ]);
@@ -91,7 +91,10 @@ class AkunSekolahController extends Controller
     $user = User::where('id', $sekolah->idUser)->first();
 
     if ($request->email != $sekolah->email) {
-      $data['email'] = 'required';
+      // $data['email'] = 'required|unique:sekolahs,email';
+      $request->validate([
+        'email' => 'required|unique:sekolahs,email'
+      ]);
     }
 
     $data = [
@@ -99,7 +102,6 @@ class AkunSekolahController extends Controller
       'jenjang' => 'required',
     ];
     $request->validate($data);
-
 
     DB::transaction(function () use ($request, $sekolah, $user) {
       $sekolah->update([

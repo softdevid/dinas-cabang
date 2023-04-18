@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Berita;
 use App\Models\Guru;
 use App\Models\Prestasi;
+use App\Models\ProfilSuperAdmin;
 use App\Models\Sekolah;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
@@ -26,8 +27,14 @@ class SuperAdminController extends Controller
   }
   public function profil()
   {
-    return Inertia::render('SuperAdmin/Profile', [
-      'title' => 'Profile',
+    $profil = ProfilSuperAdmin::where('idUser', 1)->first();
+    return Inertia::render('SuperAdmin/ProfilSuperAdmin/Profile', [
+      'title' => "Profil $profil->namaSuperAdmin",
+      'profil' => $profil,
+      'prestasiCount' => Prestasi::count(),
+      'guruCount' => Guru::count(),
+      'sekolahCount' => Sekolah::count(),
+      'siswaCount' => Siswa::count(),
     ]);
   }
 

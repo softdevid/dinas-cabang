@@ -49,16 +49,15 @@ class DatabaseSeeder extends Seeder
       'alamatLengkap' => 'Selabaya RT 2/5, Kalimanah, Purbalingga',
       'noHp' => '08888882',
       'email' => 'softdev@gamil.com',
+      'password' => Hash::make('password'),
       'lingkupKegiatan' => 'Mengerjakan program aplikasi berupa website dan aplikasi desktop',
       'visi' => 'Membuat perubahan, pembaruan, dan pembuatan teknologi yang lebih terbarukan',
-      'misi' => 'lorem ipsumgeogjeotjuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu',
+      'misi' => 'lorem',
       'tugasPokok' => 'lorem',
       'fungsi' => 'lorem',
       'unitKerjaDibawahnya' => 'lorem',
       'unitKerjaDibawahnya' => 'lorem',
       'sejarah' => 'lorem',
-      // 'imgName' => null,
-      // 'imgUrl' => null,
     ]);
   }
 }

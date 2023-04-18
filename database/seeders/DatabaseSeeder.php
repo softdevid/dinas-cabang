@@ -57,7 +57,6 @@ class DatabaseSeeder extends Seeder
       'fungsi' => 'lorem',
       'unitKerjaDibawahnya' => 'lorem',
       'unitKerjaDibawahnya' => 'lorem',
-      'sejarah' => 'lorem',
     ]);
   }
 }

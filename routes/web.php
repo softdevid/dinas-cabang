@@ -95,7 +95,6 @@ Route::group([
   Route::get('/profil', [AdminSekolahController::class, 'profil'])->name('admin-sekolah.profil');
   Route::post('/profil/update', [AdminSekolahController::class, 'updateProfilSekolah'])->name('updateProfilSekolah');
   Route::get('/profil/{id}/edit', [AdminSekolahController::class, 'editProfilSekolah'])->name('editProfilSekolah');
-  // Route::post('/delete-image', [AdminSekolahController::class, 'deleteImage'])->name('deleteImage');
 
   Route::resource('prestasi', PrestasiController::class);
   Route::resource('guru', GuruController::class);

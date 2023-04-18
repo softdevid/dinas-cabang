@@ -77,7 +77,6 @@ class ProfilSuperAdminController extends Controller
       'tugasPokok' => 'required',
       'fungsi' => 'required',
       'unitKerjaDibawahnya' => 'required',
-      'sejarah' => 'required',
       'logoImgName' => 'max:255',
       'logoImgUrl' => 'max:255',
       'visiImgName' => 'max:255',

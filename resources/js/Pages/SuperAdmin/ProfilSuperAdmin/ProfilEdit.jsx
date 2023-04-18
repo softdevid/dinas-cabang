@@ -5,7 +5,6 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import SuperAdminTemplate from "@/Layouts/SuperAdminTemplate";
-import { SuperAdminContext } from "@/context/super-admin-context";
 
 
 const ProfilEdit = ({ title, dataSiswa, profil }) => {
@@ -21,7 +20,6 @@ const ProfilEdit = ({ title, dataSiswa, profil }) => {
     lingkupKegiatan: profil.lingkupKegiatan,
     visi: profil.visi,
     misi: profil.misi,
-    sejarah: profil.sejarah,
     tugasPokok: profil.tugasPokok,
     fungsi: profil.fungsi,
     unitKerjaDibawahnya: profil.unitKerjaDibawahnya,
@@ -46,7 +44,6 @@ const ProfilEdit = ({ title, dataSiswa, profil }) => {
   }
 
   function handleSubmit() {
-    // router.patch(`/super-admin/profil/${profil.id}`)
     axios
       .patch(`/super-admin/profil/${profil.id}`, values)
       .then((res) => {
@@ -471,25 +468,6 @@ const ProfilEdit = ({ title, dataSiswa, profil }) => {
               </div>
               {errors.lingkupKegiatan && (
                 <span style={{ color: "red" }}>{errors.lingkupKegiatan[0]}</span>
-              )}
-            </div>
-            <div className="sm:col-span-2 mt-5">
-              <label
-                htmlFor="sejarah"
-                className="block text-sm font-semibold leading-6 text-gray-900"
-              >
-                Sejarah
-              </label>
-              <div className="mt-2.5">
-                <textarea value={values.sejarah} onChange={handleChange}
-                  name="sejarah"
-                  id="sejarah"
-                  rows={4}
-                  className="block w-full rounded-md border-0 px-3.5 py-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-              {errors.sejarah && (
-                <span style={{ color: "red" }}>{errors.sejarah[0]}</span>
               )}
             </div>
             <div className="mt-10">

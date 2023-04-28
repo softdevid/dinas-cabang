@@ -2,29 +2,31 @@ import HomeLayout from "@/Layouts/HomeLayout";
 import { Head } from "@inertiajs/react";
 import { useState } from "react";
 
-const Galeri = (props) => {
+const Galeri = ({ title, foto, infografis, video, banner }) => {
   const [galeri, setGaleri] = useState({ data: "" });
   const openGaleri = (data) => {
     setGaleri(data);
   };
 
+  console.log(infografis)
+
   return (
     <>
-      <Head title={props.title} />
+      <Head title={title} />
       <div className="bg-black">
         <div
           className="w-full h-[40vh] md:h-[60vh] z-0 bg-cover bg-center bg-opacity-80"
           style={{
-            backgroundImage: `url(${"https://source.unsplash.com/600x400?random"})`
+            backgroundImage: `url(${banner.imgUrl})`
           }}
         >
           <div className="items-center justify-center flex h-[40vh] md:h-[60vh]">
             <div className="h-auto w-full text-center md:text-left md:ml-32">
               <h1 className="text-6xl sm:text-center md:text-left text-white z-50">
-                {props.title}
+                {title}
               </h1>
               <b className="text-2xl text-white">
-                Selamat datang di {props.title}
+                Selamat datang di {title}
               </b>
             </div>
           </div>
@@ -93,67 +95,37 @@ const Galeri = (props) => {
         ) : galeri.data === "infografis" ? (
           <>
             <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mx-5 md:mx-[90px]">
-              <div className="bg-black opacity-[0.9] max-w-sm mx-auto shadow-lg border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
-                <img
-                  className="rounded-lg sm:h-[200px] sm:w-[350px] md:h-[200px] md:w-[250px] lg:h-[260px] lg:w-[400px] object-cover object-center mx-auto"
-                  src="https://source.unsplash.com/600x400?random"
-                  alt=""
-                />
-              </div>
-              <div className="bg-black opacity-[0.9] max-w-sm mx-auto shadow-lg border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
-                <img
-                  className="rounded-lg sm:h-[200px] sm:w-[350px] md:h-[200px] md:w-[250px] lg:h-[260px] lg:w-[400px] object-cover object-center mx-auto"
-                  src="https://source.unsplash.com/600x400?random"
-                  alt=""
-                />
-              </div>
-              <div className="bg-black opacity-[0.9] max-w-sm mx-auto shadow-lg border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
-                <img
-                  className="rounded-lg sm:h-[200px] sm:w-[350px] md:h-[200px] md:w-[250px] lg:h-[260px] lg:w-[400px] object-cover object-center mx-auto"
-                  src="https://source.unsplash.com/600x400?random"
-                  alt=""
-                />
-              </div>
-              <div className="bg-black opacity-[0.9] max-w-sm mx-auto shadow-lg border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
-                <img
-                  className="rounded-lg sm:h-[200px] sm:w-[350px] md:h-[200px] md:w-[250px] lg:h-[260px] lg:w-[400px] object-cover object-center mx-auto"
-                  src="https://source.unsplash.com/600x400?random"
-                  alt=""
-                />
-              </div>
+              {infografis.map((data, i) => {
+                return (
+                  <>
+                    <div key={i} className="bg-black opacity-[0.9] max-w-sm mx-auto shadow-lg border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+                      <img
+                        className="rounded-lg sm:h-[200px] sm:w-[350px] md:h-[200px] md:w-[250px] lg:h-[260px] lg:w-[400px] object-cover object-center mx-auto"
+                        src={data.imgUrl}
+                        alt={data.judul}
+                      />
+                    </div>
+                  </>
+                )
+              })}
             </div>
           </>
         ) : (
           <>
             <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mx-5 md:mx-[90px]">
-              <div className="bg-black opacity-[0.9] max-w-sm mx-auto shadow-lg border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
-                <img
-                  className="rounded-lg sm:h-[200px] sm:w-[350px] md:h-[200px] md:w-[250px] lg:h-[260px] lg:w-[400px] object-cover object-center mx-auto"
-                  src="https://source.unsplash.com/600x400?random"
-                  alt=""
-                />
-              </div>
-              <div className="bg-black opacity-[0.9] max-w-sm mx-auto shadow-lg border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
-                <img
-                  className="rounded-lg sm:h-[200px] sm:w-[350px] md:h-[200px] md:w-[250px] lg:h-[260px] lg:w-[400px] object-cover object-center mx-auto"
-                  src="https://source.unsplash.com/600x400?random"
-                  alt=""
-                />
-              </div>
-              <div className="bg-black opacity-[0.9] max-w-sm mx-auto shadow-lg border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
-                <img
-                  className="rounded-lg sm:h-[200px] sm:w-[350px] md:h-[200px] md:w-[250px] lg:h-[260px] lg:w-[400px] object-cover object-center mx-auto"
-                  src="https://source.unsplash.com/600x400?random"
-                  alt=""
-                />
-              </div>
-              <div className="bg-black opacity-[0.9] max-w-sm mx-auto shadow-lg border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
-                <img
-                  className="rounded-lg sm:h-[200px] sm:w-[350px] md:h-[200px] md:w-[250px] lg:h-[260px] lg:w-[400px] object-cover object-center mx-auto"
-                  src="https://source.unsplash.com/600x400?random"
-                  alt=""
-                />
-              </div>
+              {foto.map((data, i) => {
+                return (
+                  <>
+                    <div key={i} className="bg-black opacity-[0.9] max-w-sm mx-auto shadow-lg border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+                      <img
+                        className="rounded-lg sm:h-[200px] sm:w-[350px] md:h-[200px] md:w-[250px] lg:h-[260px] lg:w-[400px] object-cover object-center mx-auto"
+                        src={data.imgUrl}
+                        alt={data.judul}
+                      />
+                    </div>
+                  </>
+                )
+              })}
             </div>
           </>
         )}

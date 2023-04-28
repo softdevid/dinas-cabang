@@ -13,11 +13,12 @@ return new class extends Migration
   {
     Schema::create('sejarahs', function (Blueprint $table) {
       $table->id();
-      $table->longText('deskripsi');
-      $table->string('imgName');
-      $table->string('imgUrl');
-      $table->string('imgName2');
-      $table->string('imgUrl2');
+      $table->foreignId('idUser')->default(1);
+      $table->longText('deskripsi')->default('-');
+      $table->string('imgName')->nullable();
+      $table->string('imgUrl')->nullable();
+      $table->string('imgName2')->nullable();
+      $table->string('imgUrl2')->nullable();
       $table->timestamps();
     });
   }

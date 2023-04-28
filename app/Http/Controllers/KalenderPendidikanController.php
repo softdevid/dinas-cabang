@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\KalenderPendidikan;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class KalenderPendidikanController extends Controller
 {
@@ -13,7 +14,10 @@ class KalenderPendidikanController extends Controller
    */
   public function index()
   {
-    //
+    return Inertia::render('SuperAdmin/KalenderPendidikan/KalenderPendidikanIndex', [
+      'title' => 'Kalender Pendidikan',
+      'kalenderPendidikan' => KalenderPendidikan::get(),
+    ]);
   }
 
   /**
@@ -32,10 +36,13 @@ class KalenderPendidikanController extends Controller
     $data = $request->validate([
       'imgName' => 'required',
       'imgUrl' => 'required',
+      'statusKalender' => 'required',
+    ], [
+      'imgName.required' => 'Gambar harus ada',
     ]);
 
     KalenderPendidikan::create($data);
-    return back()->with('message', 'Berhasil menambah kalender pendidikan');
+    return response()->json(['data' => 'Berhasil Menambah Kalender Pendidikan']);
   }
 
   /**
@@ -57,26 +64,30 @@ class KalenderPendidikanController extends Controller
   /**
    * Update the specified resource in storage.
    */
-  public function update(Request $request, KalenderPendidikan $kalenderPendidikan, $id)
+  public function update(Request $request, KalenderPendidikan $kalenderPendidikan)
   {
     $data = $request->validate([
       'imgName' => 'required',
       'imgUrl' => 'required',
+      'statusKalender' => 'required'
+    ], [
+      'imgName.required' => 'Gambar harus ada'
     ]);
 
-    KalenderPendidikan::where('id', $id)->update($data);
-    return back()->with('message', 'Berhasil mengubah kalender pendidikan');
+    KalenderPendidikan::where('id', $kalenderPendidikan->id)
+      ->update($data);
+    return response()->json(['data' => 'Berhasil mengubah kalender Pendidikan']);
   }
 
   /**
    * Remove the specified resource from storage.
    */
-  public function destroy(KalenderPendidikan $kalenderPendidikan, $id)
+  public function destroy(KalenderPendidikan $kalenderPendidikan)
   {
-    $kalender = KalenderPendidikan::where('id', $id)->first();
+    $kalender = KalenderPendidikan::where('id', $kalenderPendidikan->id)->first();
     Cloudinary::destroy($kalender->imgName);
     $kalender->delete();
 
-    return back()->with('message', 'Berhasil menghapus Gambar Kalender Pendidikan');
+    return response()->json(['data' => 'Berhasil dihapus']);
   }
 }

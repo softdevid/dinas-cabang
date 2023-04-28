@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ikm;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class IkmController extends Controller
 {
@@ -12,7 +13,10 @@ class IkmController extends Controller
    */
   public function index()
   {
-    //
+    return Inertia::render('SuperAdmin/IndexKepuasanMasyarakat/IndexKepuasanMasyarakatIndex', [
+      'title' => 'Index Kepuasan Masyarakat Page',
+      'ikm' => Ikm::first(),
+    ]);
   }
 
   /**
@@ -59,9 +63,10 @@ class IkmController extends Controller
       'imgUrl' => 'required',
     ]);
 
-    $ikm = Ikm::find($id);
-    $ikm->update($data);
-    return back()->with('message', 'Berhasil diubah');
+    Ikm::where('id', $id)
+      ->update($data);
+
+    return response()->json(['data' => 'Berhasil diubah']);
   }
 
   /**

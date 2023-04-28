@@ -20,7 +20,7 @@ class PrestasiFactory extends Factory
     return [
       "idSekolah" => Sekolah::pluck('id')->random(),
       "namaLomba" => $this->faker->name(10, true),
-      "kategoriLomba" => $this->faker->randomElement(['Olahraga', 'Seni budaya', 'Teknologi']),
+      "kategoriLomba" => $this->faker->randomElement(['Olah raga', 'Seni budaya', 'Teknologi', 'Ilmu Sosial']),
       "namaPeserta" => $this->faker->name(),
       "statusPeserta" => $this->faker->randomElement(['SMK', 'SMP', 'SMA', 'SD']),
       "asalInstansi" => Sekolah::pluck('namaSekolah')->random(),

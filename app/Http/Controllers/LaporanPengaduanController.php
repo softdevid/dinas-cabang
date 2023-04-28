@@ -10,16 +10,18 @@ class LaporanPengaduanController extends Controller
 {
   public function store(Request $request) //store untuk halaman pengaduan
   {
+    // dd($request->all());
     $data = $request->validate([
       'judulLaporan' => 'required',
       'isiLaporan' => 'required',
       'asalPelapor' => 'required',
       'jenisLaporan' => 'required',
       'statusLaporan' => 'required',
+      'imgName' => 'max:255',
+      'imgUrl' => 'max:255',
     ]);
-
     LaporanPengaduan::create($data);
-    return back()->with('message', 'Berhasil menambahkan Laporan Pengaduan');
+    return response()->json(['data' => 'Berhasil Menambah Laporan Pengaduan']);
   }
 
   public function updateStatusTerima($id)
@@ -47,13 +49,11 @@ class LaporanPengaduanController extends Controller
   public function destroy($id)
   {
     $laporan = LaporanPengaduan::where('id', $id)->first();
-    if ($laporan->imgName === null) {
-      $laporan->delete();
-      return back()->with('message', 'Berhasil menghapus!');
-    } else {
+    if ($laporan->imgName) {
       Cloudinary::destroy($laporan->imgName);
-      $laporan->delete();
-      return back()->with('message', 'Berhasil menghapus!');
     }
+
+    $laporan->delete();
+    return response()->json(['data' => 'Berhasil menghapus Laporan']);
   }
 }

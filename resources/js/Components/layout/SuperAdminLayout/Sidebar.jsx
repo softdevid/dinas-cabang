@@ -1,10 +1,14 @@
 import { SuperAdminContext } from "@/context/super-admin-context";
 import { Dialog, Transition } from "@headlessui/react";
 import {
+  BookOpenIcon,
+  CalendarDaysIcon,
+  CameraIcon,
   ComputerDesktopIcon,
   HomeIcon,
   HomeModernIcon,
   NewspaperIcon,
+  PaperClipIcon,
   PhotoIcon,
   TrophyIcon,
   UserCircleIcon,
@@ -31,6 +35,11 @@ const Sidebar = () => {
       icon: UserCircleIcon,
     },
     {
+      name: "Sejarah",
+      href: "/super-admin/sejarah",
+      icon: BookOpenIcon,
+    },
+    {
       name: "Prestasi",
       href: "/super-admin/prestasi",
       icon: TrophyIcon,
@@ -51,6 +60,16 @@ const Sidebar = () => {
       icon: HomeModernIcon,
     },
     {
+      name: "Pejabat",
+      href: "/super-admin/pejabat",
+      icon: UserGroupIcon,
+    },
+    {
+      name: "Layanan Publik",
+      href: "/super-admin/layanan",
+      icon: HomeIcon,
+    },
+    {
       name: "Berita",
       href: "/super-admin/berita",
       icon: NewspaperIcon,
@@ -61,14 +80,19 @@ const Sidebar = () => {
       icon: PhotoIcon,
     },
     {
-      name: "Pejabat",
-      href: "/super-admin/pejabat",
-      icon: UserGroupIcon,
+      name: "Galeri",
+      href: "/super-admin/galeri",
+      icon: CameraIcon,
     },
     {
-      name: "Layanan Publik",
-      href: "/super-admin/layanan",
-      icon: HomeIcon,
+      name: "Kalender Pendidikan",
+      href: "/super-admin/kalender-pendidikan",
+      icon: CalendarDaysIcon,
+    },
+    {
+      name: "Index Kepuasan Masyarakat",
+      href: "/super-admin/index-kepuasan-masyarakat",
+      icon: PaperClipIcon,
     },
   ];
 

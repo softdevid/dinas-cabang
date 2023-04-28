@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Banner;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Http\Request;
 
 class BannerController extends Controller
@@ -28,14 +29,22 @@ class BannerController extends Controller
    */
   public function store(Request $request)
   {
-    $data = $request->validate([
+    $request->validate([
       'imgName' => 'required',
       'imgUrl' => 'required',
       'deskripsi' => 'max:500',
+      'jenisBanner' => 'required'
+    ], [
+      'imgName.required' => 'Gambar harus ada',
     ]);
 
-    Banner::create($data);
-    return back()->with('message', 'Berhasil ditambah');
+    Banner::create([
+      'imgName' => $request->imgName,
+      'imgUrl' => $request->imgUrl,
+      'deskripsi' => $request->deskripsi ?? '-',
+      'jenisBanner' => $request->jenisBanner,
+    ]);
+    return response()->json(['data' => 'Berhasil menambah banner']);
   }
 
   /**
@@ -59,7 +68,22 @@ class BannerController extends Controller
    */
   public function update(Request $request, Banner $banner)
   {
-    //
+    $data = $request->validate([
+      'imgName' => 'required',
+      'imgUrl' => 'required',
+      'deskripsi' => 'max:500',
+      'jenisBanner' => 'required'
+    ], [
+      'imgName.required' => 'Gambar harus ada',
+    ]);
+    $banner->where(['id' => $banner->id])
+      ->update([
+        'imgName' => $request->imgName,
+        'imgUrl' => $request->imgUrl,
+        'deskripsi' => $request->deskripsi ?? '-',
+        'jenisBanner' => $request->jenisBanner,
+      ]);
+    return response()->json(['data' => 'Berhasil mengubah']);
   }
 
   /**
@@ -67,6 +91,9 @@ class BannerController extends Controller
    */
   public function destroy(Banner $banner)
   {
-    //
+    $banner = $banner->where('id', $banner->id)->first();
+    Cloudinary::destroy($banner->imgName);
+    $banner->delete();
+    return response()->json(['data' => 'Berhasil menghapus banner']);
   }
 }

@@ -12,9 +12,15 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PrestasiController;
 use App\Http\Controllers\ProfilPejabatController;
 use App\Http\Controllers\ProfilSuperAdminController;
+use App\Http\Controllers\SejarahController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\SuperAdmin;
+use App\Http\Controllers\BannerController;
+use App\Http\Controllers\GaleriController;
+use App\Http\Controllers\IkmController;
+use App\Http\Controllers\KalenderPendidikanController;
 use App\Http\Controllers\SuperAdminController;
+use App\Http\Controllers\LaporanPengaduanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,15 +42,15 @@ use App\Http\Controllers\SuperAdminController;
 //     ]);
 // });
 
-// Route::get('/dashboard', function () {
-//   return Inertia::render('Dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', function () {
+  return Inertia::render('Dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-// Route::middleware('auth')->group(function () {
-//   Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//   Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//   Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
+Route::middleware('auth')->group(function () {
+  Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+  Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+  Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
 
 
@@ -58,9 +64,10 @@ Route::get('/kalender-pendidikan', [HomeController::class, 'kalenderPendidikan']
 Route::get('/daftar-informasi', [HomeController::class, 'daftarInformasi'])->name('home.daftarInformasi');
 Route::get('/layanan-publik', [HomeController::class, 'layananPublik'])->name('home.layananPublik');
 Route::get('/index-kepuasan-masyarakat', [HomeController::class, 'indexKepuasanMasyarakat'])->name('home.indexKepuasanMasyarakat');
-Route::get('/formulir-pengaduan', [HomeController::class, 'formulirPengaduan'])->name('home.formulirPengaduan');
 Route::get('/prestasi', [HomeController::class, 'prestasi'])->name('home.prestasi');
 Route::get('/survey-kepuasan-masyarakat', [HomeController::class, 'surveyKepuasanMasyarakat'])->name('home.surveyKepuasanMasyarakat');
+Route::get('/formulir-pengaduan', [HomeController::class, 'formulirPengaduan'])->name('home.formulirPengaduan');
+Route::post('/formulir-pengaduan', [LaporanPengaduanController::class, 'store'])->name('home.formulirPengaduan.store');
 
 Route::prefix('/super-admin')->group(function () {
   Route::get('/', [SuperAdminController::class, 'index'])->name('super-admin.index');
@@ -76,18 +83,23 @@ Route::prefix('/super-admin')->group(function () {
   Route::resource('berita', BeritaController::class);
   Route::resource('pejabat', ProfilPejabatController::class);
   Route::resource('sekolah', AkunSekolahController::class);
+  Route::resource('sejarah', SejarahController::class);
+  Route::resource('banner', BannerController::class);
+  Route::resource('galeri', GaleriController::class);
+  Route::resource('kalender-pendidikan', KalenderPendidikanController::class);
+  Route::resource('index-kepuasan-masyarakat', IkmController::class);
 
   //route tabs banner
   Route::get('/banner', [SuperAdminController::class, 'banner'])->name('super-admin.banner');
-  Route::get('/banner/sejarah', [SuperAdminController::class, 'bannerSejarah'])->name('super-admin.banner.sejarah');
-  Route::get('/banner/berita', [SuperAdminController::class, 'bannerBerita'])->name('super-admin.banner.berita');
-  Route::get('/banner/galeri', [SuperAdminController::class, 'bannerGaleri'])->name('super-admin.banner.galeri');
+  Route::get('/banner-sejarah', [SuperAdminController::class, 'bannerSejarah'])->name('super-admin.banner.sejarah');
+  Route::get('/banner-berita', [SuperAdminController::class, 'bannerBerita'])->name('super-admin.banner.berita');
+  Route::get('/banner-galeri', [SuperAdminController::class, 'bannerGaleri'])->name('super-admin.banner.galeri');
 });
 
 Route::group([
   'prefix' => '/admin-sekolah/{sekolah:id}',
-  // 'middleware' => ['auth', 'cek.idsekolah']
-  'middleware' => ['cek.idsekolah']
+  'middleware' => ['auth', 'cek.idsekolah']
+  // 'middleware' => ['cek.idsekolah']
 ], function () {
   Route::get('/', [AdminSekolahController::class, 'index'])->name('admin-sekolah.index');
 
@@ -107,8 +119,10 @@ Route::post('/delete-image-organisasi', [ProfilSuperAdminController::class, 'del
 Route::post('/delete-image-visi', [ProfilSuperAdminController::class, 'deleteImgVisi'])->name('deleteImgVisi');
 Route::post('/delete-image-misi', [ProfilSuperAdminController::class, 'deleteImgMisi'])->name('deleteImgMisi');
 Route::post('/delete-image-logo', [ProfilSuperAdminController::class, 'deleteImgLogo'])->name('deleteImgLogo');
+Route::post('/delete-image-sejarah', [SejarahController::class, 'deleteImgSejarah'])->name('deleteImgSejarah');
 
 Route::get('/api/berita', [BeritaController::class, 'index']);
+Route::get('/data-prestasi-olahraga', [HomeController::class, 'dataPrestasiOlahraga']);
 
 //delete image
 

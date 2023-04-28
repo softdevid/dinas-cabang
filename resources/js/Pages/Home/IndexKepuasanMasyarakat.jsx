@@ -2,7 +2,7 @@ import HomeLayout from "@/Layouts/HomeLayout";
 import { Head } from "@inertiajs/react";
 import { useState } from "react";
 
-const IndexKepuasanMasyarakat = (props) => {
+const IndexKepuasanMasyarakat = ({ title, dataIkm }) => {
   const [hukum, setHukum] = useState(false);
   const openHukum = () => {
     setHukum(!hukum);
@@ -20,12 +20,12 @@ const IndexKepuasanMasyarakat = (props) => {
 
   return (
     <>
-      <Head title={props.tile} />
+      <Head title={title} />
       <div>
         <div className="w-full h-64 hidden md:block">
           <div className="grid grid-cols-1 md:grid-cols-2">
             <div className="items-center justify-center flex h-64">
-              <b className="text-3xl">{props.title}</b>
+              <b className="text-3xl">{title}</b>
             </div>
             <div className="hidden md:block">
               <div className="items-center justify-center h-64 flex">
@@ -41,7 +41,7 @@ const IndexKepuasanMasyarakat = (props) => {
         <div className="w-full h-64 block md:hidden">
           <div className="grid grid-cols-1 md:grid-cols-2">
             <div className="items-center justify-center flex h-64">
-              <b className="text-3xl text-blue-600">{props.title}</b>
+              <b className="text-3xl text-blue-600">{title}</b>
             </div>
             <div className=" items-center justify-center flex">
               <div className="border-[1px] border-black w-[6%] -mt-48"></div>
@@ -82,8 +82,8 @@ const IndexKepuasanMasyarakat = (props) => {
             aria-labelledby="accordion-flush-heading-1"
           >
             <div className="py-5 font-light border-b border-gray-200 dark:border-gray-700">
-              <p className="mb-2 text-gray-500 dark:text-gray-400">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi magnam consequuntur iure inventore exercitationem dolores veniam perspiciatis quisquam repellat? Est?
+              <p className="mb-2 text-gray-500 dark:text-gray-400 whitespace-pre-wrap">
+                {dataIkm.dasarHukum}
               </p>
             </div>
           </div>
@@ -121,8 +121,8 @@ const IndexKepuasanMasyarakat = (props) => {
             aria-labelledby="accordion-flush-heading-1"
           >
             <div className="py-5 font-light border-b border-gray-200 dark:border-gray-700">
-              <p className="mb-2 text-gray-500 dark:text-gray-400">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi magnam consequuntur iure inventore exercitationem dolores veniam perspiciatis quisquam repellat? Est?
+              <p className="mb-2 text-gray-500 dark:text-gray-400 whitespace-pre-wrap">
+                {dataIkm.pengertian}
               </p>
             </div>
           </div>
@@ -160,7 +160,7 @@ const IndexKepuasanMasyarakat = (props) => {
             aria-labelledby="accordion-flush-heading-1"
           >
             <div className="py-5 font-light border-b border-gray-200 dark:border-gray-700">
-              <img src="https://source.unsplash.com/600x400?random" className="max-w-[500px] max-h-[500px]" />
+              <img src={dataIkm.imgUrl} className="max-w-[500px] max-h-[500px]" />
             </div>
           </div>
         )}

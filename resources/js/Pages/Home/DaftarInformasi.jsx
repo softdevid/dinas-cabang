@@ -2,7 +2,7 @@ import HomeLayout from "@/Layouts/HomeLayout";
 import { Head } from "@inertiajs/react";
 import { useState } from "react";
 
-const DaftarInformasi = (props) => {
+const DaftarInformasi = ({ title, superadmin }) => {
   const [profil, setProfil] = useState(true);
   const openProfil = () => {
     setProfil(!profil);
@@ -11,8 +11,8 @@ const DaftarInformasi = (props) => {
 
   return (
     <>
-      <Head title={props.title} />
-      <h1 className="text-4xl text-center mt-8">{props.title}</h1>
+      <Head title={title} />
+      <h1 className="text-4xl text-center mt-8">{title}</h1>
       <div className="border-[1px] border-black w-[6%] mx-auto"></div>
       <div className="md:mx-[200px] mx-5">
         <h2 id="accordion-flush-heading-2" onClick={() => openProfil()}>
@@ -48,35 +48,35 @@ const DaftarInformasi = (props) => {
               <p className="mb-2 text-gray-500 dark:text-gray-400">
                 <div className="mb-2">
                   <h1 className="text-lg font-bold">A. Alamat Lengkap:</h1>
-                  <p>Lorem ipsum dolor sit amet.</p>
+                  <p className="whitespace-pre-wrap">{superadmin.alamatLengkap}</p>
                 </div>
                 <div className="mb-2">
                   <h1 className="text-lg font-bold">B. Lingkup kegiatan:</h1>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit, laudantium.</p>
+                  <p className="whitespace-pre-wrap">{superadmin.lingkupKegiatan}</p>
                 </div>
                 <div className="mb-2">
                   <h1 className="text-lg font-bold">C. Maksud dan tujuan:</h1>
                   <div className="ml-3">
                     <h1 className="mt-2 text-md font-bold">Visi</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, temporibus?</p>
+                    <p className="whitespace-pre-wrap">{superadmin.visi}</p>
                     <h1 className="mt-2 text-md font-bold">Misi</h1>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius, consequatur?</p>
+                    <p className="whitespace-pre-wrap">{superadmin.misi}</p>
                   </div>
                 </div>
                 <div className="mb-2">
                   <h1 className="text-lg font-bold">D. Tugas dan Fungsi:</h1>
                   <h1 className="mt-2 text-md font-bold">Tugas Pokok</h1>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, iste?</p>
+                  <p className="whitespace-pre-wrap">{superadmin.tugasPokok}</p>
                   <h1 className="mt-2 text-md font-bold">Fungsi</h1>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, iste?</p>
+                  <p className="whitespace-pre-wrap">{superadmin.fungsi}</p>
                 </div>
                 <div className="mb-2">
                   <h1 className="text-lg font-bold">E. Unit Kerja Dibawahnya</h1>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, iste?</p>
+                  <p className="whitespace-pre-wrap">{superadmin.unitKerjaDibawahnya}</p>
                 </div>
                 <div className="mb-2">
                   <h1 className="text-lg font-bold">F. Struktur Organisasi</h1>
-                  <img src="https://source.unsplash.com/600x400?random" width="600" height="400" />
+                  <img src={superadmin.organisasiImgUrl} width="600" height="400" />
                 </div>
               </p>
             </div>

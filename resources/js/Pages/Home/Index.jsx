@@ -1,10 +1,9 @@
 import HomeLayout from "@/Layouts/HomeLayout";
-import { QuestionMarkCircleIcon } from "@heroicons/react/20/solid";
 import { Head, Link } from "@inertiajs/react";
 import { useEffect, useState } from "react";
 
-const Index = (props) => {
-
+const Index = ({ title, banner, superadmin, berita, galeri }) => {
+  console.log(banner)
   const [visiMisi, setVisiMisi] = useState({ data: "visi" });
   const handleVisiMisi = (data) => {
     setVisiMisi(data);
@@ -12,7 +11,7 @@ const Index = (props) => {
 
   const [gambarIndex, setGambarIndex] = useState(0);
   const gambarList = [
-    'https://source.unsplash.com/600x400?random',
+    '',
     'https://res.cloudinary.com/cv-mekar-cutting-digital/image/upload/v1661406208/products/jsu1y3fs09bkvgvsxtrq.png',
     'https://res.cloudinary.com/cv-mekar-cutting-digital/image/upload/v1661153096/products/i4xtgsg8zngm5unfbh9e.png',
     // tambahkan gambar lain di sini
@@ -27,31 +26,41 @@ const Index = (props) => {
 
   return (
     <>
-      <Head title={props.title} />
-      {/* <div className="bg-white w-full overflow-auto h-[80vh] bg-cover bg-center" style={{ backgroundImage: `url(${'https://source.unsplash.com/600x400?random'})` }}>
+      <Head title={title} />
+      {/* <div className="bg-white w-full overflow-auto h-[80vh] bg-cover bg-center" style={{ backgroundImage: `url(${''})` }}>
         <div className="hidden lg:block bg-white border-4 border-sky-500 z-50 w-[500px] h-56 float-right mt-[20vh] mr-10">
-          <img className="object-cover w-full h-full" src="https://source.unsplash.com/600x400?random" />
+          <img className="object-cover w-full h-full" src="" />
         </div>
       </div> */}
 
       <div className="bg-black">
-        <div
-          className="w-full h-[40vh] md:h-[60vh] z-0 bg-cover bg-center bg-opacity-80"
-          style={{
-            backgroundImage: `url(${"https://source.unsplash.com/600x400?random"})`
-          }}
-        >
-          <div className="items-center justify-center flex h-[40vh] md:h-[60vh]">
-            <div className="h-auto w-full text-center md:text-left md:ml-32">
-              <h1 className="text-lg md:text-6xl sm:text-center md:text-left text-white z-50">
-                {props.title}
-              </h1>
-              <b className="text-md md:text-2xl text-white">
-                Selamat datang di {props.title}
-              </b>
+        {banner.imgUrl ? (
+          <div className="w-full h-[40vh] md:h-[60vh] z-0 bg-cover bg-center bg-opacity-80" style={{ backgroundImage: `url(${banner.imgUrl})` }}>
+            <div className="items-center justify-center flex h-[40vh] md:h-[60vh]">
+              <div className="h-auto w-full text-center md:text-left md:ml-32">
+                <h1 className="text-lg md:text-6xl sm:text-center md:text-left text-white z-50">
+                  {title}
+                </h1>
+                <b className="text-md md:text-2xl text-white">
+                  Selamat datang di {title}
+                </b>
+              </div>
             </div>
           </div>
-        </div>
+        ) : (
+          <div className="w-full h-[40vh] md:h-[60vh] z-0 bg-cover bg-center bg-opacity-80" style={{ backgroundImage: `url("")` }}>
+            <div className="items-center justify-center flex h-[40vh] md:h-[60vh]">
+              <div className="h-auto w-full text-center md:text-left md:ml-32">
+                <h1 className="text-lg md:text-6xl sm:text-center md:text-left text-white z-50">
+                  {title}
+                </h1>
+                <b className="text-md md:text-2xl text-white">
+                  Selamat datang di {title}
+                </b>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
 
       <div className="bg-sky-600 h-48 grid grid-cols-1 md:grid-cols-2 md:gap-8">
@@ -81,35 +90,42 @@ const Index = (props) => {
             <div id="myTabContent" className="mb-5">
               {visiMisi.data === "visi" ? (
                 <>
-                  <div className="hidden md:block w-full h-auto border-2 rounded-lg bg-green-500 text-white" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                  <div className="hidden md:block w-full h-auto lg:max-w-2xl lg:h-auto border-2 rounded-lg bg-green-500 text-white" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                     <div className=" rounded-t-lg m-3">
                       <h1 className="text-2xl text-center">Visi</h1>
-                      <img src="https://source.unsplash.com/600x400?random" className="w-full h-[250px] rounded-lg" />
-                      <q className="text-center text-lg">Terwujudnya Pendidikan Maju di Jawa Barat guna membentuk SDM yang berkarakter, cerdas, mandiri, menguasai IPTEK dan berbasis budaya Jawa Barat</q>
+                      {superadmin.visiImgUrl ? (
+                        <img src={superadmin.visiImgUrl} className="w-full h-[250px] rounded-lg" />
+                      ) : (
+                        <img src="" className="w-full h-[250px] rounded-lg" />
+                      )}
+                      <q className="text-center text-lg">{superadmin.visi}</q>
                     </div>
                   </div>
                 </>
               ) : visiMisi.data === "misi" ? (
                 <>
-                  <div className="hidden md:block w-full h-auto border-2 rounded-lg bg-yellow-500" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
+                  <div className="hidden md:block w-full h-auto lg:max-w-2xl lg:h-auto border-2 rounded-lg bg-yellow-500" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
                     <div className=" rounded-t-lg m-3">
                       <h1 className="text-2xl text-center">Misi</h1>
-                      <img src="https://source.unsplash.com/600x400?random" className="w-full h-[250px] rounded-lg" />
-                      <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam, totam!</li>
-                      <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam, totam!</li>
-                      <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam, totam!</li>
-                      <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam, totam!</li>
-                      <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam, totam!</li>
-                      <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam, totam!</li>
+                      {superadmin.misiImgUrl ? (
+                        <img src={superadmin.misiImgUrl} className="w-full h-[250px] rounded-lg" />
+                      ) : (
+                        <img src="" className="w-full h-[250px] rounded-lg" />
+                      )}
+                      <p>{superadmin.misi}</p>
                     </div>
                   </div>
                 </>
               ) : (
                 <>
-                  <div className="hidden md:block w-full h-96 border-2 rounded-lg bg-gray-50" id="settings" role="tabpanel" aria-labelledby="settings-tab">
+                  <div className="hidden md:block w-full h-[250px] lg:max-w-2xl lg:h-auto border-2 rounded-lg bg-gray-50" id="settings" role="tabpanel" aria-labelledby="settings-tab">
                     <div className="bg-cyan-500 text-white rounded-lg">
                       <h1 className="text-2xl text-center">Organisasi</h1>
-                      <img src="https://source.unsplash.com/600x400?random" className="w-full h-full rounded-b-lg" />
+                      {superadmin.organisasiImgUrl ? (
+                        <img src={superadmin.organisasiImgUrl} className="w-full h-[250px] object-cover rounded-b-lg" />
+                      ) : (
+                        <img src="" className="w-full h-[250px] object-cover rounded-b-lg" />
+                      )}
                     </div>
                   </div>
                 </>
@@ -117,17 +133,17 @@ const Index = (props) => {
             </div>
           </div>
           <div>
-            <div className="w-9/12 min-h-[470px] rounded-lg border-2 mt-7 mr-5 shadow-lg">
+            <div className="w-9/12 min-h-[470px] lg:max-w-2xl lg:h-auto rounded-lg border-2 mt-7 mr-5 shadow-lg">
               <div className="bg-white">
                 <h1 className="text-2xl text-center">Berita Terbaru</h1>
                 <div className="border-2 border-black w-[75%] mx-auto my-3"></div>
                 <div className="bg-gray-500 h-[250px] m-3 rounded-md overflow-hidden">
                   {/* <p className="text-white text-center">INI FOTO</p> */}
-                  <img className="object-cover w-full h-full" src="https://source.unsplash.com/600x400?random" />
+                  <img className="object-cover w-full h-full" src={berita.imgUrl} />
                 </div>
                 <div className="mx-3">
-                  <h1 className="text-2xl font-bold">Judul Lorem ipsum dolor sit amet.</h1>
-                  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati iste quibusdam delectus fugiat perferendis optio explicabo inventore voluptatem, eveniet doloremque...</p>
+                  <h1 className="text-2xl font-bold">{berita.judulBerita}</h1>
+                  <p>{berita.deskripsi.slice(0, 100)}</p>
 
                   <div className="my-5 justify-between mx-auto">
                     <Link className="p-2 bg-gray-500 text-white rounded-lg
@@ -139,6 +155,7 @@ const Index = (props) => {
           </div>
         </div>
       </div>
+      {/* //mobile desain */}
       <div className="block md:hidden">
         <div>
           <div className="mb-4">
@@ -160,8 +177,12 @@ const Index = (props) => {
                 <div className="block md:hidden w-full h-auto border-2 rounded-lg bg-green-500 text-white" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                   <div className=" rounded-t-lg m-3">
                     <h1 className="text-2xl text-center">Visi</h1>
-                    <img src="https://source.unsplash.com/600x400?random" className="w-full max-h-[250px] rounded-lg" />
-                    <q className="text-center text-lg">Terwujudnya Pendidikan Maju di Jawa Barat guna membentuk SDM yang berkarakter, cerdas, mandiri, menguasai IPTEK dan berbasis budaya Jawa Barat</q>
+                    {superadmin.visiImgUrl ? (
+                      <img src={superadmin.visiImgUrl} className="w-full max-h-[250px] rounded-lg" />
+                    ) : (
+                      <img src="" className="w-full max-h-[250px] rounded-lg" />
+                    )}
+                    <q className="text-center text-lg">{superadmin.visi}</q>
                   </div>
                 </div>
               </>
@@ -170,13 +191,12 @@ const Index = (props) => {
                 <div className="block md:hidden w-full h-auto border-2 rounded-lg bg-yellow-500" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
                   <div className=" rounded-t-lg m-3">
                     <h1 className="text-2xl text-center">Misi</h1>
-                    <img src="https://source.unsplash.com/600x400?random" className="w-full max-h-[250px] rounded-lg" />
-                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam, totam!</li>
-                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam, totam!</li>
-                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam, totam!</li>
-                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam, totam!</li>
-                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam, totam!</li>
-                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam, totam!</li>
+                    {superadmin.misiImgUrl ? (
+                      <img src={superadmin.misiImgUrl} className="w-full max-h-[250px] rounded-lg" />
+                    ) : (
+                      <img src="" className="w-full max-h-[250px] rounded-lg" />
+                    )}
+                    {superadmin.misi}
                   </div>
                 </div>
               </>
@@ -185,7 +205,11 @@ const Index = (props) => {
                 <div className="block md:hidden w-full h-auto border-2 rounded-lg bg-cyan-500 text-white" id="settings" role="tabpanel" aria-labelledby="settings-tab">
                   <div className=" rounded-t-lg m-3">
                     <h1 className="text-2xl text-center">Organisasi</h1>
-                    <img src="https://source.unsplash.com/600x400?random" className="w-full max-h-[250px] rounded-lg" />
+                    {superadmin.organisasiImgUrl ? (
+                      <img src={superadmin.organisasiImgUrl} className="w-full max-h-[250px] rounded-lg" />
+                    ) : (
+                      <img src="" className="w-full max-h-[250px] rounded-lg" />
+                    )}
                   </div>
                 </div>
               </>
@@ -193,54 +217,55 @@ const Index = (props) => {
           </div>
         </div>
         <div className="m-2">
-          <div className="w-full h-auto rounded-lg border-2 mt-7 mr-5 shadow-lg">
-            <div className="bg-white">
-              <h1 className="text-2xl text-center">Berita Terbaru</h1>
-              <div className="border-2 border-black w-[75%] mx-auto my-3"></div>
-              <div className="bg-gray-500 max-h-[250px] m-3 rounded-md overflow-hidden">
-                {/* <p className="text-white text-center">INI FOTO</p> */}
-                <img className="object-cover w-full h-full" src="https://source.unsplash.com/600x400?random" />
-              </div>
-              <div className="mx-3">
-                <h1 className="text-2xl font-bold">Judul Lorem ipsum dolor sit amet.</h1>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati iste quibusdam delectus fugiat perferendis optio explicabo inventore voluptatem, eveniet doloremque...</p>
+          {berita.length > 1 ? (
+            <>
+              <div className="w-full h-auto rounded-lg border-2 mt-7 mr-5 shadow-lg">
+                <div className="bg-white">
+                  <h1 className="text-2xl text-center">Berita Terbaru</h1>
+                  <div className="border-2 border-black w-[75%] mx-auto my-3"></div>
+                  <div className="bg-gray-500 max-h-[250px] m-3 rounded-md overflow-hidden">
+                    {/* <p className="text-white text-center">INI FOTO</p> */}
+                    <img className="object-cover w-full h-full" src="" />
+                  </div>
+                  <div className="mx-3">
+                    <h1 className="text-2xl font-bold">{berita.judulBerita}</h1>
+                    <p>{berita.deskripsi.slice(0, 100)}</p>
 
-                <div className="my-5 justify-between mx-auto">
-                  <Link className="p-2 bg-gray-500 text-white rounded-lg
+                    <div className="my-5 justify-between mx-auto">
+                      <Link className="p-2 bg-gray-500 text-white rounded-lg
                                     ">Lanjut membaca...</Link>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
+            </>
+          ) : (
+            <span>Belum ada berita yang ditambahkan</span>
+          )}
         </div>
       </div>
 
 
       <h1 className="text-center text-3xl">Galeri</h1>
       <div className="border-[1px] border-black w-[6%] mx-auto mb-3"></div>
-      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mx-5 md:mx-[90px]">
-        <div className="bg-black opacity-[0.9] max-w-sm mx-auto shadow-lg border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
-          <img
-            className="rounded-lg sm:h-[200px] sm:w-[350px] md:h-[200px] md:w-[250px] lg:h-[260px] lg:w-[400px] object-cover object-center mx-auto"
-            src="https://source.unsplash.com/600x400?random"
-            alt=""
-          />
+      {galeri.data.length >= 0 ? (
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mx-5 md:mx-[90px]">
+          {galeri.data.map((data, i) => {
+            return (
+              <>
+                <div key={i} className="bg-black opacity-[0.9] max-w-sm mx-auto shadow-lg border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+                  <img
+                    className="rounded-lg sm:h-[200px] sm:w-[350px] md:h-[200px] md:w-[250px] lg:h-[260px] lg:w-[400px] object-cover object-center mx-auto"
+                    src={data.imgUrl}
+                  />
+                </div>
+              </>
+            )
+          })}
         </div>
-        <div className="bg-black opacity-[0.9] max-w-sm mx-auto shadow-lg border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
-          <img
-            className="rounded-lg sm:h-[200px] sm:w-[350px] md:h-[200px] md:w-[250px] lg:h-[260px] lg:w-[400px] object-cover object-center mx-auto"
-            src="https://source.unsplash.com/600x400?random"
-            alt=""
-          />
-        </div>
-        <div className="bg-black opacity-[0.9] max-w-sm mx-auto shadow-lg border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
-          <img
-            className="rounded-lg sm:h-[200px] sm:w-[350px] md:h-[200px] md:w-[250px] lg:h-[260px] lg:w-[400px] object-cover object-center mx-auto"
-            src="https://source.unsplash.com/600x400?random"
-            alt=""
-          />
-        </div>
-      </div>
+      ) : (
+        <span style={"text-black"}>Belum ada foto di galeri yang ditambahkan</span>
+      )}
 
       <div className="mt-5 md:my-16">
         <h1 className="text-center text-3xl">Mitra</h1>
@@ -249,21 +274,21 @@ const Index = (props) => {
           <div className="bg-black opacity-[0.9] max-w-sm mx-auto shadow-lg border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
             <img
               className="rounded-lg sm:h-[200px] sm:w-[200px] md:h-[250px] md:w-[250px] lg:h-[200px] lg:w-[200px] object-cover object-center mx-auto"
-              src="https://source.unsplash.com/600x400?random"
+              src=""
               alt=""
             />
           </div>
           <div className="bg-black opacity-[0.9] max-w-sm mx-auto shadow-lg border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
             <img
               className="rounded-lg sm:h-[200px] sm:w-[200px] md:h-[250px] md:w-[250px] lg:h-[200px] lg:w-[200px] object-cover object-center mx-auto"
-              src="https://source.unsplash.com/600x400?random"
+              src=""
               alt=""
             />
           </div>
           <div className="bg-black opacity-[0.9] max-w-sm mx-auto shadow-lg border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
             <img
               className="rounded-lg sm:h-[200px] sm:w-[200px] md:h-[250px] md:w-[250px] lg:h-[200px] lg:w-[200px] object-cover object-center mx-auto"
-              src="https://source.unsplash.com/600x400?random"
+              src=""
               alt=""
             />
           </div>

@@ -6,7 +6,6 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Add = (profil) => {
-  // const { errors } = usePage().props
   const [errors, setErorrs] = useState({});
 
   const [values, setValues] = useState({

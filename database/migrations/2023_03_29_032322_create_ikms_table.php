@@ -15,8 +15,8 @@ return new class extends Migration
       $table->id();
       $table->text('dasarHukum');
       $table->text('pengertian');
-      $table->text('imgName'); //index kepuasan masyarakat image name
-      $table->text('imgUrl'); //index kepuasan masyarakat image url
+      $table->text('imgName')->nullable(); //index kepuasan masyarakat image name
+      $table->text('imgUrl')->nullable(); //index kepuasan masyarakat image url
       $table->timestamps();
     });
   }

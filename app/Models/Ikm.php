@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ikm extends Model
 {
-    use HasFactory;
+  use HasFactory;
+  protected $guarded = ['id'];
 }

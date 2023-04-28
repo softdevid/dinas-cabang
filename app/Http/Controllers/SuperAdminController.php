@@ -8,6 +8,7 @@ use App\Models\Prestasi;
 use App\Models\ProfilSuperAdmin;
 use App\Models\Sekolah;
 use App\Models\Siswa;
+use App\Models\Banner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
@@ -84,6 +85,7 @@ class SuperAdminController extends Controller
   {
     return Inertia::render('SuperAdmin/Banner/Utama', [
       'title' => 'Banner Halaman Utama',
+      'banner' => Banner::where(['jenisBanner' => 'utama'])->get(),
     ]);
   }
 
@@ -91,6 +93,7 @@ class SuperAdminController extends Controller
   {
     return Inertia::render('SuperAdmin/Banner/Sejarah', [
       'title' => 'Banner Halaman Sejarah',
+      'banner' => Banner::where(['jenisBanner' => 'sejarah'])->get(),
     ]);
   }
 
@@ -98,6 +101,7 @@ class SuperAdminController extends Controller
   {
     return Inertia::render('SuperAdmin/Banner/Berita', [
       'title' => 'Banner Halaman Berita',
+      'banner' => Banner::where(['jenisBanner' => 'berita'])->get(),
     ]);
   }
 
@@ -105,6 +109,7 @@ class SuperAdminController extends Controller
   {
     return Inertia::render('SuperAdmin/Banner/Galeri', [
       'title' => 'Banner Halaman Galeri',
+      'banner' => Banner::where(['jenisBanner' => 'galeri'])->get(),
     ]);
   }
 }

@@ -6,9 +6,11 @@ namespace Database\Seeders;
 
 use App\Models\Berita;
 use App\Models\Guru;
+use App\Models\Ikm;
 use App\Models\Prestasi;
 use App\Models\ProfilPejabat;
 use App\Models\ProfilSuperAdmin;
+use App\Models\Sejarah;
 use App\Models\Sekolah;
 use App\Models\Siswa;
 use App\Models\User;
@@ -57,6 +59,15 @@ class DatabaseSeeder extends Seeder
       'fungsi' => 'lorem',
       'unitKerjaDibawahnya' => 'lorem',
       'unitKerjaDibawahnya' => 'lorem',
+    ]);
+
+    Sejarah::create([
+      'idUser' => 1,
+      'deskripsi' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe voluptas, laudantium dicta vel officiis temporibus dolor repudiandae natus reiciendis quidem facilis perferendis animi, quis unde itaque expedita fugiat hic. Libero dignissimos nihil reiciendis incidunt dolores dolore quae impedit totam, harum, ullam minima consectetur eveniet officia hic odit nostrum iusto itaque nobis nam fuga repudiandae perferendis. Nostrum odio ducimus veniam voluptatibus repellendus repudiandae, accusantium distinctio molestias maxime rerum omnis excepturi rem inventore temporibus qui ipsam voluptatem dolor ea illo fuga porro eos sed. Corporis voluptatum laudantium vero, aspernatur praesentium porro consequatur, dolorum ullam voluptas maxime natus eos atque. Voluptatum, debitis qui.',
+    ]);
+    Ikm::create([
+      'dasarHukum' => '-',
+      'pengertian' => '-',
     ]);
   }
 }

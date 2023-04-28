@@ -2,7 +2,8 @@ import HomeLayout from "@/Layouts/HomeLayout";
 import { Head } from "@inertiajs/react";
 import { useState } from "react";
 
-const Prestasi = (props) => {
+const Prestasi = ({ prestasiOlahraga, prestasiSenibudaya, prestasiTeknologi, prestasiIlmusosial, title }) => {
+  console.log(prestasiOlahraga)
   const [olahraga, setOlahraga] = useState(false);
   const openOlahraga = () => {
     setOlahraga(!olahraga);
@@ -37,12 +38,12 @@ const Prestasi = (props) => {
 
   return (
     <>
-      <Head title={props.title} />
+      <Head title={title} />
       <div>
         <div className="w-full h-64 hidden md:block">
           <div className="grid grid-cols-1 md:grid-cols-2">
             <div className="items-center justify-center flex h-64">
-              <b className="text-3xl">{props.title}</b>
+              <b className="text-3xl">{title}</b>
             </div>
             <div className="hidden md:block">
               <div className="items-center justify-center h-64 flex">
@@ -58,7 +59,7 @@ const Prestasi = (props) => {
         <div className="w-full h-64 block md:hidden">
           <div className="grid grid-cols-1 md:grid-cols-2">
             <div className="items-center justify-center flex h-64">
-              <b className="text-3xl text-blue-600">{props.title}</b>
+              <b className="text-3xl text-blue-600">{title}</b>
             </div>
             <div className=" items-center justify-center flex">
               <div className="border-[1px] border-black w-[10%] -mt-52"></div>
@@ -101,18 +102,41 @@ const Prestasi = (props) => {
             <div className="overflow-x-auto py-5 font-light border-b border-gray-200 dark:border-gray-700">
               <table>
                 <tr>
-                  <th className="px-3 text-sm">#</th>
-                  <th className="px-3 text-sm">Nama Lomba</th>
-                  <th className="px-3 text-sm">Kategori Lomba</th>
-                  <th className="px-3 text-sm">Nama Peserta</th>
-                  <th className="px-3 text-sm">Status Peserta</th>
-                  <th className="px-3 text-sm">Asal Instansi</th>
-                  <th className="px-3 text-sm">Penanggung jawab dan pelaksana</th>
-                  <th className="px-3 text-sm">Target Capaian</th>
-                  <th className="px-3 text-sm">Jadwal Pelaksanaan</th>
-                  <th className="px-3 text-sm">Sumber Anggaran</th>
-                  <th className="px-3 text-sm">Tingkat prestasi</th>
+                  <th className="px-4 py-2 text-sm">#</th>
+                  <th className="px-4 py-2 text-sm">Nama Lomba</th>
+                  <th className="px-4 py-2 text-sm">Kategori Lomba</th>
+                  <th className="px-4 py-2 text-sm">Nama Peserta</th>
+                  <th className="px-4 py-2 text-sm">Status Peserta</th>
+                  <th className="px-4 py-2 text-sm">Asal Instansi</th>
+                  <th className="px-4 py-2 text-sm">Penanggung jawab dan pelaksana</th>
+                  <th className="px-4 py-2 text-sm">Target Capaian</th>
+                  <th className="px-4 py-2 text-sm">Jadwal Pelaksanaan</th>
+                  <th className="px-4 py-2 text-sm">Sumber Anggaran</th>
+                  <th className="px-4 py-2 text-sm">Tingkat prestasi</th>
                 </tr>
+                {prestasiOlahraga.data.length > 0 ? (
+                  <>
+                    {prestasiOlahraga.data.map((data, i) => {
+                      return (
+                        <tr key={i}>
+                          <td>{i + 1}</td>
+                          <td className="px-4 py-2 text-sm">{data.namaLomba}</td>
+                          <td className="px-4 py-2 text-sm">{data.kategoriLomba}</td>
+                          <td className="px-4 py-2 text-sm">{data.namaPeserta}</td>
+                          <td className="px-4 py-2 text-sm">{data.statusPeserta}</td>
+                          <td className="px-4 py-2 text-sm">{data.asalInstansi}</td>
+                          <td className="px-4 py-2 text-sm">{data.penanggungJawab}</td>
+                          <td className="px-4 py-2 text-sm">{data.targetCapaian}</td>
+                          <td className="px-4 py-2 text-sm">{data.jadwalPelaksana}</td>
+                          <td className="px-4 py-2 text-sm">{data.sumberAnggaran}</td>
+                          <td className="px-4 py-2 text-sm">{data.tingkatPrestasi}</td>
+                        </tr>
+                      )
+                    })}
+                  </>
+                ) : (
+                  <span>Belum ada prestasi yang ditambah</span>
+                )}
               </table>
             </div>
           </div>

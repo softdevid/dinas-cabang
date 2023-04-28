@@ -15,6 +15,7 @@ return new class extends Migration
       $table->id();
       $table->text('imgName');
       $table->text('imgUrl');
+      $table->string('statusKalender'); //Aktif, Diarsipkan
       $table->timestamps();
     });
   }

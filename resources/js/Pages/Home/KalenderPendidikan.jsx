@@ -1,15 +1,15 @@
 import HomeLayout from "@/Layouts/HomeLayout";
 import { Head } from "@inertiajs/react";
 
-const KalenderPendidikan = (props) => {
+const KalenderPendidikan = ({ title, kalenderPendidikan }) => {
   return (
     <>
-      <Head title={props.title} />
+      <Head title={title} />
       <div>
         <div className="w-full h-64 hidden md:block">
           <div className="grid grid-cols-1 md:grid-cols-2">
             <div className="items-center justify-center flex h-64">
-              <b className="text-3xl">{props.title}</b>
+              <b className="text-3xl">{title}</b>
             </div>
             <div className="hidden md:block">
               <div className="items-center justify-center h-64 flex">
@@ -25,7 +25,7 @@ const KalenderPendidikan = (props) => {
         <div className="w-full h-64 block md:hidden">
           <div className="grid grid-cols-1 md:grid-cols-2">
             <div className="items-center justify-center flex h-64">
-              <b className="text-3xl">{props.title}</b>
+              <b className="text-3xl">{title}</b>
             </div>
             <div className=" items-center justify-center flex">
               <div className="border-[1px] border-black w-[10%] -mt-48"></div>
@@ -34,9 +34,14 @@ const KalenderPendidikan = (props) => {
         </div>
       </div>
 
-      <div className="md:mx-[95px] mx-5">
-        <img src="/kalender1.jpg" className="" />
-        <img src="/kalender.jpg" className="" />
+      <div className="md:mx-[95px] mx-5 grid grid-cols-1 md:grid-cols-2 gap-4">
+        {kalenderPendidikan.map((data, i) => {
+          return (
+            <>
+              <img key={i} src={data.imgUrl} className="" />
+            </>
+          )
+        })}
       </div>
     </>
   )

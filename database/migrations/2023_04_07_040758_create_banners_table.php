@@ -15,6 +15,7 @@ return new class extends Migration
       $table->id();
       $table->string('imgName');
       $table->string('imgUrl');
+      $table->string('jenisBanner'); //utama, sejarah, berita
       $table->text('deskripsi')->default('#');
       $table->timestamps();
     });

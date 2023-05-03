@@ -5,9 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\LaporanPengaduan;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class LaporanPengaduanController extends Controller
 {
+  public function index()
+  {
+    return Inertia::render('SuperAdmin/LaporanPengaduan/PengaduanIndex', [
+      'title' => 'Laporan Pengaduan',
+      'pengaduan' => LaporanPengaduan::latest()->get(),
+    ]);
+  }
+
   public function store(Request $request) //store untuk halaman pengaduan
   {
     // dd($request->all());
@@ -24,31 +33,18 @@ class LaporanPengaduanController extends Controller
     return response()->json(['data' => 'Berhasil Menambah Laporan Pengaduan']);
   }
 
-  public function updateStatusTerima($id)
+  public function update(LaporanPengaduan $pengaduan, Request $request)
   {
-    LaporanPengaduan::where('id', $id)
-      ->update(['statusLaporan' => 'terima']);
-    return back()->with('message', 'Berhasil mengubah Status Laporan jadi diterima');
-  }
-
-  public function updateStatusTertunda($id)
-  {
-    LaporanPengaduan::where('id', $id)
-      ->update(['statusLaporan' => 'tertunda']);
-    return back()->with('message', 'Berhasil mengubah Status Laporan jadi tertunda');
-  }
-
-  public function updateStatusSelesai($id)
-  {
-    LaporanPengaduan::where('id', $id)
-      ->update(['statusLaporan' => 'selesai']);
-    return back()->with('message', 'Berhasil mengubah Status Laporan jadi selesai');
+    // dd($request->all());
+    LaporanPengaduan::where('id', $pengaduan->id)
+      ->update(['statusLaporan' => $request->statusLaporan]);
+    return response()->json(['data' => 'Berhasil mengubah Status Laporan']);
   }
 
 
-  public function destroy($id)
+  public function destroy(LaporanPengaduan $pengaduan)
   {
-    $laporan = LaporanPengaduan::where('id', $id)->first();
+    $laporan = LaporanPengaduan::where('id', $pengaduan->id)->first();
     if ($laporan->imgName) {
       Cloudinary::destroy($laporan->imgName);
     }

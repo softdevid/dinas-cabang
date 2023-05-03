@@ -9,6 +9,7 @@ import {
   HomeModernIcon,
   NewspaperIcon,
   PaperClipIcon,
+  PencilSquareIcon,
   PhotoIcon,
   TrophyIcon,
   UserCircleIcon,
@@ -93,6 +94,11 @@ const Sidebar = () => {
       name: "Index Kepuasan Masyarakat",
       href: "/super-admin/index-kepuasan-masyarakat",
       icon: PaperClipIcon,
+    },
+    {
+      name: "Laporan Pengaduan",
+      href: "/super-admin/pengaduan",
+      icon: PencilSquareIcon,
     },
   ];
 

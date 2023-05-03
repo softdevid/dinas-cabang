@@ -1,9 +1,15 @@
+import PrestasiIlmusosial from "@/Components/Prestasi/PrestasiIlmusosial";
+import PrestasiOlahraga from "@/Components/Prestasi/PrestasiOlahraga";
+import PrestasiSenibudaya from "@/Components/Prestasi/PrestasiSenibudaya";
+import PrestasiTeknologi from "@/Components/Prestasi/PrestasiTeknologi";
 import HomeLayout from "@/Layouts/HomeLayout";
+import { ArrowLeftCircleIcon, ArrowRightCircleIcon } from "@heroicons/react/20/solid";
 import { Head } from "@inertiajs/react";
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const Prestasi = ({ prestasiOlahraga, prestasiSenibudaya, prestasiTeknologi, prestasiIlmusosial, title }) => {
-  console.log(prestasiOlahraga)
+
   const [olahraga, setOlahraga] = useState(false);
   const openOlahraga = () => {
     setOlahraga(!olahraga);
@@ -94,53 +100,9 @@ const Prestasi = ({ prestasiOlahraga, prestasiSenibudaya, prestasiTeknologi, pre
             </svg>
           </button>
         </h2>
-        {olahraga && (
-          <div
-            id="accordion-flush-body-2"
-            aria-labelledby="accordion-flush-heading-2"
-          >
-            <div className="overflow-x-auto py-5 font-light border-b border-gray-200 dark:border-gray-700">
-              <table>
-                <tr>
-                  <th className="px-4 py-2 text-sm">#</th>
-                  <th className="px-4 py-2 text-sm">Nama Lomba</th>
-                  <th className="px-4 py-2 text-sm">Kategori Lomba</th>
-                  <th className="px-4 py-2 text-sm">Nama Peserta</th>
-                  <th className="px-4 py-2 text-sm">Status Peserta</th>
-                  <th className="px-4 py-2 text-sm">Asal Instansi</th>
-                  <th className="px-4 py-2 text-sm">Penanggung jawab dan pelaksana</th>
-                  <th className="px-4 py-2 text-sm">Target Capaian</th>
-                  <th className="px-4 py-2 text-sm">Jadwal Pelaksanaan</th>
-                  <th className="px-4 py-2 text-sm">Sumber Anggaran</th>
-                  <th className="px-4 py-2 text-sm">Tingkat prestasi</th>
-                </tr>
-                {prestasiOlahraga.data.length > 0 ? (
-                  <>
-                    {prestasiOlahraga.data.map((data, i) => {
-                      return (
-                        <tr key={i}>
-                          <td>{i + 1}</td>
-                          <td className="px-4 py-2 text-sm">{data.namaLomba}</td>
-                          <td className="px-4 py-2 text-sm">{data.kategoriLomba}</td>
-                          <td className="px-4 py-2 text-sm">{data.namaPeserta}</td>
-                          <td className="px-4 py-2 text-sm">{data.statusPeserta}</td>
-                          <td className="px-4 py-2 text-sm">{data.asalInstansi}</td>
-                          <td className="px-4 py-2 text-sm">{data.penanggungJawab}</td>
-                          <td className="px-4 py-2 text-sm">{data.targetCapaian}</td>
-                          <td className="px-4 py-2 text-sm">{data.jadwalPelaksana}</td>
-                          <td className="px-4 py-2 text-sm">{data.sumberAnggaran}</td>
-                          <td className="px-4 py-2 text-sm">{data.tingkatPrestasi}</td>
-                        </tr>
-                      )
-                    })}
-                  </>
-                ) : (
-                  <span>Belum ada prestasi yang ditambah</span>
-                )}
-              </table>
-            </div>
-          </div>
-        )}
+        {olahraga &&
+          <PrestasiOlahraga olahraga={olahraga} />
+        }
         {/* end prestasi olahraga */}
 
         {/* prestasi seni budaya */}
@@ -168,30 +130,7 @@ const Prestasi = ({ prestasiOlahraga, prestasiSenibudaya, prestasiTeknologi, pre
             </svg>
           </button>
         </h2>
-        {senibudaya && (
-          <div
-            id="accordion-flush-body-2"
-            aria-labelledby="accordion-flush-heading-2"
-          >
-            <div className="overflow-x-auto py-5 font-light border-b border-gray-200 dark:border-gray-700">
-              <table>
-                <tr>
-                  <th className="px-2">#</th>
-                  <th className="px-2">Nama Lomba</th>
-                  <th className="px-2">Kategori Lomba</th>
-                  <th className="px-2">Nama Peserta</th>
-                  <th className="px-2">Status Peserta</th>
-                  <th className="px-2">Asal Instansi</th>
-                  <th className="px-2">Penanggung jawab dan pelaksana</th>
-                  <th className="px-2">Target Capaian</th>
-                  <th className="px-2">Jadwal Pelaksanaan</th>
-                  <th className="px-2">Sumber Anggaran</th>
-                  <th className="px-3 text-sm">Tingkat prestasi</th>
-                </tr>
-              </table>
-            </div>
-          </div>
-        )}
+        <PrestasiSenibudaya senibudaya={senibudaya} />
         {/* end prestasi seni budaya */}
 
         {/* prestasi Teknologi */}
@@ -219,30 +158,7 @@ const Prestasi = ({ prestasiOlahraga, prestasiSenibudaya, prestasiTeknologi, pre
             </svg>
           </button>
         </h2>
-        {teknologi && (
-          <div
-            id="accordion-flush-body-2"
-            aria-labelledby="accordion-flush-heading-2"
-          >
-            <div className="overflow-x-auto py-5 font-light border-b border-gray-200 dark:border-gray-700">
-              <table>
-                <tr>
-                  <th className="px-2">#</th>
-                  <th className="px-2">Nama Lomba</th>
-                  <th className="px-2">Kategori Lomba</th>
-                  <th className="px-2">Nama Peserta</th>
-                  <th className="px-2">Status Peserta</th>
-                  <th className="px-2">Asal Instansi</th>
-                  <th className="px-2">Penanggung jawab dan pelaksana</th>
-                  <th className="px-2">Target Capaian</th>
-                  <th className="px-2">Jadwal Pelaksanaan</th>
-                  <th className="px-2">Sumber Anggaran</th>
-                  <th className="px-3 text-sm">Tingkat prestasi</th>
-                </tr>
-              </table>
-            </div>
-          </div>
-        )}
+        <PrestasiTeknologi teknologi={teknologi} />
         {/* end prestasi Teknologi */}
 
 
@@ -271,30 +187,7 @@ const Prestasi = ({ prestasiOlahraga, prestasiSenibudaya, prestasiTeknologi, pre
             </svg>
           </button>
         </h2>
-        {sosial && (
-          <div
-            id="accordion-flush-body-2"
-            aria-labelledby="accordion-flush-heading-2"
-          >
-            <div className="overflow-x-auto py-5 font-light border-b border-gray-200 dark:border-gray-700">
-              <table>
-                <tr>
-                  <th className="px-2">#</th>
-                  <th className="px-2">Nama Lomba</th>
-                  <th className="px-2">Kategori Lomba</th>
-                  <th className="px-2">Nama Peserta</th>
-                  <th className="px-2">Status Peserta</th>
-                  <th className="px-2">Asal Instansi</th>
-                  <th className="px-2">Penanggung jawab dan pelaksana</th>
-                  <th className="px-2">Target Capaian</th>
-                  <th className="px-2">Jadwal Pelaksanaan</th>
-                  <th className="px-2">Sumber Anggaran</th>
-                  <th className="px-3 text-sm">Tingkat prestasi</th>
-                </tr>
-              </table>
-            </div>
-          </div>
-        )}
+        <PrestasiIlmusosial sosial={sosial} />
         {/* end prestasi Sosial */}
       </div>
     </>

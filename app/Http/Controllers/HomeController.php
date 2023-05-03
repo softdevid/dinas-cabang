@@ -9,6 +9,7 @@ use App\Models\Ikm;
 use App\Models\KalenderPendidikan;
 use App\Models\Sejarah;
 use App\Models\Prestasi;
+use App\Models\ProfilPejabat;
 use App\Models\ProfilSuperAdmin;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -30,6 +31,7 @@ class HomeController extends Controller
   {
     return Inertia::render('Home/ProfilPejabat', [
       'title' => 'Profil Pejabat',
+      'pejabat' => ProfilPejabat::get(),
     ]);
   }
 
@@ -120,16 +122,42 @@ class HomeController extends Controller
     ]);
   }
 
+  public function surveyKepuasanMasyarakat()
+  {
+    return Inertia::render('Home/SurveyKepuasanMasyarakat', [
+      'title' => 'Survey Kepuasan Masyarakat',
+    ]);
+  }
+
+
+  //data api profil superadmin
+  public function dataSuperadmin()
+  {
+    $data = ProfilSuperAdmin::first();
+    return response()->json($data);
+  }
+
+  //data api untuk prestasi halaman utama
   function dataPrestasiOlahraga()
   {
     $prestasiOlahraga = Prestasi::where('kategoriLomba', 'Olahraga')->paginate(5);
     return response()->json($prestasiOlahraga);
   }
 
-  public function surveyKepuasanMasyarakat()
+  function dataPrestasiSenibudaya()
   {
-    return Inertia::render('Home/SurveyKepuasanMasyarakat', [
-      'title' => 'Survey Kepuasan Masyarakat',
-    ]);
+    $prestasiSenibudaya = Prestasi::where('kategoriLomba', 'Seni budaya')->paginate(5);
+    return response()->json($prestasiSenibudaya);
+  }
+  function dataPrestasiTeknologi()
+  {
+    $teknologi = Prestasi::where('kategoriLomba', 'Teknologi')->paginate(5);
+    return response()->json($teknologi);
+  }
+
+  function dataPrestasiIlmusosial()
+  {
+    $sosial = Prestasi::where('kategoriLomba', 'Ilmu Sosial')->paginate(5);
+    return response()->json($sosial);
   }
 }

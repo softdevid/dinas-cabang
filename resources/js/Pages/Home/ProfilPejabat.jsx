@@ -40,8 +40,8 @@ const ProfilPejabat = (props) => {
         </div>
       </div>
 
-      <KepalaDinas />
-      <SekretarisDinas />
+      <KepalaDinas props={props} />
+      {/* <SekretarisDinas /> */}
     </>
   );
 };

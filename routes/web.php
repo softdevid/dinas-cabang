@@ -88,13 +88,15 @@ Route::prefix('/super-admin')->group(function () {
   Route::resource('galeri', GaleriController::class);
   Route::resource('kalender-pendidikan', KalenderPendidikanController::class);
   Route::resource('index-kepuasan-masyarakat', IkmController::class);
+  Route::resource('pengaduan', LaporanPengaduanController::class);
+
 
   //route tabs banner
   Route::get('/banner', [SuperAdminController::class, 'banner'])->name('super-admin.banner');
   Route::get('/banner-sejarah', [SuperAdminController::class, 'bannerSejarah'])->name('super-admin.banner.sejarah');
   Route::get('/banner-berita', [SuperAdminController::class, 'bannerBerita'])->name('super-admin.banner.berita');
   Route::get('/banner-galeri', [SuperAdminController::class, 'bannerGaleri'])->name('super-admin.banner.galeri');
-});
+})->middleware('auth');
 
 Route::group([
   'prefix' => '/admin-sekolah/{sekolah:id}',
@@ -123,8 +125,11 @@ Route::post('/delete-image-sejarah', [SejarahController::class, 'deleteImgSejara
 
 Route::get('/api/berita', [BeritaController::class, 'index']);
 Route::get('/data-prestasi-olahraga', [HomeController::class, 'dataPrestasiOlahraga']);
+Route::get('/data-prestasi-senibudaya', [HomeController::class, 'dataPrestasiSenibudaya']);
+Route::get('/data-prestasi-teknologi', [HomeController::class, 'dataPrestasiTeknologi']);
+Route::get('/data-prestasi-sosial', [HomeController::class, 'dataPrestasiIlmusosial']);
 
-//delete image
+Route::get('/api/data-superadmin', [HomeController::class, 'dataSuperadmin'])->name('home.dataSuperadmin');
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/api.php';

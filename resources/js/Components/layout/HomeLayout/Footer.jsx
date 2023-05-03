@@ -1,4 +1,13 @@
+import { useState } from "react";
+import axios from "axios";
+import { Link } from "@inertiajs/react";
+
 const Footer = () => {
+  const [data, setData] = useState({});
+
+  axios
+    .get(`/api/data-superadmin`)
+    .then((res) => setData(res.data))
   return (
     <>
       <footer className="bg-white dark:bg-gray-900 border-t-4 mt-5">
@@ -7,22 +16,22 @@ const Footer = () => {
             <div className="grid grid-cols-1 text-center md:text-left md:grid-cols-2 lg:grid-cols-5 gap-8 ml-6">
               <div className="mb-6 md:mb-0">
                 <a href="https://flowbite.com/" className="flex items-center">
-                  <img src="https://flowbite.com/docs/images/logo.svg" className="h-8 mr-3" alt="FlowBite Logo" />
-                  <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Softdev</span>
+                  {/* <img src="https://flowbite.com/docs/images/logo.svg" className="h-8 mr-3" alt="FlowBite Logo" /> */}
+                  <img src={data.logoImgUrl} className="h-8 mr-3" alt="FlowBite Logo" />
+                  <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">{data.namaSuperAdmin}</span>
                 </a>
               </div>
               <div>
                 <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Alamat</h2>
-                <div className="text-gray-600 dark:text-gray-400">
-                  Jl. Dr. Rajiman No.6, Pasir Kaliki, Kec. Cicendo,
-                  Kota Bandung, Jawa Barat 40171 <br />
-                  Email : disdik@jabarprov.go.id
+                <div className="text-gray-600 dark:text-gray-400 whitespace-pre-wrap">
+                  {data.alamatLengkap} <br />
+                  {data.email}
                 </div>
               </div>
               <div>
                 <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Bantuan</h2>
                 <div className="text-gray-600 dark:text-gray-400">
-                  Telp 082127298784
+                  Telp {data.noHp}
                 </div>
               </div>
               <div>
@@ -36,13 +45,16 @@ const Footer = () => {
 
                 <ul className="text-gray-600 dark:text-gray-400">
                   <li>
-                    <a href="#" className="hover:underline">Profil</a>
+                    <Link href="/profil-pejabat" className="hover:underline">Profil Pejabat</Link>
                   </li>
                   <li>
-                    <a href="#" className="hover:underline">Sejarah</a>
+                    <Link href="/sejarah" className="hover:underline">Sejarah</Link>
                   </li>
                   <li>
-                    <a href="#" className="hover:underline">Artikel</a>
+                    <Link href="/berita" className="hover:underline">Berita</Link>
+                  </li>
+                  <li>
+                    <Link href="/visi-misi" className="hover:underline">Visi dan Misi</Link>
                   </li>
                 </ul>
               </div>

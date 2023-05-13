@@ -5,39 +5,41 @@ import ReactPaginate from "react-paginate";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const Guru = ({ title, guru }) => {
+const Prestasi = ({ title, prestasi }) => {
 
   const handleDelete = ({ id }) => {
     axios
-      .delete(`/super-admin/berita/${id}`)
+      .delete(`/super-admin/prestasi/${id}`)
       .then((res) => {
         toast.success(res.data.data, {
           position: toast.POSITION.TOP_CENTER
         });
 
         setTimeout(() => {
-          router.get(`/super-admin/berita`);
+          router.get(`/super-admin/prestasi`);
         }, 1000);
       })
   }
 
   const [search, setSearch] = useState('');
-  const [jabatan, setJabatan] = useState('all');
-  const [mapel, setMapel] = useState('');
+  const [targetCapaian, setTargetCapaian] = useState('all');
+  const [kategoriLomba, setKategoriLomba] = useState('all');
 
-  const filteredGuru = guru.filter(guru =>
-    guru.namaGuru.toLowerCase().includes(search.toLowerCase())
-    && guru.mapel.toLowerCase().includes(mapel.toLowerCase())
-    && (jabatan === 'all' || guru.jabatan === jabatan)
+
+  const filteredPrestasi = prestasi.filter(prestasi =>
+    prestasi.namaPeserta.toLowerCase().includes(search.toLowerCase())
+    && (targetCapaian === 'all' || prestasi.targetCapaian === targetCapaian)
+    && (kategoriLomba === 'all' || prestasi.kategoriLomba === kategoriLomba)
+    // && prestasi.mapel.toLowerCase().includes(mapel.toLowerCase())
   );
 
   const pageSize = 20;
-  const pageCount = Math.ceil(filteredGuru.length / pageSize);
+  const pageCount = Math.ceil(filteredPrestasi.length / pageSize);
 
   function getPageItems(page) {
     const startIndex = (page - 1) * pageSize;
     const endIndex = startIndex + pageSize;
-    return filteredGuru.slice(startIndex, endIndex);
+    return filteredPrestasi.slice(startIndex, endIndex);
   }
 
   function handlePageClick(data) {
@@ -47,7 +49,7 @@ const Guru = ({ title, guru }) => {
 
 
   const [currentPage, setCurrentPage] = useState(1);
-  const currentPageItems = filteredGuru.length > 0 ? getPageItems(currentPage) : [];
+  const currentPageItems = filteredPrestasi.length > 0 ? getPageItems(currentPage) : [];
 
   return (
     <>
@@ -58,18 +60,28 @@ const Guru = ({ title, guru }) => {
           <h1 className="text-lg md:text-2xl">{title}</h1>
         </div>
         <div className="justify-end items-end flex">
-          <Link href="/super-admin/berita/create" className="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-lg">Tambah</Link>
+          <Link href="/super-admin/prestasi/create" className="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-lg">Tambah</Link>
         </div>
       </div>
 
-      <input placeholder="Cari Nama Guru" type="text" value={search} onChange={e => setSearch(e.target.value)} className="rounded-lg" />
-      <input placeholder="Cari Mapel" type="text" value={mapel} onChange={e => setMapel(e.target.value)} className="rounded-lg ml-2" />
-      <select value={jabatan} onChange={e => setJabatan(e.target.value)} className="rounded-lg ml-2">
-        <option value="all">Semua Jabatan</option>
-        <option value="kepala sekolah">Kepala Sekolah</option>
-        <option value="guru">Guru</option>
+      <input placeholder="Cari Nama Peserta" type="text" value={search} onChange={e => setSearch(e.target.value)} className="rounded-lg" />
+
+      <select value={targetCapaian} onChange={e => setTargetCapaian(e.target.value)} className="rounded-lg ml-2">
+        <option value="all">Semua Peringkat</option>
+        <option value="Juara 1">Juara 1</option>
+        <option value="Juara 2">Juara 2</option>
+        <option value="Juara 3">Juara 3</option>
+        <option value="Juara 4">Juara 4</option>
+        <option value="Juara 5">Juara 5</option>
       </select>
-      <div className="text-right">Total: {guru.length}</div>
+      <select value={kategoriLomba} onChange={e => setKategoriLomba(e.target.value)} className="rounded-lg ml-2">
+        <option value="all">Semua Kategori Lomba</option>
+        <option value="Olahraga">Olahraga</option>
+        <option value="Teknologi">Teknologi</option>
+        <option value="Seni budaya">Seni budaya</option>
+        <option value="Ilmu sosial">Ilmu sosial</option>
+      </select>
+
       <div className="relative overflow-x-auto">
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -78,16 +90,19 @@ const Guru = ({ title, guru }) => {
                 #
               </th>
               <th scope="col" className="px-2 py-4">
-                NIP
+                Nama Lomba
               </th>
               <th scope="col" className="px-2 py-4">
-                Nama
+                Nama Peserta
               </th>
               <th scope="col" className="px-2 py-4">
-                Mengampu
+                Peringkat
               </th>
               <th scope="col" className="px-2 py-4">
-                Jabatan
+                Asal Instansi
+              </th>
+              <th scope="col" className="px-2 py-4">
+                Kategori Lomba
               </th>
               <th scope="col" className="px-2 py-4">
                 Aksi
@@ -103,19 +118,22 @@ const Guru = ({ title, guru }) => {
                       {i + 1}
                     </th>
                     <td className="px-2 py-4">
-                      {data.nip}
+                      {data.namaLomba}
                     </td>
                     <td className="px-2 py-4">
-                      {data.namaGuru}
+                      {data.namaPeserta}
                     </td>
                     <td className="px-2 py-4">
-                      {data.mapel}
+                      {data.targetCapaian}
                     </td>
                     <td className="px-2 py-4">
-                      {data.jabatan}
+                      {data.asalInstansi}
                     </td>
                     <td className="px-2 py-4">
-                      <Link href={`/super-admin/berita/${data.id}/edit`} className="bg-yellow-500 text-black p-2 rounded-lg mx-1">Edit</Link>
+                      {data.kategoriLomba}
+                    </td>
+                    <td className="px-2 py-4">
+                      <Link href={`/super-admin/prestasi/${data.id}/edit`} className="bg-yellow-500 text-black p-2 rounded-lg mx-1">Edit</Link>
                       <button className="bg-sky-500 text-white p-2 rounded-lg mx-1">Detail</button>
                       <button onClick={() => handleDelete({ id: data.id })} className="bg-red-500 mx-1 text-white p-2 rounded-lg">Hapus</button>
                     </td>
@@ -144,5 +162,5 @@ const Guru = ({ title, guru }) => {
 }
 
 
-Guru.layout = (page) => <SuperAdminTemplate children={page} />
-export default Guru;
+Prestasi.layout = (page) => <SuperAdminTemplate children={page} />
+export default Prestasi;

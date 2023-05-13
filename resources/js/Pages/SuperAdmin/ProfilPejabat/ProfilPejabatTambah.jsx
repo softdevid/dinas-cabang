@@ -1,5 +1,5 @@
 import SuperAdminTemplate from "@/Layouts/SuperAdminTemplate";
-import { Head, router, usePage } from "@inertiajs/react";
+import { Head, Link, router, usePage } from "@inertiajs/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
@@ -88,7 +88,7 @@ const ProfilPejabatTambah = ({ title }) => {
           <h1 className="text-lg md:text-2xl">{title}</h1>
         </div>
         <div className="justify-end items-end flex">
-          <button onClick={() => closeOpen()} className="bg-gray-600 hover:bg-gray-700 text-white p-2 rounded-lg">Kembali</button>
+          <Link href="/super-admin/pejabat" className="bg-gray-600 hover:bg-gray-700 text-white p-2 rounded-lg">Kembali</Link>
         </div>
       </div>
 
@@ -102,7 +102,7 @@ const ProfilPejabatTambah = ({ title }) => {
         </div>
         <div className="mb-6">
           <label htmlFor="jabatan" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jabatan</label>
-          <input value={values.jabatan} onChange={handleChange} type="text" id="jabatan" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Pejabat" required />
+          <input value={values.jabatan} onChange={handleChange} type="text" id="jabatan" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Isi Jabatan" required />
           {errors.jabatan && (
             <span style={{ color: "red" }}>{errors.jabatan[0]}</span>
           )}

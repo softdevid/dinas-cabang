@@ -67,7 +67,7 @@ const Sidebar = () => {
     },
     {
       name: "Layanan Publik",
-      href: "/super-admin/layanan",
+      href: "/super-admin/layanan-publik",
       icon: HomeIcon,
     },
     {
@@ -98,6 +98,11 @@ const Sidebar = () => {
     {
       name: "Laporan Pengaduan",
       href: "/super-admin/pengaduan",
+      icon: PencilSquareIcon,
+    },
+    {
+      name: "Survey Kepuasan Masyarakat",
+      href: "/super-admin/skm",
       icon: PencilSquareIcon,
     },
   ];

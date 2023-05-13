@@ -39,15 +39,14 @@ const SiswaEdit = ({ title, dataSiswa, dataSekolah }) => {
 
   function handleSubmit() {
     axios
-      .patch(`/admin-sekolah/${dataSekolah.id}/siswa/${dataSiswa.nip}`, values)
+      .patch(`/admin-sekolah/${dataSekolah.id}/siswa/${dataSiswa.id}`, values)
       .then((res) => {
         toast.success(res.data.data, {
           position: toast.POSITION.TOP_CENTER
         });
         setTimeout(() => {
-          router.get(`/admin-sekolah/${dataSekolah.id}/siswa`);
+          router.get(`/admin-sekolah/${dataSekolah.kode}/siswa`);
         }, 2000);
-        console.log(res)
       })
       .catch((err) => setErorrs(err.response.data.errors));
   }

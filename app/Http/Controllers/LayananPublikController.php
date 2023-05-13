@@ -8,6 +8,7 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Inertia\Inertia;
 
 class LayananPublikController extends Controller
 {
@@ -16,7 +17,9 @@ class LayananPublikController extends Controller
    */
   public function index()
   {
-    //
+    return Inertia::render('SuperAdmin/LayananPublik/LayananPublikIndex', [
+      'title' => 'Layanan Publik',
+    ]);
   }
 
   /**
@@ -24,7 +27,9 @@ class LayananPublikController extends Controller
    */
   public function create()
   {
-    //
+    return Inertia::render('SuperAdmin/LayananPublik/LayananPublikTambah', [
+      'title' => 'Tambah Layanan Publik',
+    ]);
   }
 
   /**

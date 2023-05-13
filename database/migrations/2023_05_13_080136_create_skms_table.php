@@ -11,14 +11,11 @@ return new class extends Migration
    */
   public function up(): void
   {
-    Schema::create('layanan_publiks', function (Blueprint $table) {
+    Schema::create('skms', function (Blueprint $table) {
       $table->id();
-      $table->string('namaLayanan');
-      $table->string('slug');
-      $table->string('deskripsiLayanan');
-      $table->string('jenisLayanan'); //gratis, berbayar
-      $table->string('imgName')->nullable();
-      $table->string('imgUrl')->nullable();
+      $table->string('question');
+      $table->enum('type', ['multiple_choice', 'essay']);
+      $table->json('options')->nullable();
       $table->timestamps();
     });
   }
@@ -28,6 +25,6 @@ return new class extends Migration
    */
   public function down(): void
   {
-    Schema::dropIfExists('layanan_publiks');
+    Schema::dropIfExists('skms');
   }
 };

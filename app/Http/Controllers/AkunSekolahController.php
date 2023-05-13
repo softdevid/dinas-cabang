@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
+use Illuminate\Support\Str;
 
 class AkunSekolahController extends Controller
 {
@@ -54,6 +55,7 @@ class AkunSekolahController extends Controller
       ]);
       Sekolah::create([
         'idUser' => $data->id,
+        'kode' => Str::random(10),
         'namaSekolah' => $request->namaSekolah,
         'email' => $request->email,
         'password' => Hash::make($request->password),
@@ -97,11 +99,10 @@ class AkunSekolahController extends Controller
       ]);
     }
 
-    $data = [
+    $request->validate([
       'namaSekolah' => 'required',
       'jenjang' => 'required',
-    ];
-    $request->validate($data);
+    ]);
 
     DB::transaction(function () use ($request, $sekolah, $user) {
       $sekolah->update([

@@ -38,12 +38,12 @@ class DatabaseSeeder extends Seeder
       'level' => 'sekolah'
     ]);
 
-    Sekolah::factory(10)->create();
+    // Sekolah::factory(10)->create();
     // Guru::factory(100)->create();
     // Siswa::factory(10)->create();
-    Prestasi::factory(10)->create();
-    Berita::factory(100)->create();
-    ProfilPejabat::factory(10)->create();
+    // Prestasi::factory(10)->create();
+    // Berita::factory(100)->create();
+    // ProfilPejabat::factory(10)->create();
 
     ProfilSuperAdmin::create([
       'idUser' => '1',

@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
 
-const ProfilEdit = ({ title, dataSiswa, dataSekolah }) => {
+const ProfilEdit = ({ title, dataSekolah }) => {
   const context = useContext(AdminSekolahContext);
   const [errors, setErorrs] = useState({});
 
@@ -29,7 +29,6 @@ const ProfilEdit = ({ title, dataSiswa, dataSekolah }) => {
     imgName: dataSekolah.imgName,
     imgUrl: dataSekolah.imgUrl,
   });
-  console.log(values);
 
   function handleChange(e) {
     const key = e.target.id;
@@ -48,7 +47,7 @@ const ProfilEdit = ({ title, dataSiswa, dataSekolah }) => {
           position: toast.POSITION.TOP_CENTER
         });
         setTimeout(() => {
-          router.get(`/admin-sekolah/${dataSekolah.id}/profil`);
+          router.get(`/admin-sekolah/${dataSekolah.kode}/profil`);
         }, 2000);
       })
       .catch((err) => setErorrs(err.response.data.errors));
@@ -91,8 +90,6 @@ const ProfilEdit = ({ title, dataSiswa, dataSekolah }) => {
       })
       .catch((err) => console.log(err))
   }
-
-  console.log(values)
 
   return (
     <>

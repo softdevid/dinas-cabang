@@ -6,9 +6,34 @@ import {
   PencilSquareIcon,
 } from "@heroicons/react/20/solid";
 import { Head } from "@inertiajs/react";
+import { useState } from "react";
+import ReactPaginate from "react-paginate";
 
 const Berita = (props) => {
-  console.log(props)
+  const [search, setSearch] = useState('');
+
+  const filteredBerita = props.berita.filter(berita =>
+    berita.judulBerita.toLowerCase().includes(search.toLowerCase())
+  );
+
+  const pageSize = 9;
+  const pageCount = Math.ceil(filteredBerita.length / pageSize);
+
+  function getPageItems(page) {
+    const startIndex = (page - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    return filteredBerita.slice(startIndex, endIndex);
+  }
+
+  function handlePageClick(data) {
+    const selectedPage = data.selected + 1;
+    setCurrentPage(selectedPage);
+  }
+
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const currentPageItems = filteredBerita.length > 0 ? getPageItems(currentPage) : [];
+
   return (
     <>
       <Head title={props.title} />
@@ -58,26 +83,20 @@ const Berita = (props) => {
             </svg>
           </div>
           <input
-            type="search"
+            type="search" value={search} onChange={e => setSearch(e.target.value)}
             id="default-search"
             class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Cari berita pendidikan"
             required
           />
-          <button
-            type="submit"
-            class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          >
-            Search
-          </button>
         </div>
       </form>
 
       <div className="sm:mx-2">
         <div className="grid grid-cols-1 gap-5 md:gap-8 lg:gap-8 md:grid-cols-2 lg:grid-cols-3 md:mx-[90px]">
-          {props.berita.map((data, i) => {
+          {currentPageItems.map((data, i) => {
             return (
-              <div className="w-full">
+              <div key={i} className="w-full">
                 <div className="max-w-xs md:max-w-sm mx-auto shadow-lg bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
                   <img className="rounded-t-lg h-[280px] w-[380px] object-cover mx-auto" src={data.imgUrl} alt="" />
                   <div className="p-5">
@@ -109,6 +128,19 @@ const Berita = (props) => {
           })}
         </div>
       </div>
+      <ReactPaginate
+        previousLabel={"<"}
+        nextLabel={">"}
+        pageCount={pageCount}
+        onPageChange={handlePageClick}
+        containerClassName={"flex justify-center mt-8"}
+        pageClassName={"mx-2 bg-white text-blue-500 rounded-full cursor-pointer hover:bg-blue-500 hover:text-white text-lg p-2"}
+        breakClassName={"mx-2 bg-white text-blue-500 rounded-full cursor-not-allowed text-lg p-2"}
+        activeClassName={"text-red-500"}
+        previousClassName={"mx-2 bg-white text-blue-500 rounded-full cursor-pointer hover:bg-blue-500 hover:text-white text-lg p-2"}
+        nextClassName={"mx-2 bg-white text-blue-500 rounded-full cursor-pointer hover:bg-blue-500 hover:text-white text-lg p-2"}
+        disabledClassName={"mx-2 bg-gray-300 text-gray-500 rounded-full cursor-not-allowed text-lg p-2"}
+      />
     </>
   )
 }

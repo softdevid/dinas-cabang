@@ -39,13 +39,13 @@ const GuruTambah = ({ title, dataGuru, dataSekolah }) => {
 
   function handleSubmit() {
     axios
-      .post(`/admin-sekolah/${dataSekolah.id}/guru`, values)
+      .post(`/admin-sekolah/${dataSekolah.kode}/guru`, values)
       .then((res) => {
         toast.success(res.data.data, {
           position: toast.POSITION.TOP_CENTER
         });
         setTimeout(() => {
-          router.get(`/admin-sekolah/${dataSekolah.id}/guru`);
+          router.get(`/admin-sekolah/${dataSekolah.kode}/guru`);
         }, 2000);
         console.log(res)
       })

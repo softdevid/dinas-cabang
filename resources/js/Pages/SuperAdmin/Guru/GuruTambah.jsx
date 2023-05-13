@@ -1,33 +1,26 @@
-import AdminSekolahLayout from "@/Layouts/AdminSekolahLayout";
-import { AdminSekolahContext } from "@/context/admin-sekolah-context";
 import { Head, router, usePage } from "@inertiajs/react";
 import React, { useContext, useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import SuperAdminTemplate from "@/Layouts/SuperAdminTemplate";
 
 
-const GuruTambah = ({ title, dataGuru, dataSekolah }) => {
-  const context = useContext(AdminSekolahContext);
+const GuruTambah = ({ title, dataSekolah }) => {
   const [errors, setErorrs] = useState({});
 
-  useEffect(() => {
-    context.setDtSekolah(dataSekolah);
-  }, []);
-
   const [values, setValues] = useState({
-    idSekolah: dataSekolah.id,
-    namaGuru: dataGuru.namaGuru,
-    nip: dataGuru.nip,
-    mapel: dataGuru.mapel,
-    jabatan: dataGuru.jabatan,
-    tglLahir: dataGuru.tglLahir,
-    jenisKelamin: dataGuru.jenisKelamin,
-    alamatLengkap: dataGuru.alamatLengkap,
-    agama: dataGuru.agama,
-    email: dataGuru.email,
-    noHp: dataGuru.noHp,
+    idSekolah: "",
+    namaGuru: "",
+    nip: "",
+    mapel: "",
+    jabatan: "",
+    tglLahir: "",
+    jenisKelamin: "",
+    agama: "",
+    email: "",
+    noHp: "",
+    alamatLengkap: "",
   });
-  console.log(values);
 
   function handleChange(e) {
     const key = e.target.id;
@@ -39,17 +32,15 @@ const GuruTambah = ({ title, dataGuru, dataSekolah }) => {
   }
 
   function handleSubmit() {
-
     axios
-      .patch(`/admin-sekolah/${dataSekolah.id}/guru/${dataGuru.id}`, values)
+      .post(`/super-admin/guru`, values)
       .then((res) => {
         toast.success(res.data.data, {
           position: toast.POSITION.TOP_CENTER
         });
         setTimeout(() => {
-          router.get(`/admin-sekolah/${dataSekolah.kode}/guru`);
+          router.get(`/super-admin/guru`);
         }, 2000);
-        console.log(res)
       })
       .catch((err) => setErorrs(err.response.data.errors));
   }
@@ -59,16 +50,31 @@ const GuruTambah = ({ title, dataGuru, dataSekolah }) => {
       <Head title={title} />
       <ToastContainer autoClose={2000} />
 
-      <div className="mt-14">
+      <div>
         <div className="mb-4">
           <h1 className="text-xl md:text-2xl font-bold">{title}</h1>
         </div>
         <div className="mb-7">
-
-          <div
-            className="mx-auto mt-16 max-w-3xl sm:mt-20"
-          >
+          <div className="mx-auto max-w-3xl sm:mt-20">
             <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-3">
+              <div>
+                <label htmlFor="idSekolah" className="block text-sm font-semibold leading-6 text-gray-900">Asal Sekolah</label>
+                <div className="mt-2.5">
+                  <select value={values.idSekolah} onChange={handleChange} id="idSekolah" className="block w-full overflow-auto rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    <option>Pilih sekolah</option>
+                    {dataSekolah.map((data) => {
+                      return (
+                        <>
+                          <option value={data.id}>{data.namaSekolah} - {data.jenjang}</option>
+                        </>
+                      )
+                    })}
+                  </select>
+                </div>
+                {errors.idSekolah && (
+                  <span style={{ color: "red" }}>{errors.idSekolah[0]}</span>
+                )}
+              </div>
               <div>
                 <label htmlFor="namaGuru" className="block text-sm font-semibold leading-6 text-gray-900">Nama Guru</label>
                 <div className="mt-2.5">
@@ -98,9 +104,9 @@ const GuruTambah = ({ title, dataGuru, dataSekolah }) => {
                   <span style={{ color: "red" }}>{errors.mapel[0]}</span>
                 )}
               </div>
-            </div>
 
-            <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-3 mt-5">
+
+
               <div>
                 <label htmlFor="jabatan" className="block text-sm font-semibold leading-6 text-gray-900">Jabatan</label>
                 <div className="mt-2.5">
@@ -206,5 +212,5 @@ const GuruTambah = ({ title, dataGuru, dataSekolah }) => {
   );
 };
 
-GuruTambah.layout = (page) => <AdminSekolahLayout children={page} />;
+GuruTambah.layout = (page) => <SuperAdminTemplate children={page} />;
 export default GuruTambah;

@@ -13,6 +13,7 @@ return new class extends Migration
   {
     Schema::create('sekolahs', function (Blueprint $table) {
       $table->id();
+      $table->string('kode')->default('-');
       $table->foreignId('idUser')->nullable();
       $table->string('namaSekolah');
       $table->text('visi')->nullable();

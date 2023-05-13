@@ -7,28 +7,27 @@ use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class SiswaController extends Controller
+class SuperAdminSiswaController extends Controller
 {
   /**
    * Display a listing of the resource.
    */
-  public function index(Sekolah $sekolah)
+  public function index()
   {
-    return Inertia::render('AdminSekolah/Siswa/SiswaIndex', [
-      'title' => 'Siswa',
-      'dataSekolah' => $sekolah,
-      'dataSiswa' => $sekolah->siswas()->get(),
+    return Inertia::render('SuperAdmin/Siswa/Siswa', [
+      'title' => 'Data Siswa',
+      'siswa' => Siswa::limit(200)->get(),
     ]);
   }
 
   /**
    * Show the form for creating a new resource.
    */
-  public function create(Sekolah $sekolah)
+  public function create()
   {
-    return Inertia::render('AdminSekolah/Siswa/SiswaTambah', [
-      'title' => 'Tambah Siswa',
-      'dataSekolah' => $sekolah,
+    return Inertia::render('SuperAdmin/Siswa/SiswaTambah', [
+      'title' => 'Tambah siswa',
+      'dataSekolah' => Sekolah::select('id', 'namaSekolah')->get(),
     ]);
   }
 
@@ -57,7 +56,7 @@ class SiswaController extends Controller
   /**
    * Display the specified resource.
    */
-  public function show(Siswa $siswa)
+  public function show(string $id)
   {
     //
   }
@@ -65,19 +64,19 @@ class SiswaController extends Controller
   /**
    * Show the form for editing the specified resource.
    */
-  public function edit(Sekolah $sekolah, Siswa $siswa)
+  public function edit(Siswa $siswa)
   {
-    return Inertia::render('AdminSekolah/Siswa/SiswaEdit', [
-      'title' => 'Siswa Edit',
-      'dataSekolah' => $sekolah,
-      'dataSiswa' => $siswa,
+    return Inertia::render('SuperAdmin/Siswa/SiswaEdit', [
+      'title' => 'Edit siswa',
+      'dataSiswa' => Siswa::where('id', $siswa->id)->first(),
+      'dataSekolah' => Sekolah::select('id', 'namaSekolah')->get(),
     ]);
   }
 
   /**
    * Update the specified resource in storage.
    */
-  public function update(Request $request, $idSekolah, $id)
+  public function update(Request $request, $id)
   {
     $data = $request->validate([
       'nisn' => 'required',
@@ -90,18 +89,20 @@ class SiswaController extends Controller
       'jurusan' => 'max:255',
       'agama' => 'required',
       'alamatLengkap' => 'required',
+    ], [
+      'idSekolah.required' => 'Sekolah harus dipilih'
     ]);
 
-    Siswa::where(['id' => $id, 'idSekolah' => $idSekolah])->update($data);
+    Siswa::where(['id' => $id])->update($data);
     return response()->json(['data' => 'Berhasil mengubah data siswa']);
   }
 
   /**
    * Remove the specified resource from storage.
    */
-  public function destroy($idSekolah, $id)
+  public function destroy(Siswa $siswa)
   {
-    $siswa = Siswa::where(['id' => $id, 'idSekolah' => $idSekolah])->first();
+    $siswa = Siswa::where(['id' => $siswa->id])->first();
     $siswa->delete();
     return response()->json(['data' => 'Berhasil menghapus data siswa']);
   }

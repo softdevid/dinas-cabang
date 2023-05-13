@@ -45,9 +45,8 @@ const PrestasiEdit = ({ title, dataPrestasi, dataSekolah }) => {
           position: toast.POSITION.TOP_CENTER
         });
         setTimeout(() => {
-          router.get(`/admin-sekolah/${dataSekolah.id}/prestasi`);
+          router.get(`/admin-sekolah/${dataSekolah.kode}/prestasi`);
         }, 2000);
-        console.log(res)
       })
       .catch((err) => setErorrs(err.response.data.errors));
   }

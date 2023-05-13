@@ -44,7 +44,7 @@ const SiswaTambah = ({ title, dataSiswa, dataSekolah }) => {
           position: toast.POSITION.TOP_CENTER
         });
         setTimeout(() => {
-          router.get(`/admin-sekolah/${dataSekolah.id}/siswa`);
+          router.get(`/admin-sekolah/${dataSekolah.kode}/siswa`);
         }, 2000);
         console.log(res)
       })

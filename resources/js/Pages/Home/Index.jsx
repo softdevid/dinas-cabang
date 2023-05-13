@@ -143,7 +143,7 @@ const Index = ({ title, banner, superadmin, berita, galeri }) => {
                 </div>
                 <div className="mx-3">
                   <h1 className="text-2xl font-bold">{berita.judulBerita}</h1>
-                  <p>{berita.deskripsi.slice(0, 100)}</p>
+                  <p>{berita && berita.deskripsi.slice(0, 100)}</p>
 
                   <div className="my-5 justify-between mx-auto">
                     <Link className="p-2 bg-gray-500 text-white rounded-lg

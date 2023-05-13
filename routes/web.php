@@ -14,13 +14,17 @@ use App\Http\Controllers\ProfilPejabatController;
 use App\Http\Controllers\ProfilSuperAdminController;
 use App\Http\Controllers\SejarahController;
 use App\Http\Controllers\SiswaController;
-use App\Http\Controllers\SuperAdmin;
+use App\Http\Controllers\SkmController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\IkmController;
 use App\Http\Controllers\KalenderPendidikanController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\LaporanPengaduanController;
+use App\Http\Controllers\SuperAdminGuruController;
+use App\Http\Controllers\SuperAdminPrestasiController;
+use App\Http\Controllers\SuperAdminSiswaController;
+use App\Http\Controllers\LayananPublikController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,13 +77,15 @@ Route::prefix('/super-admin')->group(function () {
   Route::get('/', [SuperAdminController::class, 'index'])->name('super-admin.index');
   Route::get('/profil', [SuperAdminController::class, 'profil'])->name('super-admin.profil');
   Route::get('/prestasi', [SuperAdminController::class, 'prestasi'])->name('super-admin.prestasi');
-  Route::get('/guru', [SuperAdminController::class, 'guru'])->name('super-admin.guru');
-  Route::get('/siswa', [SuperAdminController::class, 'siswa'])->name('super-admin.siswa');
+
 
   //route edit profil superadmin
   Route::get('/profil/{id}/edit', [ProfilSuperAdminController::class, 'edit'])->name('profilSuperAdmin.edit');
   Route::patch('/profil/{id}', [ProfilSuperAdminController::class, 'update'])->name('profilSuperAdmin.update');
 
+  Route::resource('/prestasi', SuperAdminPrestasiController::class);
+  Route::resource('/guru', SuperAdminGuruController::class);
+  Route::resource('siswa', SuperAdminSiswaController::class);
   Route::resource('berita', BeritaController::class);
   Route::resource('pejabat', ProfilPejabatController::class);
   Route::resource('sekolah', AkunSekolahController::class);
@@ -89,6 +95,8 @@ Route::prefix('/super-admin')->group(function () {
   Route::resource('kalender-pendidikan', KalenderPendidikanController::class);
   Route::resource('index-kepuasan-masyarakat', IkmController::class);
   Route::resource('pengaduan', LaporanPengaduanController::class);
+  Route::resource('skm', SkmController::class);
+  Route::resource('layanan-publik', LayananPublikController::class);
 
 
   //route tabs banner
@@ -96,12 +104,12 @@ Route::prefix('/super-admin')->group(function () {
   Route::get('/banner-sejarah', [SuperAdminController::class, 'bannerSejarah'])->name('super-admin.banner.sejarah');
   Route::get('/banner-berita', [SuperAdminController::class, 'bannerBerita'])->name('super-admin.banner.berita');
   Route::get('/banner-galeri', [SuperAdminController::class, 'bannerGaleri'])->name('super-admin.banner.galeri');
-})->middleware('auth');
+});
 
 Route::group([
-  'prefix' => '/admin-sekolah/{sekolah:id}',
-  'middleware' => ['auth', 'cek.idsekolah']
-  // 'middleware' => ['cek.idsekolah']
+  'prefix' => '/admin-sekolah/{sekolah:kode}',
+  // 'middleware' => ['auth', 'cek.idsekolah']
+  'middleware' => ['cek.idsekolah']
 ], function () {
   Route::get('/', [AdminSekolahController::class, 'index'])->name('admin-sekolah.index');
 

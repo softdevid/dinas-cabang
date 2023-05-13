@@ -14,7 +14,7 @@ const PrestasiIndex = ({ title, dataPrestasi, dataSekolah }) => {
     context.setDtSekolah(dataSekolah);
   }, []);
 
-  const urlCreate = `/admin-sekolah/${dataSekolah.id}/prestasi/create`
+  const urlCreate = `/admin-sekolah/${dataSekolah.kode}/prestasi/create`
 
   const handleDelete = (data) => {
     axios
@@ -24,7 +24,7 @@ const PrestasiIndex = ({ title, dataPrestasi, dataSekolah }) => {
           position: toast.POSITION.TOP_CENTER
         });
         setTimeout(() => {
-          router.get(`/admin-sekolah/${dataSekolah.id}/prestasi`);
+          router.get(`/admin-sekolah/${dataSekolah.kode}/prestasi`);
         }, 2000);
       })
       .catch((err) => setErrors(err));

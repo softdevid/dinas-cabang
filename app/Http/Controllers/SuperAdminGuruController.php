@@ -7,28 +7,27 @@ use App\Models\Sekolah;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class GuruController extends Controller
+class SuperAdminGuruController extends Controller
 {
   /**
    * Display a listing of the resource.
    */
-  public function index(Sekolah $sekolah)
+  public function index()
   {
-    return Inertia::render('AdminSekolah/Guru/GuruIndex', [
-      'title' => 'Guru',
-      'dataSekolah' => $sekolah,
-      'dataGuru' => $sekolah->gurus()->get(),
+    return Inertia::render('SuperAdmin/Guru/Guru', [
+      'title' => 'Data guru',
+      'guru' => Guru::orderBy('namaGuru', 'asc')->get(),
     ]);
   }
 
   /**
    * Show the form for creating a new resource.
    */
-  public function create(Sekolah $sekolah)
+  public function create()
   {
-    return Inertia::render('AdminSekolah/Guru/GuruTambah', [
-      'title' => 'Tambah Guru',
-      'dataSekolah' => $sekolah,
+    return Inertia::render('SuperAdmin/Guru/GuruTambah', [
+      'title' => 'Tambah guru',
+      'dataSekolah' => Sekolah::orderBy('namaSekolah', 'asc')->select('namaSekolah', 'jenjang', 'id')->get(),
     ]);
   }
 
@@ -38,6 +37,7 @@ class GuruController extends Controller
   public function store(Request $request)
   {
     $request->validate([
+      'idSekolah' => 'required',
       'nip' => 'required',
       'namaGuru' => 'required',
       'mapel' => 'required',
@@ -49,7 +49,7 @@ class GuruController extends Controller
       'email' => 'required',
       'noHp' => 'required',
     ], [
-      'nip.required' => 'NIP harus diisi',
+      'idSekolah.required' => 'Sekolah Harus diisi harus diisi',
     ]);
 
     Guru::create([
@@ -66,14 +66,13 @@ class GuruController extends Controller
       'noHp' => $request->noHp,
     ]);
 
-    // return redirect()->to('/admin-sekolah/' . $idSekolah . '/guru')->with('message', 'Guru berhasil ditambah!');
     return response()->json(["data" => "Berhasil menambah guru"]);
   }
 
   /**
    * Display the specified resource.
    */
-  public function show(Guru $guru)
+  public function show(string $id)
   {
     //
   }
@@ -81,21 +80,28 @@ class GuruController extends Controller
   /**
    * Show the form for editing the specified resource.
    */
-  public function edit(Sekolah $sekolah, Guru $guru)
+  public function edit(Guru $guru)
   {
-    return Inertia::render('AdminSekolah/Guru/GuruEdit', [
-      'title' => 'Guru Edit',
-      'dataSekolah' => $sekolah,
-      'dataGuru' => $guru,
+    return Inertia::render('SuperAdmin/Guru/GuruEdit', [
+      'title' => 'Edit Guru',
+      'guru' => Guru::find($guru->id),
+      'dataSekolah' => Sekolah::orderBy('namaSekolah', 'asc')->select('id', 'namaSekolah', 'jenjang')->get(),
     ]);
   }
 
   /**
    * Update the specified resource in storage.
    */
-  public function update(Request $request, $idSekolah, $id)
+  public function update(Request $request, Guru $guru)
   {
-    $request->validate([
+    $guru = Guru::where('id', $guru->id)->first();
+
+    if ($request->email != $guru->email) {
+      $request->validate(['email' => 'unique:gurus,email']);
+    }
+
+    $data = $request->validate([
+      'idSekolah' => 'required',
       'nip' => 'required',
       'namaGuru' => 'required',
       'mapel' => 'required',
@@ -106,37 +112,20 @@ class GuruController extends Controller
       'email' => 'required',
       'noHp' => 'required',
       'agama' => 'required',
+    ], [
+      'idSekolah.required' => 'Sekolah harus dipilih',
     ]);
 
-    Guru::where(['id' => $id, 'idSekolah' => $idSekolah])
-      ->update([
-        'idSekolah' => $request->idSekolah,
-        'nip' => $request->nip,
-        'namaGuru' => $request->namaGuru,
-        'mapel' => $request->mapel,
-        'jabatan' => $request->jabatan,
-        'tglLahir' => $request->tglLahir,
-        'jenisKelamin' => $request->jenisKelamin,
-        'alamatLengkap' => $request->alamatLengkap,
-        'agama' => $request->agama,
-        'email' => $request->email,
-        'noHp' => $request->noHp,
-      ]);
-
-    return response()->json(['data' => 'Berhasi diubah']);
+    $guru->update($data);
+    return response()->json(['data' => 'Berhasil mengubah data guru']);
   }
 
   /**
    * Remove the specified resource from storage.
    */
-  public function destroy($idSekolah, $id)
+  public function destroy(Guru $guru)
   {
-    $guru = Guru::where('idSekolah', $idSekolah)->where('id', $id)->firstOrFail();
-
-    $guru->delete();
-
-    return response()->json([
-      'message' => 'Data guru berhasil dihapus'
-    ]);
+    $guru->where('id', $guru->id)->delete();
+    return response()->json(['data' => 'Berhasil menghapus guru']);
   }
 }

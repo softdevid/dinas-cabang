@@ -65,11 +65,20 @@ class HomeController extends Controller
 
   public function detailBerita($slug)
   {
-    $berita = Berita::where('slug', $slug)->first();
+    $berita = DB::table('beritas')
+      ->select('beritas.*', DB::raw('created_at, "%d-%m-%Y %H"'))
+      ->where('slug', $slug)
+      ->first();
+
+    $beritas = DB::table('beritas')
+      ->select('beritas.*', DB::raw('created_at, "%d-%m-%Y %H"'))
+      ->orderBy('created_at', 'desc')
+      ->paginate(3);
 
     return Inertia::render('Home/DetailBerita', [
       'title' => 'Berita',
       'berita' => $berita,
+      'beritas' => $beritas,
       // 'banner' => Banner::where('jenisBanner', 'berita')->select('imgUrl')->first() ?? '',
     ]);
   }

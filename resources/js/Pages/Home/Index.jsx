@@ -147,7 +147,7 @@ const Index = ({ title, banner, superadmin, berita, galeri, event }) => {
                       <p>{berita.data[0] && berita.data[0].deskripsi.slice(0, 100)}</p>
 
                       <div className="my-5 justify-between mx-auto">
-                        <Link className="p-2 bg-gray-500 text-white rounded-lg
+                        <Link href={`/berita/${berita.data[0].slug}`} className="p-2 bg-gray-500 text-white rounded-lg
                                     ">Lanjut membaca...</Link>
                       </div>
                     </div>
@@ -167,12 +167,12 @@ const Index = ({ title, banner, superadmin, berita, galeri, event }) => {
           <div className="mb-4">
             <ul className="flex flex-wrap -mb-px text-sm font-medium text-center items-center justify-center mt-2" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
               <li className="mr-2 bg-green-500 text-white rounded-lg" role="presentation">
-                <button onClick={() => handleVisiMisi({ data: "visi" })} className="inline-block p-2 border-b-2 rounded-t-lg" id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Visi</button>
+                <button onClick={() => handleVisiMisi({ data: "visi" })} className="inline-block p-2 border-b-2 rounded-t-lg font-bold text-xl" id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Visi</button>
               </li>
               <li className="mr-2 bg-yellow-300 rounded-lg" role="presentation">
-                <button onClick={() => handleVisiMisi({ data: "misi" })} className="inline-block p-2 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300" id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab" aria-controls="dashboard" aria-selected="false">Misi</button>
+                <button onClick={() => handleVisiMisi({ data: "misi" })} className="inline-block p-2 border-b-2 border-transparent font-bold text-xl rounded-t-lg hover:text-gray-600 hover:border-gray-300" id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab" aria-controls="dashboard" aria-selected="false">Misi</button>
               </li>
-              <li onClick={() => handleVisiMisi({ data: "organisasi" })} className="mr-2 bg-cyan-500 text-white rounded-lg" role="presentation">
+              <li onClick={() => handleVisiMisi({ data: "organisasi" })} className="mr-2 bg-cyan-500 text-black rounded-lg font-bold text-xl" role="presentation">
                 <button className="inline-block p-2 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300" id="settings-tab" data-tabs-target="#settings" type="button" role="tab" aria-controls="settings" aria-selected="false">Organisasi</button>
               </li>
             </ul>
@@ -231,14 +231,14 @@ const Index = ({ title, banner, superadmin, berita, galeri, event }) => {
                 <>
                   <div className="border-2 border-black w-[75%] mx-auto my-3"></div>
                   <div className="bg-gray-500 max-h-[250px] m-3 rounded-md overflow-hidden">
-                    <img className="object-cover w-full h-full" src="" />
+                    <img className="object-cover w-full h-full" src={berita.data[0].imgUrl} />
                   </div>
                   <div className="mx-3">
                     <h1 className="text-2xl font-bold">{berita.data[0].judulBerita}</h1>
                     <p>{berita.data[0].deskripsi.slice(0, 100)}</p>
 
                     <div className="my-5 justify-between mx-auto">
-                      <Link className="p-2 bg-gray-500 text-white rounded-lg
+                      <Link href={`/berita/${berita.data[0].slug}`} className="p-2 bg-gray-500 text-white rounded-lg
                                     ">Lanjut membaca...</Link>
                     </div>
                   </div>

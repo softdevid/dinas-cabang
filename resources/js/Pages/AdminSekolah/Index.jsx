@@ -3,7 +3,13 @@ import { AdminSekolahContext } from "@/context/admin-sekolah-context";
 import { Head } from "@inertiajs/react";
 import { useContext, useEffect } from "react";
 
-const Index = ({ title, dataSekolah }) => {
+const Index = ({
+  title,
+  dataSekolah,
+  prestasiCount,
+  guruCount,
+  siswaCount,
+}) => {
   const context = useContext(AdminSekolahContext);
 
   useEffect(() => {
@@ -22,19 +28,19 @@ const Index = ({ title, dataSekolah }) => {
             <h1 className="text-center mt-3 font-bold text-md md:text-lg">
               Prestasi
             </h1>
-            <p className="text-center">12</p>
-          </div>
-          <div className="text-white bg-green-600 w-full h-20 rounded-lg md:rounded-2xl">
-            <h1 className="text-center mt-3 font-bold text-md md:text-lg">
-              Siswa
-            </h1>
-            <p className="text-center">12</p>
+            <p className="text-center">{prestasiCount}</p>
           </div>
           <div className="text-white bg-red-600 w-full h-20 rounded-lg md:rounded-2xl">
             <h1 className="text-center mt-3 font-bold text-md md:text-lg">
               Guru
             </h1>
-            <p className="text-center">12</p>
+            <p className="text-center">{guruCount}</p>
+          </div>
+          <div className="text-white bg-green-600 w-full h-20 rounded-lg md:rounded-2xl">
+            <h1 className="text-center mt-3 font-bold text-md md:text-lg">
+              Siswa
+            </h1>
+            <p className="text-center">{siswaCount}</p>
           </div>
         </div>
         {/* <div>

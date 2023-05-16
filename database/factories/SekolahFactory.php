@@ -18,6 +18,7 @@ class SekolahFactory extends Factory
   public function definition(): array
   {
     return [
+      "kode" => $this->faker->randomNumber(4, true),
       "idUser" => User::pluck('id')->random(),
       "namaSekolah" => $this->faker->word(),
       "visi" => $this->faker->sentence(9),
@@ -27,6 +28,8 @@ class SekolahFactory extends Factory
       "password" => $this->faker->password(),
       "jenjang" => $this->faker->randomElement(['SD', 'SMP', 'SMA/SMK']),
       "alamatLengkap" => $this->faker->address(),
+      "imgName" => $this->faker->word(),
+      "imgUrl" => "https://source.unsplash.com/1000x1000?nature",
     ];
   }
 }

@@ -24,50 +24,51 @@ class DatabaseSeeder extends Seeder
    */
   public function run(): void
   {
-    User::create([
-      'name' => 'Softdev Admin',
-      'email' => 'softdev@gmail.com',
-      'password' => Hash::make('password'),
-      'level' => 'super admin'
-    ]);
-
     // User::create([
-    //   'name' => 'SEKOLAH 1',
-    //   'email' => 'sekolah@gmail.com',
+    //   'name' => 'Softdev Admin',
+    //   'email' => 'softdev@gmail.com',
     //   'password' => Hash::make('password'),
-    //   'level' => 'sekolah'
+    //   'level' => 'super admin'
     // ]);
 
-    // Sekolah::factory(10)->create();
-    // Guru::factory(100)->create();
-    // Siswa::factory(10)->create();
-    // Prestasi::factory(10)->create();
-    // Berita::factory(100)->create();
-    // ProfilPejabat::factory(10)->create();
-
-    ProfilSuperAdmin::create([
-      'idUser' => '1',
-      'namaSuperAdmin' => 'Softdev Admin',
-      'alamatLengkap' => 'Selabaya RT 2/5, Kalimanah, Purbalingga',
-      'noHp' => '08888882',
-      'email' => 'softdev@gmail.com',
+    User::create([
+      'name' => 'SEKOLAH 1',
+      'email' => 'sekolah@gmail.com',
       'password' => Hash::make('password'),
-      'lingkupKegiatan' => 'Mengerjakan program aplikasi berupa website dan aplikasi desktop',
-      'visi' => 'Membuat perubahan, pembaruan, dan pembuatan teknologi yang lebih terbarukan',
-      'misi' => 'lorem',
-      'tugasPokok' => 'lorem',
-      'fungsi' => 'lorem',
-      'unitKerjaDibawahnya' => 'lorem',
-      'unitKerjaDibawahnya' => 'lorem',
+      'level' => 'sekolah'
     ]);
 
-    Sejarah::create([
-      'idUser' => 1,
-      'deskripsi' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe voluptas, laudantium dicta vel officiis temporibus dolor repudiandae natus reiciendis quidem facilis perferendis animi, quis unde itaque expedita fugiat hic. Libero dignissimos nihil reiciendis incidunt dolores dolore quae impedit totam, harum, ullam minima consectetur eveniet officia hic odit nostrum iusto itaque nobis nam fuga repudiandae perferendis. Nostrum odio ducimus veniam voluptatibus repellendus repudiandae, accusantium distinctio molestias maxime rerum omnis excepturi rem inventore temporibus qui ipsam voluptatem dolor ea illo fuga porro eos sed. Corporis voluptatum laudantium vero, aspernatur praesentium porro consequatur, dolorum ullam voluptas maxime natus eos atque. Voluptatum, debitis qui.',
-    ]);
-    Ikm::create([
-      'dasarHukum' => '-',
-      'pengertian' => '-',
-    ]);
+    Sekolah::factory(10)->create();
+    Guru::factory(100)->create();
+    Siswa::factory(100)->create();
+    Prestasi::factory(150)->create();
+    Berita::factory(100)->create();
+    ProfilPejabat::factory(10)->create();
+
+    // ProfilSuperAdmin::create([
+    //   'idUser' => '1',
+    //   'namaSuperAdmin' => 'Softdev Admin',
+    //   'alamatLengkap' => 'Selabaya RT 2/5, Kalimanah, Purbalingga',
+    //   'noHp' => '08888882',
+    //   'email' => 'softdev@gmail.com',
+    //   'password' => Hash::make('password'),
+    //   'lingkupKegiatan' => 'Mengerjakan program aplikasi berupa website dan aplikasi desktop',
+    //   'visi' => 'Membuat perubahan, pembaruan, dan pembuatan teknologi yang lebih terbarukan',
+    //   'misi' => 'lorem',
+    //   'tugasPokok' => 'lorem',
+    //   'fungsi' => 'lorem',
+    //   'unitKerjaDibawahnya' => 'lorem',
+    //   'unitKerjaDibawahnya' => 'lorem',
+    // ]);
+
+    // Sejarah::create([
+    //   'idUser' => 1,
+    //   'deskripsi' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe voluptas, laudantium dicta vel officiis temporibus dolor repudiandae natus reiciendis quidem facilis perferendis animi, quis unde itaque expedita fugiat hic. Libero dignissimos nihil reiciendis incidunt dolores dolore quae impedit totam, harum, ullam minima consectetur eveniet officia hic odit nostrum iusto itaque nobis nam fuga repudiandae perferendis. Nostrum odio ducimus veniam voluptatibus repellendus repudiandae, accusantium distinctio molestias maxime rerum omnis excepturi rem inventore temporibus qui ipsam voluptatem dolor ea illo fuga porro eos sed. Corporis voluptatum laudantium vero, aspernatur praesentium porro consequatur, dolorum ullam voluptas maxime natus eos atque. Voluptatum, debitis qui.',
+    // ]);
+
+    // Ikm::create([
+    //   'dasarHukum' => '-',
+    //   'pengertian' => '-',
+    // ]);
   }
 }

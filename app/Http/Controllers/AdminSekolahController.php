@@ -19,13 +19,16 @@ class AdminSekolahController extends Controller
   {
     return Inertia::render('AdminSekolah/Index', [
       'title' => 'Dashboard',
-      'dataSekolah' => $sekolah
+      'dataSekolah' => $sekolah,
+      'prestasiCount' => Prestasi::where('idSekolah', $sekolah->id)->count(),
+      'siswaCount' => Siswa::where('idSekolah', $sekolah->id)->count(),
+      'guruCount' => Guru::where('idSekolah', $sekolah->id)->count(),
     ]);
   }
 
   public function profil(Sekolah $sekolah)
   {
-    return Inertia::render('AdminSekolah/Profil', [
+    return Inertia::render('AdminSekolah/Profil/ProfilIndex', [
       'title' => 'Profil',
       'dataSekolah' => $sekolah,
       'prestasiCount' => Prestasi::where('idSekolah', $sekolah->id)->count(),

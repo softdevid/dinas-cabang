@@ -18,10 +18,10 @@ return new class extends Migration
       $table->string('namaSekolah');
       $table->text('visi')->nullable();
       $table->text('misi')->nullable();
-      $table->text('noHp')->nullable();
-      $table->text('email')->unique();
+      $table->string('noHp')->nullable();
+      $table->string('email')->unique();
       $table->string('password');
-      $table->text('jenjang'); //SD, SMP, SMA/SMK
+      $table->string('jenjang'); //SD, SMP, SMA/SMK
       $table->text('alamatLengkap')->nullable();
       $table->string('imgName')->nullable();
       $table->string('imgUrl')->nullable();

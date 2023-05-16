@@ -22,7 +22,7 @@ class GuruFactory extends Factory
       "nip" => $this->faker->randomNumber(5, true),
       "namaGuru" => $this->faker->name(),
       "email" => $this->faker->email(),
-      "noHp" => $this->faker->randomNumber(10, true),
+      "noHp" => $this->faker->e164PhoneNumber(),
       "mapel" => $this->faker->words(3, true),
       "jabatan" => $this->faker->randomElement(['kepala sekolah', 'guru', 'wakil kepala sekolah']),
       "tglLahir" => $this->faker->date('Y-m-d'),

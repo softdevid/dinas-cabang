@@ -2,7 +2,7 @@ import AdminSekolahLayout from "@/Layouts/AdminSekolahLayout";
 import { Head, Link } from "@inertiajs/react";
 import React from "react";
 
-const Profil = (props) => {
+const ProfilIndex = (props) => {
   return (
     <>
       <Head title={props.title} />
@@ -123,5 +123,5 @@ const Profil = (props) => {
   );
 };
 
-Profil.layout = (page) => <AdminSekolahLayout children={page} />;
-export default Profil;
+ProfilIndex.layout = (page) => <AdminSekolahLayout children={page} />;
+export default ProfilIndex;

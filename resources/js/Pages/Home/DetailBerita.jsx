@@ -10,10 +10,22 @@ const DetailBerita = ({ berita, beritas }) => {
         <div className="md:w-[70%]">
           <h1 className="text-center text-xl md:text-3xl font-bold my-4">{berita.judulBerita}</h1>
           <img src={berita.imgUrl} className="mx-auto md:w-full md:max-h-[550px] lg:max-h-[700px] rounded-lg object-cover object-center aspect-video" />
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 my-3">
+            <div className="flex" title="Waktu Posting">
+              <CalendarDaysIcon className="w-5 h-5" /> <b className="text-xs ml-2">{berita.created_at}</b>
+            </div>
+            <div className="flex text-right" title="Nama Penulis">
+              <PencilSquareIcon className="w-5 h-5" /> <b className="text-xs ml-2">{berita.namaPenulis}</b>
+            </div>
+            <div className="flex text-right" title="Kategori Berita">
+              <NewspaperIcon className="w-5 h-5" /> <b className="text-xs ml-2">{berita.kategoriBerita}</b>
+            </div>
+          </div>
+
           <p className="text-md md:text-lg mt-3 whitespace-pre-wrap">{berita.deskripsi}</p>
         </div>
         <div className="md:w-[30%] mx-auto">
-          <h1 className="text-lg mt-3 font-bold">Berita lain</h1>
+          <h1 className="text-lg mt-3 font-bold text-center">Berita lain</h1>
           {beritas.data.map((data) => {
             return (
               <>

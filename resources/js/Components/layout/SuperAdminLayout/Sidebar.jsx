@@ -11,6 +11,7 @@ import {
   PaperClipIcon,
   PencilSquareIcon,
   PhotoIcon,
+  SparklesIcon,
   SpeakerWaveIcon,
   TrophyIcon,
   UserCircleIcon,
@@ -101,15 +102,20 @@ const Sidebar = () => {
       href: "/super-admin/pengaduan",
       icon: PencilSquareIcon,
     },
+    // {
+    //   name: "Survey Kepuasan Masyarakat",
+    //   href: "/super-admin/skm",
+    //   icon: PencilSquareIcon,
+    // },
     {
-      name: "Survey Kepuasan Masyarakat",
-      href: "/super-admin/skm",
-      icon: PencilSquareIcon,
+      name: "Formulir Permohonan Informasi",
+      href: "/super-admin/permohonan-informasi",
+      icon: SpeakerWaveIcon,
     },
     {
       name: "Acara",
       href: "/super-admin/event",
-      icon: SpeakerWaveIcon,
+      icon: SparklesIcon,
     },
   ];
 

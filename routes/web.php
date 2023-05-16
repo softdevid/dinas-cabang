@@ -26,6 +26,7 @@ use App\Http\Controllers\SuperAdminPrestasiController;
 use App\Http\Controllers\SuperAdminSiswaController;
 use App\Http\Controllers\LayananPublikController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\PermohonanInformasiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,6 +75,8 @@ Route::get('/survey-kepuasan-masyarakat', [HomeController::class, 'surveyKepuasa
 Route::get('/formulir-pengaduan', [HomeController::class, 'formulirPengaduan'])->name('home.formulirPengaduan');
 Route::post('/formulir-pengaduan', [LaporanPengaduanController::class, 'store'])->name('home.formulirPengaduan.store');
 
+Route::get('/permohonan-informasi', [HomeController::class, 'pemohonanInformasi'])->name('home.pemohonanInformasi');
+
 Route::get('/galeri', [HomeController::class, 'galerifoto'])->name('home.galerifoto');
 Route::get('/galeri-infografis', [HomeController::class, 'galeriinfografis'])->name('home.galeriinfografis');
 
@@ -106,6 +109,7 @@ Route::group([
   Route::resource('skm', SkmController::class);
   Route::resource('layanan-publik', LayananPublikController::class);
   Route::resource('event', EventController::class);
+  Route::resource('permohonan-informasi', PermohonanInformasiController::class);
 
 
   //route tabs banner
@@ -120,6 +124,8 @@ Route::group([
   Route::post('/delete-image1', [LayananPublikController::class, 'deleteImage1'])->name('deleteImage1');
   Route::post('/delete-image2', [LayananPublikController::class, 'deleteImage2'])->name('deleteImage2');
   Route::post('/delete-image3', [LayananPublikController::class, 'deleteImage3'])->name('deleteImage3');
+
+  Route::post('/delete-pdf', [PermohonanInformasiController::class, 'deletePDF'])->name('deletePDF');
 });
 
 Route::group([

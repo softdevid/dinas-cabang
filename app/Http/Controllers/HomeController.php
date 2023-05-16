@@ -91,6 +91,14 @@ class HomeController extends Controller
     ]);
   }
 
+  public function pemohonanInformasi()
+  {
+    return Inertia::render('Home/PermohonanInformasi', [
+      'title' => 'Formulir Permohonan Informasi',
+      'superadmin' => ProfilSuperAdmin::select('logoImgUrl')->first(),
+    ]);
+  }
+
   public function galerifoto()
   {
     return Inertia::render('Home/Galeri/GaleriFoto', [

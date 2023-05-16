@@ -50,16 +50,16 @@ const navigation = [
       },
       {
         name: "Formulir Permohonan Informasi",
-        href: "#",
+        href: "/permohonan-informasi",
       },
       {
         name: "IKM (Index kepuasan Masyarakat)",
         href: "/index-kepuasan-masyarakat",
       },
-      {
-        name: "SKM (Survey Kepuasan Masyarakat)",
-        href: "/survey-kepuasan-masyarakat",
-      },
+      // {
+      //   name: "SKM (Survey Kepuasan Masyarakat)",
+      //   href: "/survey-kepuasan-masyarakat",
+      // },
     ],
   },
   {

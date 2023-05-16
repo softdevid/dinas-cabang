@@ -268,30 +268,11 @@ const Index = ({ title, banner, superadmin, berita, galeri }) => {
       )}
 
       <div className="mt-5 md:my-16">
-        <h1 className="text-center text-3xl">Mitra</h1>
+        <h1 className="text-center text-3xl">Event</h1>
         <div className="border-[1px] border-black w-[6%] mx-auto mb-3"></div>
-        <div className="grid sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-8 mx-5 md:mx-[90px]">
-          <div className="bg-black opacity-[0.9] max-w-sm mx-auto shadow-lg border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
-            <img
-              className="rounded-lg sm:h-[200px] sm:w-[200px] md:h-[250px] md:w-[250px] lg:h-[200px] lg:w-[200px] object-cover object-center mx-auto"
-              src=""
-              alt=""
-            />
-          </div>
-          <div className="bg-black opacity-[0.9] max-w-sm mx-auto shadow-lg border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
-            <img
-              className="rounded-lg sm:h-[200px] sm:w-[200px] md:h-[250px] md:w-[250px] lg:h-[200px] lg:w-[200px] object-cover object-center mx-auto"
-              src=""
-              alt=""
-            />
-          </div>
-          <div className="bg-black opacity-[0.9] max-w-sm mx-auto shadow-lg border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
-            <img
-              className="rounded-lg sm:h-[200px] sm:w-[200px] md:h-[250px] md:w-[250px] lg:h-[200px] lg:w-[200px] object-cover object-center mx-auto"
-              src=""
-              alt=""
-            />
-          </div>
+        <div className="inline-flex">
+          <div className="w-[40%] h-10 bg-black"></div>
+          <div className="w-[60%] h-10 bg-blue"></div>
         </div>
       </div>
 

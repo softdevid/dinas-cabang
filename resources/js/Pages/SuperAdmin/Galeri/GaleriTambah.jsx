@@ -44,6 +44,19 @@ const GaleriTambah = ({ title }) => {
       .catch((err) => setErorrs(err.response.data.errors));
   }
 
+  function handleKembali() {
+    if (values.imgName != "") {
+      deleteImage()
+    }
+    if (values.imgName2 != "") {
+      deleteImage2()
+    }
+    if (values.imgName3 != "") {
+      deleteImage3()
+    }
+    router.get('/super-admin/galeri')
+  }
+
   //gambar 1
   function deleteImage() {
     axios

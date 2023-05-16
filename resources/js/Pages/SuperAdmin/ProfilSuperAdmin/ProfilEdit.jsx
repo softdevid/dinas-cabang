@@ -32,7 +32,6 @@ const ProfilEdit = ({ title, dataSiswa, profil }) => {
     logoImgUrl: profil.logoImgUrl,
     logoImgName: profil.logoImgName,
   });
-  console.log(values);
 
   function handleChange(e) {
     const key = e.target.id;
@@ -66,7 +65,6 @@ const ProfilEdit = ({ title, dataSiswa, profil }) => {
       folder: 'super admin'
     }, (error, result) => {
       if (!error && result && result.event === "success") {
-        console.log('Done! Here is the image info: ', result.info);
         setValues({
           ...values,
           logoImgUrl: result.info.url,
@@ -86,7 +84,6 @@ const ProfilEdit = ({ title, dataSiswa, profil }) => {
       folder: 'super admin'
     }, (error, result) => {
       if (!error && result && result.event === "success") {
-        console.log('Done! Here is the image info: ', result.info);
         setValues({
           ...values,
           visiImgUrl: result.info.url,
@@ -106,7 +103,6 @@ const ProfilEdit = ({ title, dataSiswa, profil }) => {
       folder: 'super admin'
     }, (error, result) => {
       if (!error && result && result.event === "success") {
-        console.log('Done! Here is the image info: ', result.info);
         setValues({
           ...values,
           misiImgUrl: result.info.url,
@@ -126,7 +122,6 @@ const ProfilEdit = ({ title, dataSiswa, profil }) => {
       folder: 'super admin'
     }, (error, result) => {
       if (!error && result && result.event === "success") {
-        console.log('Done! Here is the image info: ', result.info);
         setValues({
           ...values,
           organisasiImgUrl: result.info.url,
@@ -139,73 +134,42 @@ const ProfilEdit = ({ title, dataSiswa, profil }) => {
 
   //delete gambar logo, organisasi, visi, misi cover
   function deleteImageLogo() {
-    axios
-      .post('/delete-image-logo', values)
-      .then((res) => {
-        toast.success(res.data.data, {
-          position: toast.POSITION.TOP_CENTER
-        });
-        setValues({
-          ...values,
-          logoImgUrl: "",
-          logoImgName: "",
+    setValues({
+      ...values,
+      logoImgUrl: "",
+      logoImgName: "",
 
-        })
-      })
-      .catch((err) => console.log(err))
+    })
   }
 
   function deleteImageVisi() {
-    axios
-      .post('/delete-image-visi', values)
-      .then((res) => {
-        toast.success(res.data.data, {
-          position: toast.POSITION.TOP_CENTER
-        });
-        setValues({
-          ...values,
-          visiImgName: "",
-          visiImgUrl: "",
-
-        })
-      })
-      .catch((err) => console.log(err))
+    setValues({
+      ...values,
+      visiImgName: "",
+      visiImgUrl: "",
+    })
   }
 
   function deleteImageMisi() {
-    axios
-      .post('/delete-image-misi', values)
-      .then((res) => {
-        toast.success(res.data.data, {
-          position: toast.POSITION.TOP_CENTER
-        });
-        setValues({
-          ...values,
-          misiImgName: "",
-          misiImgUrl: "",
-
-        })
-      })
-      .catch((err) => console.log(err))
+    setValues({
+      ...values,
+      misiImgName: "",
+      misiImgUrl: "",
+    })
   }
 
   function deleteImageOrganisasi() {
-    axios
-      .post('/delete-image-organisasi', values)
-      .then((res) => {
-        toast.success(res.data.data, {
-          position: toast.POSITION.TOP_CENTER
-        });
-        setValues({
-          ...values,
-          organisasiImgName: "",
-          organisasiImgUrl: "",
+    setValues({
+      ...values,
+      organisasiImgName: "",
+      organisasiImgUrl: "",
 
-        })
-      })
-      .catch((err) => console.log(err))
+    })
   }
 
+  function handleKembali() {
+    router.get('/super-admin/profil')
+  }
 
   return (
     <>
@@ -213,14 +177,17 @@ const ProfilEdit = ({ title, dataSiswa, profil }) => {
       <ToastContainer autoClose={2000} />
 
       <div className="mt-5">
-        <div>
-          <h1 className="text-xl md:text-2xl font-bold">{title}</h1>
+        <div className="grid grid-cols-2">
+          <div>
+            <h1 className="text-xl md:text-2xl font-bold">{title}</h1>
+          </div>
+          <div className="flex items-end justify-end">
+            <button onClick={handleKembali} className="bg-gray-500 text-white hover:bg-gray-600 p-2 rounded-lg">Kembali</button>
+          </div>
         </div>
-        <div className="mb-7">
 
-          <div
-            className="mx-auto mt-16 max-w-3xl sm:mt-20"
-          >
+        <div className="mb-7">
+          <div className="mx-auto max-w-3xl">
             <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-3">
               <div>
                 <label htmlFor="namaSuperAdmin" className="block text-sm font-semibold leading-6 text-gray-900">Nama Sekolah</label>

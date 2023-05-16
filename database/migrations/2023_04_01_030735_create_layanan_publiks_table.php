@@ -17,8 +17,14 @@ return new class extends Migration
       $table->string('slug');
       $table->string('deskripsiLayanan');
       $table->string('jenisLayanan'); //gratis, berbayar
-      $table->string('imgName')->nullable();
-      $table->string('imgUrl')->nullable();
+      $table->string('imgName')->nullable(); //cover image name
+      $table->string('imgUrl')->nullable(); //cover image url
+      $table->string('imgName1')->nullable();
+      $table->string('imgUrl1')->nullable();
+      $table->string('imgName2')->nullable();
+      $table->string('imgUrl2')->nullable();
+      $table->string('imgName3')->nullable();
+      $table->string('imgUrl3')->nullable();
       $table->timestamps();
     });
   }

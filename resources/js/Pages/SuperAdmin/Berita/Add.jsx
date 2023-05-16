@@ -1,11 +1,11 @@
 import SuperAdminTemplate from "@/Layouts/SuperAdminTemplate";
 import { Head, Link, router, usePage } from "@inertiajs/react";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const Add = (profil) => {
+const Add = () => {
   const [errors, setErorrs] = useState({});
 
   const [values, setValues] = useState({
@@ -41,6 +41,14 @@ const Add = (profil) => {
       .catch((err) => setErorrs(err.response.data.errors));
   }
 
+  function handleKembali() {
+    if (values.imgName != "") {
+      deleteImage()
+    }
+
+    router.get('/super-admin/berita')
+  }
+
   function deleteImage() {
     axios
       .post('/delete-image', values)
@@ -61,11 +69,10 @@ const Add = (profil) => {
       cloudName: 'dthan3ueu',
       uploadPreset: 'cbtgoh6l',
       maxFiles: 1,
-      sources: ['local', 'camera', 'unsplash'],
+      sources: ['local', 'camera'],
       folder: 'berita'
     }, (error, result) => {
       if (!error && result && result.event === "success") {
-        console.log('Done! Here is the image info: ', result.info);
         setValues({
           ...values,
           imgUrl: result.info.url,
@@ -85,7 +92,7 @@ const Add = (profil) => {
           <h1 className="text-lg md:text-2xl">Tambah Artikel</h1>
         </div>
         <div className="justify-end items-end flex">
-          <Link href="/super-admin/berita" className="bg-gray-600 hover:bg-gray-700 text-white p-2 rounded-lg">Kembali</Link>
+          <button onClick={handleKembali} className="bg-gray-600 hover:bg-gray-700 text-white p-2 rounded-lg">Kembali</button>
         </div>
       </div>
 

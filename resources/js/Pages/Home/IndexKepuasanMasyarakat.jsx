@@ -25,7 +25,7 @@ const IndexKepuasanMasyarakat = ({ title, dataIkm }) => {
         <div className="w-full h-64 hidden md:block">
           <div className="grid grid-cols-1 md:grid-cols-2">
             <div className="items-center justify-center flex h-64">
-              <b className="text-3xl">{title}</b>
+              <b className="text-3xl text-center">{title}</b>
             </div>
             <div className="hidden md:block">
               <div className="items-center justify-center h-64 flex">
@@ -41,7 +41,7 @@ const IndexKepuasanMasyarakat = ({ title, dataIkm }) => {
         <div className="w-full h-64 block md:hidden">
           <div className="grid grid-cols-1 md:grid-cols-2">
             <div className="items-center justify-center flex h-64">
-              <b className="text-3xl text-blue-600">{title}</b>
+              <b className="text-3xl text-blue-600 text-center">{title}</b>
             </div>
             <div className=" items-center justify-center flex">
               <div className="border-[1px] border-black w-[6%] -mt-48"></div>

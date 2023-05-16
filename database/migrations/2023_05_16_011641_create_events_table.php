@@ -11,13 +11,14 @@ return new class extends Migration
    */
   public function up(): void
   {
-    Schema::create('option_layanans', function (Blueprint $table) {
+    Schema::create('events', function (Blueprint $table) {
       $table->id();
-      $table->foreignId('idLayananPublik');
-      $table->string('optionLayanan');
-      $table->text('deskripsiOption');
-      $table->text('imgName')->nullable();
-      $table->text('imgUrl')->nullable();
+      $table->string('judul');
+      $table->text('deskripsi');
+      $table->string('imgName1');
+      $table->string('imgUrl1');
+      $table->string('imgName2')->nullable();
+      $table->string('imgUrl2')->nullable();
       $table->timestamps();
     });
   }
@@ -27,6 +28,6 @@ return new class extends Migration
    */
   public function down(): void
   {
-    Schema::dropIfExists('option_layanans');
+    Schema::dropIfExists('events');
   }
 };

@@ -2,13 +2,11 @@ import HomeLayout from "@/Layouts/HomeLayout";
 import { Head } from "@inertiajs/react";
 import { useState } from "react";
 
-const Galeri = ({ title, foto, infografis, video, banner }) => {
+const Galeri = ({ title, foto, infografis, banner }) => {
   const [galeri, setGaleri] = useState({ data: "" });
   const openGaleri = (data) => {
     setGaleri(data);
   };
-
-  console.log(infografis)
 
   return (
     <>
@@ -39,12 +37,6 @@ const Galeri = ({ title, foto, infografis, video, banner }) => {
           className="bg-blue-600 text-white p-3 mx-5 rounded-lg"
         >
           Foto
-        </button>
-        <button
-          onClick={() => openGaleri({ data: "video" })}
-          className="bg-red-600 text-white p-3 mx-5 rounded-lg"
-        >
-          Video
         </button>
         <button
           onClick={() => openGaleri({ data: "infografis" })}
@@ -99,7 +91,7 @@ const Galeri = ({ title, foto, infografis, video, banner }) => {
                 return (
                   <>
                     <div key={i} className="bg-black opacity-[0.9] max-w-sm mx-auto shadow-lg border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
-                      <img
+                      <img onClick={() => openGaleri({ data: "detailinfografis" })}
                         className="rounded-lg sm:h-[200px] sm:w-[350px] md:h-[200px] md:w-[250px] lg:h-[260px] lg:w-[400px] object-cover object-center mx-auto"
                         src={data.imgUrl}
                         alt={data.judul}

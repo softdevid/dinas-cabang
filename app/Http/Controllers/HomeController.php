@@ -7,11 +7,14 @@ use App\Models\Berita;
 use App\Models\Galeri;
 use App\Models\Ikm;
 use App\Models\KalenderPendidikan;
+use App\Models\LayananPublik;
 use App\Models\Sejarah;
+use App\Models\Sekolah;
 use App\Models\Prestasi;
 use App\Models\ProfilPejabat;
 use App\Models\ProfilSuperAdmin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class HomeController extends Controller
@@ -46,7 +49,12 @@ class HomeController extends Controller
 
   public function berita()
   {
-    $berita = Berita::orderBy('created_at', 'desc')->get();
+    // $berita = Berita::orderBy('created_at', 'desc')->get();
+    $berita = DB::table('beritas')
+      ->select('beritas.*', DB::raw('created_at, "%d-%m-%Y %H"'))
+      ->limit(100)
+      ->get();
+
     return Inertia::render('Home/Berita', [
       'title' => 'Berita',
       'berita' => $berita,
@@ -62,13 +70,20 @@ class HomeController extends Controller
     ]);
   }
 
-  public function galeri()
+  public function galerifoto()
   {
-    return Inertia::render('Home/Galeri', [
-      'title' => 'Galeri',
+    return Inertia::render('Home/Galeri/GaleriFoto', [
+      'title' => 'Galeri Foto',
       'foto' => Galeri::where('jenis', 'foto')->get() ?? '',
+      'banner' => Banner::where('jenisBanner', 'galeri')->first() ?? '',
+    ]);
+  }
+
+  public function galeriinfografis()
+  {
+    return Inertia::render('Home/Galeri/GaleriInfografis', [
+      'title' => 'Galeri Infografis',
       'infografis' => Galeri::where('jenis', 'infografis')->get() ?? '',
-      'video' => Galeri::where('jenis', 'video')->get() ?? '',
       'banner' => Banner::where('jenisBanner', 'galeri')->first() ?? '',
     ]);
   }
@@ -85,6 +100,7 @@ class HomeController extends Controller
   {
     return Inertia::render('Home/LayananPublik', [
       'title' => 'Layanan Publik',
+      'layanan' => LayananPublik::get(),
     ]);
   }
 
@@ -159,5 +175,11 @@ class HomeController extends Controller
   {
     $sosial = Prestasi::where('kategoriLomba', 'Ilmu Sosial')->paginate(5);
     return response()->json($sosial);
+  }
+
+  public function data()
+  {
+    $sekolah = Sekolah::where('idUser', auth()->user()->id)->first();
+    return response()->json($sekolah);
   }
 }

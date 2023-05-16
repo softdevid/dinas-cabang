@@ -18,7 +18,6 @@ const Edit = (props) => {
     imgName: props.berita.imgName,
     imgUrl: props.berita.imgUrl,
   })
-  console.log(props, values);
 
   function handleChange(e) {
     const key = e.target.id;
@@ -30,7 +29,6 @@ const Edit = (props) => {
   }
 
   function handleSubmit() {
-    console.log(values)
     axios
       .patch(`/super-admin/berita/${props.berita.id}`, values)
       .then((res) => {
@@ -45,6 +43,7 @@ const Edit = (props) => {
       })
       .catch((err) => setErorrs(err.response.data.errors));
   }
+
 
   function deleteImage() {
     axios
@@ -66,11 +65,10 @@ const Edit = (props) => {
       cloudName: 'dthan3ueu',
       uploadPreset: 'cbtgoh6l',
       maxFiles: 1,
-      sources: ['local', 'camera', 'unsplash'],
+      sources: ['local', 'camera'],
       folder: 'berita'
     }, (error, result) => {
       if (!error && result && result.event === "success") {
-        console.log('Done! Here is the image info: ', result.info);
         setValues({
           ...values,
           imgUrl: result.info.url,

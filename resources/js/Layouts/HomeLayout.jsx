@@ -1,6 +1,9 @@
 import Footer from "@/Components/layout/HomeLayout/Footer";
 import Navbar from "@/Components/layout/HomeLayout/Navbar";
+import TopNavbar from "@/Components/layout/HomeLayout/TopNavbar";
 import React from "react";
+import { AppContext } from "@/context/app-context";
+import { usePage } from "@inertiajs/react";
 
 const HomeLayout = ({ children }) => {
   const sosmed = [
@@ -10,7 +13,7 @@ const HomeLayout = ({ children }) => {
     },
     {
       nama: "twitter",
-      link: "https://upload.wikimedia.org/wikipedia/commons/3/39/Logo_of_Twitter%2C_Inc..svg",
+      link: "https://upload.wikimedia.org/wikipedia/commons/6/6f/Logo_of_Twitter.svg",
     },
     {
       nama: "youtube",
@@ -22,25 +25,35 @@ const HomeLayout = ({ children }) => {
     },
   ];
 
+  const { props, url } = usePage();
+
+  const appContextValue = {
+    props,
+    url,
+  };
+
   return (
     <>
-      <Navbar />
-      <div>
-        <div className="z-50 bg-white rounded-tr-xl rounded-br-xl h-auto w-16 fixed my-32 hidden md:block">
-          <div className="mx-auto grid grid-cols-1 justify-items-center">
-            {sosmed.map((item, index) => (
-              <div
-                key={index}
-                className="w-10 h-10 flex items-center justify-center rounded-full my-2"
-              >
-                <img src={item.link} alt={item.nama} />
-              </div>
-            ))}
+      <AppContext.Provider value={appContextValue}>
+        <TopNavbar />
+        <Navbar />
+        <div>
+          <div className="z-50 bg-white rounded-tr-xl rounded-br-xl h-auto w-16 fixed my-32 hidden md:block">
+            <div className="mx-auto grid grid-cols-1 justify-items-center">
+              {sosmed.map((item, index) => (
+                <div
+                  key={index}
+                  className="w-10 h-10 flex items-center justify-center rounded-full my-2"
+                >
+                  <img src={item.link} alt={item.nama} />
+                </div>
+              ))}
+            </div>
           </div>
+          <div>{children}</div>
         </div>
-        <div>{children}</div>
-      </div>
-      <Footer />
+        <Footer />
+      </AppContext.Provider>
     </>
   );
 };

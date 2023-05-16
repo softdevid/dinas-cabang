@@ -1,5 +1,5 @@
 import SuperAdminTemplate from "@/Layouts/SuperAdminTemplate";
-import { Head, router, usePage } from "@inertiajs/react";
+import { Head, Link, router, usePage } from "@inertiajs/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
@@ -44,14 +44,14 @@ const SekolahTambah = (profil) => {
 
   return (
     <>
-      <Head title="Tambah Artikel" />
+      <Head title="Tambah Sekolah" />
       <ToastContainer autoClose={2000} />
       <div className="grid grid-cols-2">
         <div>
           <h1 className="text-lg md:text-2xl">Tambah Akun Sekolah</h1>
         </div>
         <div className="justify-end items-end flex">
-          <button onClick={() => closeOpen()} className="bg-gray-600 hover:bg-gray-700 text-white p-2 rounded-lg">Kembali</button>
+          <Link href="/super-admin/sekolah" className="bg-gray-600 hover:bg-gray-700 text-white p-2 rounded-lg">Kembali</Link>
         </div>
       </div>
 

@@ -11,6 +11,7 @@ import {
   PaperClipIcon,
   PencilSquareIcon,
   PhotoIcon,
+  SpeakerWaveIcon,
   TrophyIcon,
   UserCircleIcon,
   UserGroupIcon,
@@ -104,6 +105,11 @@ const Sidebar = () => {
       name: "Survey Kepuasan Masyarakat",
       href: "/super-admin/skm",
       icon: PencilSquareIcon,
+    },
+    {
+      name: "Acara",
+      href: "/super-admin/event",
+      icon: SpeakerWaveIcon,
     },
   ];
 

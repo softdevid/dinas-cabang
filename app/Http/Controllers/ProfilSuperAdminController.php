@@ -68,8 +68,8 @@ class ProfilSuperAdminController extends Controller
     }
 
     $request->validate([
-      'namaSuperAdmin' => 'required',
-      'alamatLengkap' => 'required',
+      'namaSuperAdmin' => 'required|max:255',
+      'alamatLengkap' => 'required|max:500',
       'noHp' => 'required',
       'lingkupKegiatan' => 'required',
       'visi' => 'required',
@@ -86,6 +86,22 @@ class ProfilSuperAdminController extends Controller
       'organisasiImgName' => 'max:255',
       'organisasiImgUrl' => 'max:255',
     ]);
+
+    if ($profil->visiImgName != $request->visiImgName) {
+      Cloudinary::destroy($profil->visiImgName);
+    }
+
+    if ($profil->misiImgName != $request->misiImgName) {
+      Cloudinary::destroy($profil->misiImgName);
+    }
+
+    if ($profil->organisasiImgName != $request->organisasiImgName) {
+      Cloudinary::destroy($profil->organisasiImgName);
+    }
+
+    if ($profil->logoImgName != $request->logoImgName) {
+      Cloudinary::destroy($profil->logoImgName);
+    }
 
     DB::transaction(function () use ($profil, $user, $request) {
       $profil->update([

@@ -3,9 +3,14 @@ import { UserIcon } from "@heroicons/react/20/solid";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import React, { Fragment, useContext, useState } from "react";
 import { SuperAdminContext } from "@/context/super-admin-context";
+import { router } from "@inertiajs/react";
 
 const Navbar = () => {
   const context = useContext(SuperAdminContext);
+
+  function handleLogout() {
+    router.post('/logout')
+  }
 
   return (
     <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
@@ -55,14 +60,14 @@ const Navbar = () => {
                 <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                   <Menu.Item>
                     {({ active }) => (
-                      <a
-                        href="#"
+                      <button
+                        onClick={handleLogout}
                         className={`${
                           active ? "bg-gray-100" : ""
                         } block px-4 py-2 text-sm text-gray-700`}
                       >
                         Sign out
-                      </a>
+                      </button>
                     )}
                   </Menu.Item>
                 </Menu.Items>

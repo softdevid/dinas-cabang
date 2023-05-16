@@ -31,12 +31,12 @@ class DatabaseSeeder extends Seeder
       'level' => 'super admin'
     ]);
 
-    User::create([
-      'name' => 'SEKOLAH 1',
-      'email' => 'sekolah@gmail.com',
-      'password' => Hash::make('password'),
-      'level' => 'sekolah'
-    ]);
+    // User::create([
+    //   'name' => 'SEKOLAH 1',
+    //   'email' => 'sekolah@gmail.com',
+    //   'password' => Hash::make('password'),
+    //   'level' => 'sekolah'
+    // ]);
 
     // Sekolah::factory(10)->create();
     // Guru::factory(100)->create();

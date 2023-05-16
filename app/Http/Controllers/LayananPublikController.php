@@ -19,6 +19,7 @@ class LayananPublikController extends Controller
   {
     return Inertia::render('SuperAdmin/LayananPublik/LayananPublikIndex', [
       'title' => 'Layanan Publik',
+      'layananPublik' => LayananPublik::orderBy('created_at', 'desc')->limit(100)->get(),
     ]);
   }
 
@@ -38,30 +39,30 @@ class LayananPublikController extends Controller
   public function store(Request $request)
   {
     $request->validate([
-      'namaLayanan' => 'required',
+      'namaLayanan' => 'required|max:255',
       'jenisLayanan' => 'required',
-      'optionLayanan' => 'required',
+      'deskripsiLayanan' => 'required',
+      'imgName' => 'required',
+    ], [
+      'imgName.required' => 'Gambar cover harus diisi',
     ]);
 
-    DB::transaction(function () use ($request) {
-      $l = LayananPublik::create([
-        'namaLayanan' => $request->namaLayanan,
-        'slug' => Str::slug($request->namaLayanan),
-        'jenisLayanan' => $request->jenisLayanan,
-        'imgName' => $request->imgName,
-        'imgUrl' => $request->imgUrl,
-      ]);
+    LayananPublik::create([
+      'namaLayanan' => $request->namaLayanan,
+      'slug' => Str::slug($request->namaLayanan),
+      'jenisLayanan' => $request->jenisLayanan,
+      'deskripsiLayanan' => $request->deskripsiLayanan,
+      'imgName' => $request->imgName ?? null,
+      'imgUrl' => $request->imgUrl ?? null,
+      'imgName1' => $request->imgName1 ?? null,
+      'imgUrl1' => $request->imgUrl1 ?? null,
+      'imgName2' => $request->imgName2 ?? null,
+      'imgUrl2' => $request->imgUrl2 ?? null,
+      'imgName3' => $request->imgName3 ?? null,
+      'imgUrl3' => $request->imgUrl3 ?? null,
+    ]);
 
-      OptionLayanan::create([
-        'idLayananPublik' => $l->id,
-        'optionLayanan' => $request->optionLayanan,
-        'deskripsi' => $request->deskripsi ?? null,
-        'imgName' => $request->imgName ?? null,
-        'imgUrl' => $request->imgUrl ?? null,
-      ]);
-    });
-
-    return back()->with('Layanan Publik berhasil dibuat');
+    return response()->json(['data' => 'Berhasil menambah layanan publik']);
   }
 
   /**
@@ -77,60 +78,93 @@ class LayananPublikController extends Controller
    */
   public function edit(LayananPublik $layananPublik)
   {
-    //
+    return Inertia::render('SuperAdmin/LayananPublik/LayananPublikEdit', [
+      'title' => 'Edit Layanan Publik',
+      'layananPublik' => LayananPublik::where('id', $layananPublik->id)->first(),
+    ]);
   }
 
   /**
    * Update the specified resource in storage.
    */
-  public function update(Request $request, LayananPublik $layananPublik, $id)
+  public function update(Request $request, LayananPublik $layananPublik)
   {
     $request->validate([
-      'namaLayanan' => 'required',
+      'namaLayanan' => 'required|max:255',
       'jenisLayanan' => 'required',
-      'optionLayanan' => 'required',
+      'deskripsiLayanan' => 'required',
       'imgName' => 'required',
     ], [
-      'imgName.required' => 'Gambar harus diisi!',
+      'imgName.required' => 'Gambar cover harus diisi',
     ]);
 
-    DB::transaction(function () use ($request, $id) {
-      LayananPublik::where('id', $id)
-        ->update([
-          'namaLayanan' => $request->namaLayanan,
-          'slug' => Str::slug($request->namaLayanan),
-          'jenisLayanan' => $request->jenisLayanan,
-          'imgName' => $request->imgName,
-          'imgUrl' => $request->imgUrl,
-        ]);
+    LayananPublik::where('id', $layananPublik->id)
+      ->update([
+        'namaLayanan' => $request->namaLayanan,
+        'slug' => Str::slug($request->namaLayanan),
+        'jenisLayanan' => $request->jenisLayanan,
+        'deskripsiLayanan' => $request->deskripsiLayanan,
+        'imgName' => $request->imgName ?? null,
+        'imgUrl' => $request->imgUrl ?? null,
+        'imgName1' => $request->imgName1 ?? null,
+        'imgUrl1' => $request->imgUrl1 ?? null,
+        'imgName2' => $request->imgName2 ?? null,
+        'imgUrl2' => $request->imgUrl2 ?? null,
+        'imgName3' => $request->imgName3 ?? null,
+        'imgUrl3' => $request->imgUrl3 ?? null,
+      ]);
 
-      OptionLayanan::where('idLayananPublik', $id)
-        ->update([
-          'idLayananPublik' => $id,
-          'optionLayanan' => $request->optionLayanan,
-          'deskripsi' => $request->deskripsi ?? null,
-          'imgName' => $request->imgName ?? null,
-          'imgUrl' => $request->imgUrl ?? null,
-        ]);
-    });
-
-    return back()->with('Layanan Publik berhasil dibuat');
+    return response()->json(['data' => 'Berhasil mengubah layanan publik']);
   }
 
   /**
    * Remove the specified resource from storage.
    */
-  public function destroy(LayananPublik $layananPublik, $id)
+  public function destroy(LayananPublik $layananPublik)
   {
-    $l = LayananPublik::where('id', $id)->first();
-    Cloudinary::destroy($l->imgName);
-    $o = OptionLayanan::where('idLayananPublik', $l->id)->first();
-    if ($o->imgName !== null) {
-      Cloudinary::destroy($o->imgName);
-    } else {
-      $l->destroy();
-      $o->destroy();
+    $layanan = LayananPublik::where('id', $layananPublik->id)->first();
+
+    if ($layanan->imgName !=  null) {
+      Cloudinary::destroy($layanan->imgName);
     }
-    return back()->with('message', 'Berhasil dihapus!');
+
+    if ($layanan->imgName1 !=  null) {
+      Cloudinary::destroy($layanan->imgName1);
+    }
+
+    if ($layanan->imgName2 !=  null) {
+      Cloudinary::destroy($layanan->imgName2);
+    }
+
+    if ($layanan->imgName3 !=  null) {
+      Cloudinary::destroy($layanan->imgName3);
+    }
+
+    $layanan->delete();
+    return response()->json(['data' => 'Berhasil menghapus layanan publik']);
+  }
+
+  public function deleteImageCover(Request $request)
+  {
+    Cloudinary::destroy($request->imgName);
+    return response()->json(['data' => 'Berhasil menghapus gambar']);
+  }
+
+  public function deleteImage1(Request $request)
+  {
+    Cloudinary::destroy($request->imgName1);
+    return response()->json(['data' => 'Berhasil menghapus gambar']);
+  }
+
+  public function deleteImage2(Request $request)
+  {
+    Cloudinary::destroy($request->imgName2);
+    return response()->json(['data' => 'Berhasil menghapus gambar']);
+  }
+
+  public function deleteImage3(Request $request)
+  {
+    Cloudinary::destroy($request->imgName3);
+    return response()->json(['data' => 'Berhasil menghapus gambar']);
   }
 }

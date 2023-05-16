@@ -2,8 +2,8 @@ import HomeLayout from "@/Layouts/HomeLayout";
 import { Head, Link } from "@inertiajs/react";
 import { useEffect, useState } from "react";
 
-const Index = ({ title, banner, superadmin, berita, galeri }) => {
-  console.log(banner)
+const Index = ({ title, banner, superadmin, berita, galeri, event }) => {
+  console.log(berita, superadmin, galeri, event)
   const [visiMisi, setVisiMisi] = useState({ data: "visi" });
   const handleVisiMisi = (data) => {
     setVisiMisi(data);
@@ -137,24 +137,30 @@ const Index = ({ title, banner, superadmin, berita, galeri }) => {
               <div className="bg-white">
                 <h1 className="text-2xl text-center">Berita Terbaru</h1>
                 <div className="border-2 border-black w-[75%] mx-auto my-3"></div>
-                <div className="bg-gray-500 h-[250px] m-3 rounded-md overflow-hidden">
-                  {/* <p className="text-white text-center">INI FOTO</p> */}
-                  <img className="object-cover w-full h-full" src={berita.imgUrl} />
-                </div>
-                <div className="mx-3">
-                  <h1 className="text-2xl font-bold">{berita.judulBerita}</h1>
-                  <p>{berita && berita.deskripsi.slice(0, 100)}</p>
+                {berita.data.length > 0 ? (
+                  <>
+                    <div className="bg-gray-500 h-[250px] m-3 rounded-md overflow-hidden">
+                      <img className="object-cover w-full h-full" src={berita.data[0].imgUrl} />
+                    </div>
+                    <div className="mx-3">
+                      <h1 className="text-2xl font-bold">{berita.data[0].judulBerita}</h1>
+                      <p>{berita.data[0] && berita.data[0].deskripsi.slice(0, 100)}</p>
 
-                  <div className="my-5 justify-between mx-auto">
-                    <Link className="p-2 bg-gray-500 text-white rounded-lg
+                      <div className="my-5 justify-between mx-auto">
+                        <Link className="p-2 bg-gray-500 text-white rounded-lg
                                     ">Lanjut membaca...</Link>
-                  </div>
-                </div>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <span className="flex items-center justify-center font-bold text-xl text-blue-500">Belum ada berita yang ditambahkan</span>
+                )}
               </div>
             </div>
           </div>
         </div>
       </div>
+
       {/* //mobile desain */}
       <div className="block md:hidden">
         <div>
@@ -217,62 +223,82 @@ const Index = ({ title, banner, superadmin, berita, galeri }) => {
           </div>
         </div>
         <div className="m-2">
-          {berita.length > 1 ? (
-            <>
-              <div className="w-full h-auto rounded-lg border-2 mt-7 mr-5 shadow-lg">
-                <div className="bg-white">
-                  <h1 className="text-2xl text-center">Berita Terbaru</h1>
+
+          <div className="w-full h-auto rounded-lg border-2 mt-7 mr-5 shadow-lg">
+            <div className="bg-white">
+              <h1 className="text-2xl text-center">Berita Terbaru</h1>
+              {berita.data.length > 0 ? (
+                <>
                   <div className="border-2 border-black w-[75%] mx-auto my-3"></div>
                   <div className="bg-gray-500 max-h-[250px] m-3 rounded-md overflow-hidden">
-                    {/* <p className="text-white text-center">INI FOTO</p> */}
                     <img className="object-cover w-full h-full" src="" />
                   </div>
                   <div className="mx-3">
-                    <h1 className="text-2xl font-bold">{berita.judulBerita}</h1>
-                    <p>{berita.deskripsi.slice(0, 100)}</p>
+                    <h1 className="text-2xl font-bold">{berita.data[0].judulBerita}</h1>
+                    <p>{berita.data[0].deskripsi.slice(0, 100)}</p>
 
                     <div className="my-5 justify-between mx-auto">
                       <Link className="p-2 bg-gray-500 text-white rounded-lg
                                     ">Lanjut membaca...</Link>
                     </div>
                   </div>
-                </div>
-              </div>
-            </>
-          ) : (
-            <span>Belum ada berita yang ditambahkan</span>
-          )}
+                </>
+              ) : (
+                <h1 className="font-bold text-xl text-blue-500 text-center">Belum ada berita</h1>
+              )}
+            </div>
+          </div>
         </div>
       </div>
 
-
-      <h1 className="text-center text-3xl">Galeri</h1>
-      <div className="border-[1px] border-black w-[6%] mx-auto mb-3"></div>
-      {galeri.data.length >= 0 ? (
-        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mx-5 md:mx-[90px]">
-          {galeri.data.map((data, i) => {
-            return (
-              <>
-                <div key={i} className="bg-black opacity-[0.9] max-w-sm mx-auto shadow-lg border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
-                  <img
-                    className="rounded-lg sm:h-[200px] sm:w-[350px] md:h-[200px] md:w-[250px] lg:h-[260px] lg:w-[400px] object-cover object-center mx-auto"
-                    src={data.imgUrl}
-                  />
-                </div>
-              </>
-            )
-          })}
-        </div>
-      ) : (
-        <span style={"text-black"}>Belum ada foto di galeri yang ditambahkan</span>
-      )}
-
-      <div className="mt-5 md:my-16">
-        <h1 className="text-center text-3xl">Event</h1>
+      <div>
+        <h1 className="text-center text-3xl">Galeri</h1>
         <div className="border-[1px] border-black w-[6%] mx-auto mb-3"></div>
-        <div className="inline-flex">
-          <div className="w-[40%] h-10 bg-black"></div>
-          <div className="w-[60%] h-10 bg-blue"></div>
+        {galeri.data.length > 0 ? (
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mx-5 md:mx-[90px]">
+            {galeri.data.map((data, i) => {
+              return (
+                <>
+                  <div key={i} className="bg-black opacity-[0.9] max-w-sm mx-auto shadow-lg border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+                    <img
+                      className="rounded-lg border sm:h-[200px] sm:w-[350px] md:h-[200px] md:w-[250px] lg:h-[260px] lg:w-[400px] object-cover object-center mx-auto"
+                      src={data.imgUrl}
+                    />
+                  </div>
+                </>
+              )
+            })}
+          </div>
+        ) : (
+          <p className="text-blue-500 text-xl text-center mx-auto font-bold">Belum ada foto di galeri yang ditambahkan</p>
+        )}
+      </div>
+
+      <div className="md:bg-gray-100 mx-2 h-auto">
+        <div className="mt-5 md:my-16 md:mb-3 h-auto md:mx-[100px]">
+          <h1 className="text-center text-3xl">Event</h1>
+          <div className="border-[1px] border-black w-[6%] mx-auto mb-3"></div>
+          {event.length > 0 ? (
+            <>
+              {event.map((data, i) => {
+                return (
+                  <>
+                    <div key={i} className="block md:flex mb-2">
+                      <div className="md:w-[40%] w-full h-auto">
+                        <h1 className="text-lg font-bold md:text-3xl">{data.judul}</h1>
+                        <p className="whitespace-pre-wrap">{data.deskripsi}</p>
+                      </div>
+                      <div className="md:w-[60%] w-full h-auto justify-center items-center flex">
+                        <img src={data.imgUrl1} className="md:max-w-[500px] max-w-[300px] rounded-lg h-auto mb-3" />
+                      </div>
+                    </div>
+                  </>
+                )
+              })}
+            </>
+          ) : (
+            <p className="text-blue-500 text-xl text-center mx-auto font-bold">Belum ada Acara</p>
+          )}
         </div>
       </div>
 

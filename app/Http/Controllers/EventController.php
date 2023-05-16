@@ -35,16 +35,23 @@ class EventController extends Controller
    */
   public function store(Request $request)
   {
-    $data = $request->validate([
+    // dd($request->all());
+    $request->validate([
       'judul' => 'required|max:255',
       'deskripsi' => 'required|max:500',
       'imgName1' => 'required',
       'imgUrl1' => 'max:255',
-      'imgName2' => 'max:255',
-      'imgUrl2' => 'max:255',
     ]);
 
-    Event::create($data);
+    Event::create([
+      'judul' => $request->judul,
+      'deskripsi' => $request->deskripsi,
+      'imgName1' => $request->imgName1,
+      'imgUrl1' => $request->imgUrl1,
+      'imgName2' => $request->imgName2 ?? null,
+      'imgUrl2' => $request->imgUrl2 ?? null,
+    ]);
+
     return response()->json(['data' => 'Berhasil menambah']);
   }
 
@@ -61,7 +68,7 @@ class EventController extends Controller
    */
   public function edit(Event $event)
   {
-    return Inertia::render('SuperAdmin/Event/EventTambah', [
+    return Inertia::render('SuperAdmin/Event/EventEdit', [
       'title' => 'Edit Event',
       'event' => Event::where('id', $event->id)->first(),
     ]);
@@ -72,17 +79,21 @@ class EventController extends Controller
    */
   public function update(Request $request, Event $event)
   {
-    $data = $request->validate([
+    $request->validate([
       'judul' => 'required|max:255',
       'deskripsi' => 'required|max:500',
       'imgName1' => 'required',
-      'imgUrl1' => 'max:255',
-      'imgName2' => 'max:255',
-      'imgUrl2' => 'max:255',
     ]);
 
-    Event::where('id', $event)
-      ->update($data);
+    Event::where('id', $event->id)
+      ->update([
+        'judul' => $request->judul,
+        'deskripsi' => $request->deskripsi,
+        'imgName1' => $request->imgName1,
+        'imgUrl1' => $request->imgUrl1,
+        'imgName2' => $request->imgName2 ?? null,
+        'imgUrl2' => $request->imgUrl2 ?? null,
+      ]);
     return response()->json(['data' => 'Berhasil menambah']);
   }
 

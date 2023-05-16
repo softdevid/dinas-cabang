@@ -10,6 +10,7 @@ use App\Models\KalenderPendidikan;
 use App\Models\LayananPublik;
 use App\Models\Sejarah;
 use App\Models\Sekolah;
+use App\Models\Event;
 use App\Models\Prestasi;
 use App\Models\ProfilPejabat;
 use App\Models\ProfilSuperAdmin;
@@ -25,8 +26,9 @@ class HomeController extends Controller
       'title' => 'Homepage',
       'superadmin' => ProfilSuperAdmin::first(),
       'banner' => Banner::where('jenisBanner', 'utama')->first() ?? '',
-      'berita' => Berita::latest()->first() ?? '',
+      'berita' => Berita::orderBy('created_at', 'desc')->paginate(1) ?? '',
       'galeri' => Galeri::where('jenis', 'foto')->paginate(3) ?? '',
+      'event' => Event::get(),
     ]);
   }
 
@@ -49,7 +51,6 @@ class HomeController extends Controller
 
   public function berita()
   {
-    // $berita = Berita::orderBy('created_at', 'desc')->get();
     $berita = DB::table('beritas')
       ->select('beritas.*', DB::raw('created_at, "%d-%m-%Y %H"'))
       ->limit(100)
@@ -59,6 +60,17 @@ class HomeController extends Controller
       'title' => 'Berita',
       'berita' => $berita,
       'banner' => Banner::where('jenisBanner', 'berita')->select('imgUrl')->first() ?? '',
+    ]);
+  }
+
+  public function detailBerita($slug)
+  {
+    $berita = Berita::where('slug', $slug)->first();
+
+    return Inertia::render('Home/DetailBerita', [
+      'title' => 'Berita',
+      'berita' => $berita,
+      // 'banner' => Banner::where('jenisBanner', 'berita')->select('imgUrl')->first() ?? '',
     ]);
   }
 

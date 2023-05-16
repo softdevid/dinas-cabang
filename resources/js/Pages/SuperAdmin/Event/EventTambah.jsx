@@ -42,7 +42,7 @@ const EventTambah = ({ title }) => {
   }
 
   function handleKembali() {
-    if (values.imgName != "") {
+    if (values.imgName1 != "") {
       deleteImage()
     }
 
@@ -69,7 +69,7 @@ const EventTambah = ({ title }) => {
       cloudName: 'dthan3ueu',
       uploadPreset: 'cbtgoh6l',
       maxFiles: 1,
-      sources: ['local', 'camera'],
+      sources: ['local', 'camera', 'unsplash'],
       folder: 'event'
     }, (error, result) => {
       if (!error && result && result.event === "success") {

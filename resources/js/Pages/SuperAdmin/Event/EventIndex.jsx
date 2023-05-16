@@ -93,16 +93,10 @@ const EventIndex = ({ title, event }) => {
                       {i + 1}
                     </th>
                     <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                      <img src={data.imgUrl} className="w-10 h-10 object-cover" />
+                      <img src={data.imgUrl1} className="w-10 h-10 object-cover" />
                     </th>
                     <td className="px-6 py-4">
-                      {data.judulBerita}
-                    </td>
-                    <td className="px-6 py-4">
-                      {data.kategoriBerita}
-                    </td>
-                    <td className="px-6 py-4">
-                      {data.namaPenulis}
+                      {data.judul}
                     </td>
                     <td className="px-6 py-4">
                       <Link href={`/super-admin/event/${data.id}/edit`} className="bg-yellow-500 text-black p-2 rounded-lg mx-2">Edit</Link>

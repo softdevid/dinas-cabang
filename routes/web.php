@@ -63,6 +63,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/profil-pejabat', [HomeController::class, 'profilPejabat'])->name('home.profilPejabat');
 Route::get('/sejarah', [HomeController::class, 'sejarah'])->name('home.sejarah');
 Route::get('/berita', [HomeController::class, 'berita'])->name('home.berita');
+Route::get('/berita/{berita:slug}', [HomeController::class, 'detailBerita'])->name('home.detailberita');
 Route::get('/visi-misi', [HomeController::class, 'visiMisi'])->name('home.visiMisi');
 Route::get('/kalender-pendidikan', [HomeController::class, 'kalenderPendidikan'])->name('home.kalenderPendidikan');
 Route::get('/daftar-informasi', [HomeController::class, 'daftarInformasi'])->name('home.daftarInformasi');

@@ -5,7 +5,7 @@ import {
   NewspaperIcon,
   PencilSquareIcon,
 } from "@heroicons/react/20/solid";
-import { Head } from "@inertiajs/react";
+import { Head, Link } from "@inertiajs/react";
 import { useState } from "react";
 import ReactPaginate from "react-paginate";
 
@@ -132,10 +132,10 @@ const Berita = (props) => {
                         <div className="border-2 border-black w-[90%] mx-auto"></div>
 
                         <div className="justify-center items-center flex mt-3">
-                          <button onClick={() => handleOpen(data)} as="button" href="#" className="mx-auto inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                          <Link as="button" href={`/berita/${data.slug}`} className="mx-auto inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             Terus Membaca
                             <svg aria-hidden="true" className="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
-                          </button>
+                          </Link>
                         </div>
                       </div>
                     </div>

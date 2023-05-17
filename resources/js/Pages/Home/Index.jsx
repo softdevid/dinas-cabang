@@ -48,7 +48,7 @@ const Index = ({ title, banner, superadmin, berita, galeri, event }) => {
             </div>
           </div>
         ) : (
-          <div className="w-full h-[40vh] md:h-[60vh] z-0 bg-cover bg-center bg-opacity-80" style={{ backgroundImage: `url("")` }}>
+          <div className="w-full h-[40vh] md:h-[60vh] z-0 bg-cover bg-center bg-opacity-80" style={{ backgroundImage: `url("https://source.unsplash.com/1000x600?nature")` }}>
             <div className="items-center justify-center flex h-[40vh] md:h-[60vh]">
               <div className="h-auto w-full text-center md:text-left md:ml-32">
                 <h1 className="text-lg md:text-6xl sm:text-center md:text-left text-white z-50">
@@ -96,7 +96,7 @@ const Index = ({ title, banner, superadmin, berita, galeri, event }) => {
                       {superadmin.visiImgUrl ? (
                         <img src={superadmin.visiImgUrl} className="w-full h-[250px] rounded-lg" />
                       ) : (
-                        <img src="" className="w-full h-[250px] rounded-lg" />
+                        <img src="https://source.unsplash.com/1000x600?office" className="w-full h-[250px] object-cover rounded-lg" />
                       )}
                       <q className="text-center text-lg">{superadmin.visi}</q>
                     </div>
@@ -110,7 +110,7 @@ const Index = ({ title, banner, superadmin, berita, galeri, event }) => {
                       {superadmin.misiImgUrl ? (
                         <img src={superadmin.misiImgUrl} className="w-full h-[250px] rounded-lg" />
                       ) : (
-                        <img src="" className="w-full h-[250px] rounded-lg" />
+                        <img src="https://source.unsplash.com/1000x600?office" className="w-full object-cover h-[250px] rounded-lg" />
                       )}
                       <p>{superadmin.misi}</p>
                     </div>
@@ -124,7 +124,7 @@ const Index = ({ title, banner, superadmin, berita, galeri, event }) => {
                       {superadmin.organisasiImgUrl ? (
                         <img src={superadmin.organisasiImgUrl} className="w-full h-[250px] object-cover rounded-b-lg" />
                       ) : (
-                        <img src="" className="w-full h-[250px] object-cover rounded-b-lg" />
+                        <img src="https://source.unsplash.com/1000x600?office" className="w-full h-[250px] object-cover rounded-b-lg" />
                       )}
                     </div>
                   </div>
@@ -186,7 +186,7 @@ const Index = ({ title, banner, superadmin, berita, galeri, event }) => {
                     {superadmin.visiImgUrl ? (
                       <img src={superadmin.visiImgUrl} className="w-full max-h-[250px] rounded-lg" />
                     ) : (
-                      <img src="" className="w-full max-h-[250px] rounded-lg" />
+                      <img src="https://source.unsplash.com/1000x600?office" className="w-full max-h-[250px] object-cover rounded-lg" />
                     )}
                     <q className="text-center text-lg">{superadmin.visi}</q>
                   </div>
@@ -200,7 +200,7 @@ const Index = ({ title, banner, superadmin, berita, galeri, event }) => {
                     {superadmin.misiImgUrl ? (
                       <img src={superadmin.misiImgUrl} className="w-full max-h-[250px] rounded-lg" />
                     ) : (
-                      <img src="" className="w-full max-h-[250px] rounded-lg" />
+                      <img src="https://unsplash.com/random" className="w-full max-h-[250px] object-cover rounded-lg" />
                     )}
                     {superadmin.misi}
                   </div>
@@ -214,7 +214,7 @@ const Index = ({ title, banner, superadmin, berita, galeri, event }) => {
                     {superadmin.organisasiImgUrl ? (
                       <img src={superadmin.organisasiImgUrl} className="w-full max-h-[250px] rounded-lg" />
                     ) : (
-                      <img src="" className="w-full max-h-[250px] rounded-lg" />
+                      <img src="https://source.unsplash.com/1000x600?office" className="w-full max-h-[250px] object-cover rounded-lg" />
                     )}
                   </div>
                 </div>

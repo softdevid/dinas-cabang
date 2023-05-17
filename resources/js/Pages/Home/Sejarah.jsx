@@ -6,23 +6,33 @@ const Sejarah = ({ title, sejarah, banner }) => {
     <>
       <Head title={title} />
       <div className="bg-black">
-        <div
-          className="w-full h-[40vh] md:h-[60vh] z-0 bg-cover bg-center bg-opacity-80"
-          style={{
-            backgroundImage: `url(${banner.imgUrl})`
-          }}
-        >
-          <div className="items-center justify-center flex h-[40vh] md:h-[60vh]">
-            <div className="h-auto w-full text-center md:text-left md:ml-32">
-              <h1 className="text-6xl sm:text-center md:text-left text-white z-50">
-                {title}
-              </h1>
-              <b className="text-2xl text-white">
-                Selamat datang di {title}
-              </b>
+        {banner.imgUrl ? (
+          <div className="w-full h-[40vh] md:h-[60vh] z-0 bg-cover bg-center bg-opacity-80" style={{ backgroundImage: `url(${banner.imgUrl})` }}>
+            <div className="items-center justify-center flex h-[40vh] md:h-[60vh]">
+              <div className="h-auto w-full text-center md:text-left md:ml-32">
+                <h1 className="text-lg md:text-6xl sm:text-center md:text-left text-white z-50">
+                  {title}
+                </h1>
+                <b className="text-md md:text-2xl text-white">
+                  Selamat datang di {title}
+                </b>
+              </div>
             </div>
           </div>
-        </div>
+        ) : (
+          <div className="w-full h-[40vh] md:h-[60vh] z-0 bg-cover bg-center bg-opacity-80" style={{ backgroundImage: `url("https://source.unsplash.com/1000x600?city")` }}>
+            <div className="items-center justify-center flex h-[40vh] md:h-[60vh]">
+              <div className="h-auto w-full text-center md:text-left md:ml-32">
+                <h1 className="text-lg md:text-6xl sm:text-center md:text-left text-white z-50">
+                  {title}
+                </h1>
+                <b className="text-md md:text-2xl text-white">
+                  Selamat datang di {title}
+                </b>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
       {/* <h1 className="text-5xl text-center mt-5">{title}</h1>
             <div className="border-2 border-black w-[7%] mx-auto my-2"></div> */}

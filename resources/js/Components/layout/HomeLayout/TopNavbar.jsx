@@ -98,7 +98,7 @@ const TopNavBar = () => {
             <div className="flex justify-end items-center">
               <Link
                 href={route("login")}
-                className="text-white"
+                className="text-black"
                 as="button"
               >
                 Login

@@ -6,6 +6,7 @@ use App\Models\Guru;
 use App\Models\Sekolah;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\DB;
 
 class SuperAdminGuruController extends Controller
 {
@@ -14,9 +15,15 @@ class SuperAdminGuruController extends Controller
    */
   public function index()
   {
+    $guru = DB::table('gurus')
+      ->join('sekolahs', 'gurus.idSekolah', '=', 'sekolahs.id')
+      ->select('sekolahs.*', 'gurus.*')
+      ->orderBy('namaGuru', 'desc')
+      ->get();
+
     return Inertia::render('SuperAdmin/Guru/Guru', [
       'title' => 'Data guru',
-      'guru' => Guru::orderBy('namaGuru', 'asc')->get(),
+      'guru' => $guru,
     ]);
   }
 

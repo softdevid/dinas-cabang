@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Prestasi;
 use App\Models\Sekolah;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class SuperAdminPrestasiController extends Controller
@@ -14,9 +15,15 @@ class SuperAdminPrestasiController extends Controller
    */
   public function index()
   {
+    $prestasi = DB::table('prestasis')
+      ->join('sekolahs', 'prestasis.idSekolah', '=', 'sekolahs.id')
+      ->select('sekolahs.*', 'prestasis.*')
+      ->limit(100)
+      ->get();
+
     return Inertia::render('SuperAdmin/Prestasi/Prestasi', [
       'title' => 'Prestasi',
-      'prestasi' => Prestasi::limit(200)->get(),
+      'prestasi' => $prestasi,
     ]);
   }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Sekolah;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class SuperAdminSiswaController extends Controller
@@ -14,9 +15,13 @@ class SuperAdminSiswaController extends Controller
    */
   public function index()
   {
+    $siswa = DB::table('siswas')
+      ->join('sekolahs', 'siswas.idSekolah', '=', 'sekolahs.id')
+      ->select('sekolahs.*', 'siswas.*')
+      ->get();
     return Inertia::render('SuperAdmin/Siswa/Siswa', [
       'title' => 'Data Siswa',
-      'siswa' => Siswa::limit(200)->get(),
+      'siswa' => $siswa,
     ]);
   }
 

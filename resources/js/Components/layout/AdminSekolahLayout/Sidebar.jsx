@@ -14,13 +14,14 @@ import React, { Fragment, useContext } from "react";
 
 const Sidebar = () => {
   const context = useContext(AdminSekolahContext);
+  console.log(context)
 
   const links = [
-    {
-      name: "Dashboard",
-      href: `/admin-sekolah/${context.dtSekolah.kode}`,
-      icon: ComputerDesktopIcon,
-    },
+    // {
+    //   name: "Dashboard",
+    //   href: `/admin-sekolah/${context.dtSekolah.kode}`,
+    //   icon: ComputerDesktopIcon,
+    // },
     {
       name: "Profil",
       href: `/admin-sekolah/${context.dtSekolah.kode}/profil`,

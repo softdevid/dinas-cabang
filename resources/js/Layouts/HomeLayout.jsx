@@ -1,11 +1,16 @@
 import Footer from "@/Components/layout/HomeLayout/Footer";
 import Navbar from "@/Components/layout/HomeLayout/Navbar";
 import TopNavbar from "@/Components/layout/HomeLayout/TopNavbar";
-import React from "react";
+import React, { useState } from "react";
 import { AppContext } from "@/context/app-context";
-import { usePage } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
+import axios from "axios";
 
 const HomeLayout = ({ children }) => {
+  const [dataSosmed, setDataSosmed] = useState({})
+  axios.get('/api/data-sosmed').then((res) => setDataSosmed(res))
+  // console.log(dataSosmed)
+
   const sosmed = [
     {
       nama: "instagram",
@@ -48,6 +53,20 @@ const HomeLayout = ({ children }) => {
                   <img src={item.link} alt={item.nama} />
                 </div>
               ))}
+              {/* {dataSosmed.data.map((item, index) => {
+                return (
+                  <>
+                    <div
+                      key={index}
+                      className="w-10 h-10 flex items-center justify-center rounded-full my-2"
+                    >
+                      <Link href={item.urlSosmed}>
+                        <img src={item.urlImage} alt={item.namaMedsos} />
+                      </Link>
+                    </div>
+                  </>
+                )
+              })} */}
             </div>
           </div>
           <div>{children}</div>

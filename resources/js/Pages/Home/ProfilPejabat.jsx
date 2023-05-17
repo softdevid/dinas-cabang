@@ -1,12 +1,8 @@
 import HomeLayout from "@/Layouts/HomeLayout";
 import KepalaDinas from "@/Components/pages/ProfilPejabat/KepalaDinas";
-import SekretarisDinas from "@/Components/pages/ProfilPejabat/SekretarisDinas";
 import { Head } from "@inertiajs/react";
-import { useState } from "react";
-// import Main from "@/Components/HomePage/Main";
 
 const ProfilPejabat = (props) => {
-  const [pejabat1, setPejabat1] = useState({ data: "" });
 
   return (
     <>
@@ -20,7 +16,7 @@ const ProfilPejabat = (props) => {
             <div className="hidden md:block">
               <div className="items-center justify-center h-64 flex">
                 <img
-                  src="https://flowbite.com/docs/images/logo.svg"
+                  src={props.superadmin.logoImgUrl}
                   className="w-32 h-32"
                 />
               </div>

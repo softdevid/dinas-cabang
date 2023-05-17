@@ -14,6 +14,7 @@ use App\Models\Event;
 use App\Models\Prestasi;
 use App\Models\ProfilPejabat;
 use App\Models\ProfilSuperAdmin;
+use App\Models\PermohonanInformasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
@@ -37,6 +38,7 @@ class HomeController extends Controller
     return Inertia::render('Home/ProfilPejabat', [
       'title' => 'Profil Pejabat',
       'pejabat' => ProfilPejabat::get(),
+      'superadmin' => ProfilSuperAdmin::select('logoImgUrl')->first(),
     ]);
   }
 
@@ -96,6 +98,7 @@ class HomeController extends Controller
     return Inertia::render('Home/PermohonanInformasi', [
       'title' => 'Formulir Permohonan Informasi',
       'superadmin' => ProfilSuperAdmin::select('logoImgUrl')->first(),
+      'permohonan' => PermohonanInformasi::get(),
     ]);
   }
 
@@ -122,6 +125,7 @@ class HomeController extends Controller
     return Inertia::render('Home/KalenderPendidikan', [
       'title' => 'Kalender Pendidikan',
       'kalenderPendidikan' => KalenderPendidikan::where('statusKalender', 'Aktif')->get(),
+      'superadmin' => ProfilSuperAdmin::select('logoImgUrl')->first(),
     ]);
   }
 
@@ -146,6 +150,7 @@ class HomeController extends Controller
     return Inertia::render('Home/IndexKepuasanMasyarakat', [
       'title' => 'Index Kepuasan Masyarakat',
       'dataIkm' => Ikm::first() ?? '',
+      'superadmin' => ProfilSuperAdmin::select('logoImgUrl')->first(),
     ]);
   }
 
@@ -164,6 +169,7 @@ class HomeController extends Controller
       'prestasiSenibudaya' => Prestasi::where('kategoriLomba', 'Seni budaya')->paginate(5),
       'prestasiTeknologi' => Prestasi::where('kategoriLomba', 'Teknologi')->paginate(5),
       'prestasiIlmusosial' => Prestasi::where('kategoriLomba', 'Ilmu Sosial')->paginate(5),
+      'superadmin' => ProfilSuperAdmin::select('logoImgUrl')->first(),
     ]);
   }
 

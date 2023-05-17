@@ -7,7 +7,6 @@ import { AppContext } from "@/context/app-context";
 const TopNavBar = () => {
   const user = useContext(AppContext).props.auth.user;
   const [data, setData] = useState([]);
-  console.log(data);
 
   useEffect(() => {
     fetch('/api/data')
@@ -16,7 +15,7 @@ const TopNavBar = () => {
   }, []);
 
   return (
-    <nav className="px-3.5 py-2 bg-sky-500 text-white">
+    <nav className="px-3.5 py-2  text-black">
       <div className="container text-md">
         <div className="flex justify-end items-center">
           {user !== null ? (
@@ -62,7 +61,7 @@ const TopNavBar = () => {
                     {user.level === 'sekolah' ? (
                       <Menu.Item>
                         <Link
-                          href={`/admin-sekolah/${data.kode}`}
+                          href={`/admin-sekolah/${data.kode}/profil`}
                           className="block w-full px-4 py-2 text-sm text-left text-slate-700 hover:bg-slate-100"
                           as="button"
                         >
@@ -72,7 +71,7 @@ const TopNavBar = () => {
                     ) : (
                       <Menu.Item>
                         <Link
-                          href={`/super-admin`}
+                          href={`/super-admin/profil`}
                           className="block w-full px-4 py-2 text-sm text-left text-slate-700 hover:bg-slate-100"
                           as="button"
                         >

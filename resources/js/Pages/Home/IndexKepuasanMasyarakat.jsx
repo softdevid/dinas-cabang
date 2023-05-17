@@ -2,7 +2,7 @@ import HomeLayout from "@/Layouts/HomeLayout";
 import { Head } from "@inertiajs/react";
 import { useState } from "react";
 
-const IndexKepuasanMasyarakat = ({ title, dataIkm }) => {
+const IndexKepuasanMasyarakat = ({ title, dataIkm, superadmin }) => {
   const [hukum, setHukum] = useState(false);
   const openHukum = () => {
     setHukum(!hukum);
@@ -30,7 +30,7 @@ const IndexKepuasanMasyarakat = ({ title, dataIkm }) => {
             <div className="hidden md:block">
               <div className="items-center justify-center h-64 flex">
                 <img
-                  src="https://flowbite.com/docs/images/logo.svg"
+                  src={superadmin.logoImgUrl}
                   className="w-32 h-32"
                 />
               </div>

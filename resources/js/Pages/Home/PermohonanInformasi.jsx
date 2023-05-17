@@ -1,14 +1,29 @@
 import HomeLayout from "@/Layouts/HomeLayout";
 import { Head } from "@inertiajs/react";
+import { useState } from "react";
 
-const PermohonanInformasi = ({ title, superadmin }) => {
+const PermohonanInformasi = ({ title, superadmin, permohonan }) => {
+  const [profil, setProfil] = useState({});
+  const openProfil = (i) => {
+    setProfil((prevState) => ({
+      ...prevState,
+      [i]: !prevState[i] // Membalikkan nilai boolean untuk indeks yang diberikan
+    }));
+  }
+
+  const handleDownload = (data) => {
+    const link = document.createElement('a');
+    link.href = data.pdfUrl;
+    link.download = `${data.namaPermohonan}.pdf`;
+    link.click();
+  };
   return (
     <>
       <Head title={title} />
       <div>
         <div className="w-full h-64 hidden md:block">
           <div className="grid grid-cols-1 md:grid-cols-2">
-            <div className="items-center justify-center flex h-64">
+            <div className="items-center justify-center flex  mx-2 h-64">
               <b className="text-4xl">{title}</b>
             </div>
             <div className="hidden md:block">
@@ -35,15 +50,48 @@ const PermohonanInformasi = ({ title, superadmin }) => {
       </div>
 
       <div className="mx-4 md:mx-52 md:my-20">
-        <h1 className="text-5xl text-blue-600 text-center my-10">Visi</h1>
-        <p className="text-center text-xl md:text-2xl">
-          {superadmin.visi}
-        </p>
-      </div>
-
-      <div className="mx-4 md:mx-52 md:my-28">
-        <h1 className="text-5xl text-blue-600 text-center my-10">Misi</h1>
-        <p className="whitespace-pre-wrap text-xl md:text-2xl">{superadmin.misi}</p>
+        {permohonan.length > 0 ? (
+          <>
+            {permohonan.map((data, i) => {
+              return (
+                <>
+                  <h2 id="accordion-flush-heading-1" onClick={() => openProfil(i)}>
+                    <button
+                      type="button"
+                      className="flex items-center justify-between w-full py-5 font-medium text-left text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400"
+                    >
+                      <span>{data.namaPermohonan}</span>
+                      <button onClick={() => handleDownload(data)}>Download PDF</button>
+                    </button>
+                  </h2>
+                  {/* {profil[i] && (
+                    <div
+                      id="accordion-flush-body-1"
+                      aria-labelledby="accordion-flush-heading-1"
+                    >
+                      <div className="py-5 font-light border-b border-gray-200 dark:border-gray-700">
+                        <p className="mb-2 max-h-96 overflow-auto">
+                          {data.pdfUrl ? (
+                            <div>
+                              <embed src={data.pdfUrl} type="application/pdf" width="100%" height="600px" />
+                              <button onClick={handleDownload}>Download PDF</button>
+                            </div>
+                          ) : (
+                            <p>Loading PDF...</p>
+                          )}
+                        </p>
+                      </div>
+                    </div>
+                  )} */}
+                </>
+              )
+            })}
+          </>
+        ) : (
+          <>
+            <span className="text-center text-2xl font-bold">Belum ada formulir permohonan informasi</span>
+          </>
+        )}
       </div>
     </>
   );

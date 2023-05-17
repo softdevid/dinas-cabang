@@ -27,6 +27,7 @@ use App\Http\Controllers\SuperAdminSiswaController;
 use App\Http\Controllers\LayananPublikController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\PermohonanInformasiController;
+use App\Http\Controllers\SosmedController;
 
 /*
 |--------------------------------------------------------------------------
@@ -110,6 +111,7 @@ Route::group([
   Route::resource('layanan-publik', LayananPublikController::class);
   Route::resource('event', EventController::class);
   Route::resource('permohonan-informasi', PermohonanInformasiController::class);
+  Route::resource('sosmed', SosmedController::class);
 
 
   //route tabs banner
@@ -164,6 +166,7 @@ Route::get('/data-prestasi-sosial', [HomeController::class, 'dataPrestasiIlmusos
 
 Route::get('/api/data-superadmin', [HomeController::class, 'dataSuperadmin'])->name('home.dataSuperadmin');
 
+Route::get('/api/data-sosmed', [SosmedController::class, 'dataSosmed'])->name('dataSosmed');
 Route::get('/api/data', [HomeController::class, 'data'])->name('data');
 
 require __DIR__ . '/auth.php';

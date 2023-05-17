@@ -5,6 +5,7 @@ import {
   CalendarDaysIcon,
   CameraIcon,
   ComputerDesktopIcon,
+  DevicePhoneMobileIcon,
   HomeIcon,
   HomeModernIcon,
   NewspaperIcon,
@@ -27,11 +28,11 @@ const Sidebar = () => {
   const context = useContext(SuperAdminContext);
 
   const links = [
-    {
-      name: "Dashboard",
-      href: "/super-admin",
-      icon: ComputerDesktopIcon,
-    },
+    // {
+    //   name: "Dashboard",
+    //   href: "/super-admin",
+    //   icon: ComputerDesktopIcon,
+    // },
     {
       name: "Profil",
       href: "/super-admin/profil",
@@ -116,6 +117,11 @@ const Sidebar = () => {
       name: "Acara",
       href: "/super-admin/event",
       icon: SparklesIcon,
+    },
+    {
+      name: "Sosmed",
+      href: "/super-admin/sosmed",
+      icon: DevicePhoneMobileIcon,
     },
   ];
 

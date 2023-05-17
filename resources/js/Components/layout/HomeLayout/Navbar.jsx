@@ -14,6 +14,7 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { Link } from "@inertiajs/react";
+import axios from "axios";
 
 const navigation = [
   {
@@ -91,14 +92,16 @@ const navigation = [
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [data, setData] = useState("")
+  axios.get('/api/data-superadmin').then((res) => setData(res.data))
 
   return (
-    <nav className="px-4 md:px-6 lg:px-8 py-5">
+    <nav className="px-4 md:px-6 lg:px-8 py-5 border-b border-t">
       <div className="flex md:flex-1 justify-between">
         <div className="hidden md:flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
-            <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
+            <img className="h-8 w-auto" src={data.logoImgUrl} alt={data.namaSuperAdmin} />
           </a>
         </div>
         <div className="flex md:hidden">
@@ -115,8 +118,8 @@ const Navbar = () => {
           <div className="md:hidden flex flex-shrink-0 items-center mr-4">
             <img
               className="h-8 w-auto"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-              alt=""
+              src={data.logoImgUrl}
+              alt={data.namaSuperAdmin}
             />
           </div>
           <Popover.Group className="hidden md:ml-6 md:flex md:justify-end md:space-x-12">
@@ -192,8 +195,8 @@ const Navbar = () => {
                 <span className="sr-only">Your Company</span>
                 <img
                   className="h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                  alt=""
+                  src={data.logoImgUrl}
+                  alt={data.namaSuperAdmin}
                 />
               </a>
             </div>

@@ -15,7 +15,7 @@ const VisiMisi = ({ title, superadmin }) => {
             <div className="hidden md:block">
               <div className="items-center justify-center h-64 flex">
                 <img
-                  src="https://flowbite.com/docs/images/logo.svg"
+                  src={superadmin.logoImgUrl}
                   className="w-32 h-32"
                 />
               </div>

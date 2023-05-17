@@ -8,7 +8,7 @@ import { Head } from "@inertiajs/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const Prestasi = ({ prestasiOlahraga, prestasiSenibudaya, prestasiTeknologi, prestasiIlmusosial, title }) => {
+const Prestasi = ({ title, superadmin }) => {
 
   const [olahraga, setOlahraga] = useState(false);
   const openOlahraga = () => {
@@ -54,7 +54,7 @@ const Prestasi = ({ prestasiOlahraga, prestasiSenibudaya, prestasiTeknologi, pre
             <div className="hidden md:block">
               <div className="items-center justify-center h-64 flex">
                 <img
-                  src="https://flowbite.com/docs/images/logo.svg"
+                  src={superadmin.logoImgUrl}
                   className="w-32 h-32"
                 />
               </div>

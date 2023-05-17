@@ -25,14 +25,9 @@ const Navbar = () => {
               <span className="sr-only">Open main menu</span>
               <Bars3Icon className="h-6 w-6" aria-hidden="true" />
             </button>
-            <a href="https://flowbite.com" className="flex ml-2 md:mr-24">
-              <img
-                src="https://flowbite.com/docs/images/logo.svg"
-                className="h-8 mr-3"
-                alt="FlowBite Logo"
-              />
+            <a href="#" className="flex ml-2 md:mr-24">
               <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
-                Super Admin - ...
+                Cabang Dinas Pendidikan Wilayah 9
               </span>
             </a>
           </div>
@@ -62,9 +57,8 @@ const Navbar = () => {
                     {({ active }) => (
                       <button
                         onClick={handleLogout}
-                        className={`${
-                          active ? "bg-gray-100" : ""
-                        } block px-4 py-2 text-sm text-gray-700`}
+                        className={`${active ? "bg-gray-100" : ""
+                          } block px-4 py-2 text-sm text-gray-700`}
                       >
                         Sign out
                       </button>

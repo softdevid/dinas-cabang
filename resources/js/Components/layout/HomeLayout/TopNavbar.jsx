@@ -99,7 +99,7 @@ const TopNavBar = () => {
             <div className="flex justify-end items-center">
               <Link
                 href={route("login")}
-                className="text-slate-800"
+                className="text-white"
                 as="button"
               >
                 Login

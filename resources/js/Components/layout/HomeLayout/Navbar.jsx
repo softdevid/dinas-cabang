@@ -101,7 +101,10 @@ const Navbar = () => {
         <div className="hidden md:flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
-            <img className="h-8 w-auto" src={data.logoImgUrl} alt={data.namaSuperAdmin} />
+            <div className="flex">
+              <img className="h-8 w-auto" src={data.logoImgUrl} />
+              <h1 className="text-md md:text-xl mt-1 font-bold">{data.namaSuperAdmin}</h1>
+            </div>
           </a>
         </div>
         <div className="flex md:hidden">

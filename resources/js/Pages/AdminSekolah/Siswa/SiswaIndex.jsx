@@ -91,9 +91,6 @@ const SiswaIndex = ({ title, dataSiswa, dataSekolah }) => {
                   No
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  NISN
-                </th>
-                <th scope="col" className="px-6 py-3">
                   NIS
                 </th>
                 <th scope="col" className="px-6 py-3">
@@ -130,7 +127,6 @@ const SiswaIndex = ({ title, dataSiswa, dataSekolah }) => {
                       {index + 1}
                     </th>
                     <td className="px-6 py-4">{data.nis}</td>
-                    <td className="px-6 py-4">{data.nisn}</td>
                     <td className="px-6 py-4">{data.namaSiswa}</td>
                     <td className="px-6 py-4">{data.kelas}</td>
                     <td className="px-6 py-4">{data.jurusan}</td>

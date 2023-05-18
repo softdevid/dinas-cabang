@@ -1,7 +1,7 @@
 import Navbar from "@/Components/layout/AdminSekolahLayout/Navbar";
 import Sidebar from "@/Components/layout/AdminSekolahLayout/Sidebar";
 import { Link, usePage } from "@inertiajs/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AdminSekolahContext } from "@/context/admin-sekolah-context";
 import axios from "axios";
 
@@ -9,7 +9,9 @@ const AdminSekolahLayout = ({ children }) => {
   const { props, url } = usePage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [dtSekolah, setDtSekolah] = useState({});
-  axios.get('/api/data').then((res) => setDtSekolah(res.data))
+  useEffect(() => {
+    axios.get("/api/data").then((res) => setDtSekolah(res.data));
+  }, []);
 
   const adminSekolahContextValue = {
     props,

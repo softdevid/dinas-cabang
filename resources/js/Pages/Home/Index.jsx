@@ -242,7 +242,7 @@ const Index = ({ title, banner, superadmin, berita, galeri, event }) => {
               <div className="bg-white p-4">
                 <h1 className="text-2xl text-center">Berita Terbaru</h1>
                 <div className="border-2 border-black w-[75%] mx-auto my-3"></div>
-                {berita != null ? (
+                {berita ? (
                   <>
                     <div className="bg-gray-500 h-[250px] m-3 rounded-md overflow-hidden">
                       <img
@@ -422,7 +422,7 @@ const Index = ({ title, banner, superadmin, berita, galeri, event }) => {
           <div className="w-full h-auto rounded-lg border-2 mt-7 mr-5 shadow-lg">
             <div className="bg-white">
               <h1 className="text-2xl text-center">Berita Terbaru</h1>
-              {berita != null ? (
+              {berita ? (
                 <>
                   <div className="border-2 border-black w-[75%] mx-auto my-3"></div>
                   <div className="bg-gray-500 max-h-[250px] m-3 rounded-md overflow-hidden">

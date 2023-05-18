@@ -23,7 +23,6 @@
     "dependencies": {
         "@heroicons/react": "^2.0.16",
         "laravel-echo": "^1.15.1",
-        "pusher-js": "^8.0.2",
         "react-icons": "^4.8.0",
         "react-paginate": "^8.2.0",
         "react-toastify": "^9.1.2"

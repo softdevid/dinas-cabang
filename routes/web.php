@@ -83,8 +83,8 @@ Route::get('/galeri-infografis', [HomeController::class, 'galeriinfografis'])->n
 
 Route::group([
   'prefix' => '/super-admin',
-  'middleware' => ['auth', 'verified']
-  // 'middleware' => ['cek.idsekolah']
+  // 'middleware' => ['auth', 'verified']
+  'middleware' => ['cek.idsekolah']
 ], function () {
   Route::get('/', [SuperAdminController::class, 'index'])->name('super-admin.index');
   Route::get('/profil', [SuperAdminController::class, 'profil'])->name('super-admin.profil');
@@ -95,8 +95,8 @@ Route::group([
   Route::get('/profil/{id}/edit', [ProfilSuperAdminController::class, 'edit'])->name('profilSuperAdmin.edit');
   Route::patch('/profil/{id}', [ProfilSuperAdminController::class, 'update'])->name('profilSuperAdmin.update');
 
-  Route::resource('/prestasi', SuperAdminPrestasiController::class);
-  Route::resource('/guru', SuperAdminGuruController::class);
+  Route::resource('prestasi', SuperAdminPrestasiController::class);
+  Route::resource('guru', SuperAdminGuruController::class);
   Route::resource('siswa', SuperAdminSiswaController::class);
   Route::resource('berita', BeritaController::class);
   Route::resource('pejabat', ProfilPejabatController::class);
@@ -142,9 +142,44 @@ Route::group([
   Route::post('/profil/update', [AdminSekolahController::class, 'updateProfilSekolah'])->name('updateProfilSekolah');
   Route::get('/profil/{id}/edit', [AdminSekolahController::class, 'editProfilSekolah'])->name('editProfilSekolah');
 
-  Route::resource('prestasi', PrestasiController::class);
-  Route::resource('guru', GuruController::class);
-  Route::resource('siswa', SiswaController::class);
+  // Route::resource('prestasi', PrestasiController::class);
+  Route::resource('prestasi', PrestasiController::class)->parameters([
+    'prestasi' => 'id'
+  ])->names([
+    'index' => 'admin-sekolah.prestasi.index',
+    'create' => 'admin-sekolah.prestasi.create',
+    'store' => 'admin-sekolah.prestasi.store',
+    'show' => 'admin-sekolah.prestasi.show',
+    'edit' => 'admin-sekolah.prestasi.edit',
+    'update' => 'admin-sekolah.prestasi.update',
+    'destroy' => 'admin-sekolah.prestasi.destroy',
+  ]);
+
+  // Route::resource('guru', GuruController::class);
+  Route::resource('guru', GuruController::class)->parameters([
+    'guru' => 'id'
+  ])->names([
+    'index' => 'admin-sekolah.guru.index',
+    'create' => 'admin-sekolah.guru.create',
+    'store' => 'admin-sekolah.guru.store',
+    'show' => 'admin-sekolah.guru.show',
+    'edit' => 'admin-sekolah.guru.edit',
+    'update' => 'admin-sekolah.guru.update',
+    'destroy' => 'admin-sekolah.guru.destroy',
+  ]);
+
+  // Route::resource('siswa', SiswaController::class);
+  Route::resource('siswa', SiswaController::class)->parameters([
+    'siswa' => 'id'
+  ])->names([
+    'index' => 'admin-sekolah.siswa.index',
+    'create' => 'admin-sekolah.siswa.create',
+    'store' => 'admin-sekolah.siswa.store',
+    'show' => 'admin-sekolah.siswa.show',
+    'edit' => 'admin-sekolah.siswa.edit',
+    'update' => 'admin-sekolah.siswa.update',
+    'destroy' => 'admin-sekolah.siswa.destroy',
+  ]);
 });
 
 // Route delete image in cloudinary
@@ -155,17 +190,16 @@ Route::post('/delete-image-misi', [ProfilSuperAdminController::class, 'deleteImg
 Route::post('/delete-image-logo', [ProfilSuperAdminController::class, 'deleteImgLogo'])->name('deleteImgLogo');
 Route::post('/delete-image-sejarah', [SejarahController::class, 'deleteImgSejarah'])->name('deleteImgSejarah');
 
-Route::post('/delete-image1-event', [EventController::class, 'deleteImage1'])->name('deleteImage1');
-Route::post('/delete-image2-event', [EventController::class, 'deleteImage2'])->name('deleteImage2');
+Route::post('/delete-image1-event', [EventController::class, 'deleteImage1'])->name('deleteImage1.event');
+Route::post('/delete-image2-event', [EventController::class, 'deleteImage2'])->name('deleteImage2.event');
 
+//data api
 Route::get('/api/berita', [BeritaController::class, 'index']);
 Route::get('/data-prestasi-olahraga', [HomeController::class, 'dataPrestasiOlahraga']);
 Route::get('/data-prestasi-senibudaya', [HomeController::class, 'dataPrestasiSenibudaya']);
 Route::get('/data-prestasi-teknologi', [HomeController::class, 'dataPrestasiTeknologi']);
 Route::get('/data-prestasi-sosial', [HomeController::class, 'dataPrestasiIlmusosial']);
-
 Route::get('/api/data-superadmin', [HomeController::class, 'dataSuperadmin'])->name('home.dataSuperadmin');
-
 Route::get('/api/data-sosmed', [SosmedController::class, 'dataSosmed'])->name('dataSosmed');
 Route::get('/api/data', [HomeController::class, 'data'])->name('data');
 

@@ -25,72 +25,72 @@ class DatabaseSeeder extends Seeder
    */
   public function run(): void
   {
-    User::create([
-      'name' => 'Softdev Admin',
-      'email' => 'admin@gmail.com',
-      'password' => Hash::make('password'),
-      'level' => 'super admin'
-    ]);
-
     // User::create([
-    //   'name' => 'SEKOLAH 1',
-    //   'email' => 'sekolah@gmail.com',
+    //   'name' => 'Softdev Admin',
+    //   'email' => 'admin@gmail.com',
     //   'password' => Hash::make('password'),
-    //   'level' => 'sekolah'
+    //   'level' => 'super admin'
     // ]);
 
-    // Sekolah::factory(10)->create();
-    // Guru::factory(100)->create();
-    // Siswa::factory(100)->create();
-    // Prestasi::factory(150)->create();
-    // Berita::factory(100)->create();
-    // ProfilPejabat::factory(10)->create();
-
-    ProfilSuperAdmin::create([
-      'idUser' => '1',
-      'namaSuperAdmin' => 'Cabang Dinas Pendidikan Wilayah 9',
-      'alamatLengkap' => '-',
-      'noHp' => '-',
-      'email' => 'admin@gmail.com',
+    User::create([
+      'name' => 'SEKOLAH 1',
+      'email' => 'sekolah@gmail.com',
       'password' => Hash::make('password'),
-      'lingkupKegiatan' => '-',
-      'visi' => '-',
-      'misi' => '-',
-      'tugasPokok' => '-',
-      'fungsi' => '-',
-      'unitKerjaDibawahnya' => '-',
-      'unitKerjaDibawahnya' => '-',
+      'level' => 'sekolah'
     ]);
 
-    Sosmed::create([
-      'namaMedsos' => 'Youtube',
-      'urlImage' => 'https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg',
-      'urlSosmed' => '#',
-    ]);
-    Sosmed::create([
-      'namaMedsos' => 'Instagram',
-      'urlImage' => 'https://upload.wikimedia.org/wikipedia/commons/9/96/Instagram.svg',
-      'urlSosmed' => '#',
-    ]);
-    Sosmed::create([
-      'namaMedsos' => 'Twitter',
-      'urlImage' => 'https://upload.wikimedia.org/wikipedia/commons/6/6f/Logo_of_Twitter.svg',
-      'urlSosmed' => '#',
-    ]);
-    Sosmed::create([
-      'namaMedsos' => 'Facebook',
-      'urlImage' => 'https://upload.wikimedia.org/wikipedia/en/0/04/Facebook_f_logo_%282021%29.svg',
-      'urlSosmed' => '#',
-    ]);
+    Sekolah::factory(15)->create();
+    Guru::factory(90)->create();
+    Siswa::factory(150)->create();
+    Prestasi::factory(70)->create();
+    Berita::factory(100)->create();
+    ProfilPejabat::factory(15)->create();
 
-    Sejarah::create([
-      'idUser' => 1,
-      'deskripsi' => '-',
-    ]);
+    // ProfilSuperAdmin::create([
+    //   'idUser' => '1',
+    //   'namaSuperAdmin' => 'Cabang Dinas Pendidikan Wilayah 9',
+    //   'alamatLengkap' => '-',
+    //   'noHp' => '-',
+    //   'email' => 'admin@gmail.com',
+    //   'password' => Hash::make('password'),
+    //   'lingkupKegiatan' => '-',
+    //   'visi' => '-',
+    //   'misi' => '-',
+    //   'tugasPokok' => '-',
+    //   'fungsi' => '-',
+    //   'unitKerjaDibawahnya' => '-',
+    //   'unitKerjaDibawahnya' => '-',
+    // ]);
 
-    Ikm::create([
-      'dasarHukum' => '-',
-      'pengertian' => '-',
-    ]);
+    // Sosmed::create([
+    //   'namaMedsos' => 'Youtube',
+    //   'urlImage' => 'https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg',
+    //   'urlSosmed' => '#',
+    // ]);
+    // Sosmed::create([
+    //   'namaMedsos' => 'Instagram',
+    //   'urlImage' => 'https://upload.wikimedia.org/wikipedia/commons/9/96/Instagram.svg',
+    //   'urlSosmed' => '#',
+    // ]);
+    // Sosmed::create([
+    //   'namaMedsos' => 'Twitter',
+    //   'urlImage' => 'https://upload.wikimedia.org/wikipedia/commons/6/6f/Logo_of_Twitter.svg',
+    //   'urlSosmed' => '#',
+    // ]);
+    // Sosmed::create([
+    //   'namaMedsos' => 'Facebook',
+    //   'urlImage' => 'https://upload.wikimedia.org/wikipedia/en/0/04/Facebook_f_logo_%282021%29.svg',
+    //   'urlSosmed' => '#',
+    // ]);
+
+    // Sejarah::create([
+    //   'idUser' => 1,
+    //   'deskripsi' => '-',
+    // ]);
+
+    // Ikm::create([
+    //   'dasarHukum' => '-',
+    //   'pengertian' => '-',
+    // ]);
   }
 }

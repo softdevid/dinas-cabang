@@ -1,5 +1,5 @@
 import { Menu, Transition } from "@headlessui/react";
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 import { Fragment, useContext, useEffect, useState } from "react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { AppContext } from "@/context/app-context";
@@ -8,10 +8,13 @@ const TopNavBar = () => {
   const user = useContext(AppContext).props.auth.user;
   const [data, setData] = useState([]);
 
+
   useEffect(() => {
-    fetch('/api/data')
-      .then(res => res.json())
-      .then(json => setData(json))
+    if (user) {
+      fetch("/api/data")
+        .then((res) => res.json())
+        .then((json) => setData(json));
+    }
   }, []);
 
   return (
@@ -58,7 +61,7 @@ const TopNavBar = () => {
                     </Menu.Item>
                   </div>
                   <div className="py-1">
-                    {user.level === 'sekolah' ? (
+                    {user.level === "sekolah" ? (
                       <Menu.Item>
                         <Link
                           href={`/admin-sekolah/${data.kode}/profil`}
@@ -96,11 +99,7 @@ const TopNavBar = () => {
             </Menu>
           ) : (
             <div className="flex justify-end items-center">
-              <Link
-                href={route("login")}
-                className="text-black"
-                as="button"
-              >
+              <Link href={route("login")} className="text-black" as="button">
                 Login
               </Link>
             </div>

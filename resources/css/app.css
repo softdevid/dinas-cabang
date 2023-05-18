@@ -2,3 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  *,
+  *::after,
+  *::before {
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-app-region: no-drag;
+  }
+
+  /* html {
+    @apply bg-slate-50;
+  } */
+}
+
+

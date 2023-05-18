@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import {
   Dialog,
   Disclosure,
@@ -92,8 +92,11 @@ const navigation = [
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [data, setData] = useState("")
-  axios.get('/api/data-superadmin').then((res) => setData(res.data))
+  const [data, setData] = useState("");
+
+  useEffect(() => {
+    axios.get("/api/data-superadmin").then((res) => setData(res.data));
+  }, []);
 
   return (
     <nav className="px-4 md:px-6 lg:px-8 py-5 border-b border-t">
@@ -103,7 +106,9 @@ const Navbar = () => {
             <span className="sr-only">Your Company</span>
             <div className="flex">
               <img className="h-8 w-auto" src={data.logoImgUrl} />
-              <h1 className="text-md md:text-xl mt-1 font-bold">{data.namaSuperAdmin}</h1>
+              <h1 className="text-md md:text-xl mt-1 font-bold">
+                {data.namaSuperAdmin}
+              </h1>
             </div>
           </a>
         </div>
@@ -151,7 +156,8 @@ const Navbar = () => {
                               className="group relative flex items-center gap-x-6 rounded-lg p-4 text-base leading-6 hover:bg-gray-50"
                             >
                               <div className="flex-auto">
-                                <Link as="button"
+                                <Link
+                                  as="button"
                                   href={item.href}
                                   className="block font-semibold text-gray-900"
                                 >
@@ -215,8 +221,9 @@ const Navbar = () => {
                               <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-gray-50">
                                 {item.name}
                                 <ChevronDownIcon
-                                  className={`${open ? "rotate-180" : ""
-                                    } h-5 w-5 flex-none`}
+                                  className={`${
+                                    open ? "rotate-180" : ""
+                                  } h-5 w-5 flex-none`}
                                   aria-hidden="true"
                                 />
                               </Disclosure.Button>

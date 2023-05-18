@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,14 +18,14 @@ class BeritaFactory extends Factory
   public function definition(): array
   {
     return [
-      'idUser' => $this->faker->randomElement(['1', '2']),
+      "idUser" => User::pluck('id')->random(),
       'namaPenulis' => $this->faker->name(),
       'kategoriBerita' => $this->faker->randomElement(['Berita', 'Informasi']),
-      'judulBerita' => $this->faker->title(5, true),
-      'slug' => $this->faker->name(5, true),
+      'judulBerita' => $this->faker->sentence(),
+      'slug' => $this->faker->slug(),
       'deskripsi' => $this->faker->paragraph(2),
-      'imgName' => $this->faker->name(10, true),
-      'imgUrl' => $this->faker->name(10, true),
+      "imgName" => $this->faker->word(),
+      "imgUrl" => "https://source.unsplash.com/1000x1000?nature",
     ];
   }
 }

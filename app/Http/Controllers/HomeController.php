@@ -27,7 +27,7 @@ class HomeController extends Controller
       'title' => 'Homepage',
       'superadmin' => ProfilSuperAdmin::first(),
       'banner' => Banner::where('jenisBanner', 'utama')->first() ?? '',
-      'berita' => Berita::orderBy('created_at', 'desc')->paginate(1) ?? '',
+      'berita' => Berita::latest()->first() ?? '',
       'galeri' => Galeri::where('jenis', 'foto')->paginate(3) ?? '',
       'event' => Event::get(),
     ]);

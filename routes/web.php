@@ -140,8 +140,8 @@ Route::group([
 
   // route profil sekolah
   Route::get('/profil', [AdminSekolahController::class, 'profil'])->name('admin-sekolah.profil');
-  Route::post('/profil/update', [AdminSekolahController::class, 'updateProfilSekolah'])->name('updateProfilSekolah');
-  Route::get('/profil/{id}/edit', [AdminSekolahController::class, 'editProfilSekolah'])->name('editProfilSekolah');
+  Route::post('/profil/update', [AdminSekolahController::class, 'updateProfilSekolah'])->name('admin-sekolah.profil.update');
+  Route::get('/profil/{id}/edit', [AdminSekolahController::class, 'editProfilSekolah'])->name('admin-sekolah.profil.edit');
 
   // Route::resource('prestasi', PrestasiController::class);
   Route::resource('prestasi', PrestasiController::class)->parameters([

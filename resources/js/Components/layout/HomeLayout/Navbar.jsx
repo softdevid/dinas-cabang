@@ -102,15 +102,15 @@ const Navbar = () => {
     <nav className="px-4 md:px-6 lg:px-8 py-5 border-b border-t">
       <div className="flex md:flex-1 justify-between">
         <div className="hidden md:flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
-            <span className="sr-only">Your Company</span>
-            <div className="flex">
-              <img className="h-8 w-auto" src={data.logoImgUrl} />
-              <h1 className="text-md md:text-xl mt-1 font-bold">
+          <Link href="/" as="button">
+            <span className="sr-only">{data.namaSuperAdmin}</span>
+            <div className="inline-flex items-center">
+              <img className="h-14 w-14" src={data.logoImgUrl} />
+              <h1 className="hidden lg:block text-md lg:text-xl mt-1 font-bold">
                 {data.namaSuperAdmin}
               </h1>
             </div>
-          </a>
+          </Link>
         </div>
         <div className="flex md:hidden">
           <button
@@ -125,7 +125,7 @@ const Navbar = () => {
         <div className="flex flex-1 items-center justify-end md:justify-start">
           <div className="md:hidden flex flex-shrink-0 items-center mr-4">
             <img
-              className="h-8 w-auto"
+              className="h-10 w-10"
               src={data.logoImgUrl}
               alt={data.namaSuperAdmin}
             />
@@ -135,7 +135,7 @@ const Navbar = () => {
               <div key={index} className="flex items-center">
                 {item.option != null ? (
                   <Popover className="relative">
-                    <Popover.Button className="flex items-center gap-x-1 text-base font-semibold leading-6 text-slate-900">
+                    <Popover.Button className="flex items-center gap-x-1 text-sm lg:text-base font-semibold leading-6 text-slate-900">
                       {item.name}
                       <ChevronDownIcon className="h-4 w-4" />
                     </Popover.Button>
@@ -174,7 +174,7 @@ const Navbar = () => {
                   <Link
                     as="button"
                     href={item.href}
-                    className="text-base font-semibold leading-6 text-slate-900"
+                    className="text-sm lg:text-base font-semibold leading-6 text-slate-900"
                   >
                     {item.name}
                   </Link>

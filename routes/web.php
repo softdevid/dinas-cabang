@@ -136,6 +136,7 @@ Route::group([
   // 'middleware' => ['cek.idsekolah']
 ], function () {
   Route::get('/', [AdminSekolahController::class, 'index'])->name('admin-sekolah.index');
+  Route::redirect('/', '/admin-sekolah/{sekolah:kode}/profil');
 
   // route profil sekolah
   Route::get('/profil', [AdminSekolahController::class, 'profil'])->name('admin-sekolah.profil');

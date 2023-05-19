@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
   public function run(): void
   {
     User::create([
-      'name' => 'Softdev Admin',
+      'name' => 'Cabang Dinas Wilayah IX',
       'email' => 'admin@gmail.com',
       'password' => Hash::make('password'),
       'level' => 'super admin'
@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
 
     ProfilSuperAdmin::create([
       'idUser' => '1',
-      'namaSuperAdmin' => 'Cabang Dinas Pendidikan Wilayah 9',
+      'namaSuperAdmin' => 'Cabang Dinas Pendidikan Wilayah IX',
       'alamatLengkap' => '-',
       'noHp' => '-',
       'email' => 'admin@gmail.com',

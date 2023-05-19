@@ -70,13 +70,14 @@ class AdminSekolahController extends Controller
 
     $request->validate(
       [
-        'namaSekolah' => 'required',
-        'visi' => 'required',
-        'misi' => 'required',
-        'noHp' => 'required',
-        'alamatLengkap' => 'required',
+        'namaSekolah' => 'required|max:255',
+        'visi' => 'required|max:500',
+        'misi' => 'required|max:500',
+        'noHp' => 'required|max:255',
+        'alamatLengkap' => 'required|max:500',
         'imgName' => 'required',
         'jenjang' => 'required',
+        'website' => 'max:255',
       ],
       [
         'imgName.required' => 'Logo harus ada',
@@ -96,6 +97,7 @@ class AdminSekolahController extends Controller
         'jenjang' => $request->jenjang,
         'imgName' => $request->imgName,
         'imgUrl' => $request->imgUrl,
+        'website' => $request->website,
       ]);
 
       $user->update([

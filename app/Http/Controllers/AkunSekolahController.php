@@ -116,6 +116,7 @@ class AkunSekolahController extends Controller
         'alamatLengkap' => $request->alamatLengkap,
         'imgName' => $request->imgName,
         'imgUrl' => $request->imgUrl,
+        'website' => $request->website,
       ]);
       $user->update([
         'name' => $request->namaSekolah,

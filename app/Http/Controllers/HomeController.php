@@ -191,7 +191,13 @@ class HomeController extends Controller
   //data api untuk prestasi halaman utama
   function dataPrestasiOlahraga()
   {
-    $prestasiOlahraga = Prestasi::where('kategoriLomba', 'Olahraga')->paginate(5);
+    $prestasiOlahraga = DB::table('prestasis')
+      ->join('sekolahs', 'prestasis.idSekolah', '=', 'sekolahs.id')
+      ->select('prestasis.*', 'sekolahs.website as website')
+      ->where('prestasis.kategoriLomba', 'Olahraga')
+      ->orderBy('created_at', 'desc')
+      ->paginate(5);
+
     return response()->json($prestasiOlahraga);
   }
 

@@ -25,6 +25,7 @@ return new class extends Migration
       $table->text('alamatLengkap')->nullable();
       $table->string('imgName')->nullable();
       $table->string('imgUrl')->nullable();
+      $table->string('website')->nullable();
       $table->timestamps();
     });
   }

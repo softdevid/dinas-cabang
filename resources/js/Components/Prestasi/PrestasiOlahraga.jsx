@@ -1,4 +1,5 @@
 import { ArrowLeftCircleIcon, ArrowRightCircleIcon } from "@heroicons/react/20/solid";
+import { Link } from "@inertiajs/react";
 import { useEffect, useState } from "react";
 
 const PrestasiOlahraga = ({ olahraga, openOlahraga }) => {
@@ -56,7 +57,7 @@ const PrestasiOlahraga = ({ olahraga, openOlahraga }) => {
                         <td className="px-4 py-2 text-sm">{data.kategoriLomba}</td>
                         <td className="px-4 py-2 text-sm">{data.namaPeserta}</td>
                         <td className="px-4 py-2 text-sm">{data.statusPeserta}</td>
-                        <td className="px-4 py-2 text-sm">{data.asalInstansi}</td>
+                        <td className="px-4 py-2 text-sm"><a href={data.website} target="_blank" title="Klik untuk menuju website sekolah">{data.asalInstansi}</a></td>
                         <td className="px-4 py-2 text-sm">{data.penanggungJawab}</td>
                         <td className="px-4 py-2 text-sm">{data.targetCapaian}</td>
                         <td className="px-4 py-2 text-sm">{data.jadwalPelaksanaan}</td>

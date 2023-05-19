@@ -19,6 +19,7 @@ const SekolahEdit = ({ title, sekolah }) => {
     alamatLengkap: sekolah.alamatLengkap,
     imgName: sekolah.imgName,
     imgUrl: sekolah.imgUrl,
+    website: sekolah.website,
   })
   console.log(values);
 
@@ -138,6 +139,13 @@ const SekolahEdit = ({ title, sekolah }) => {
           <input value={values.noHp} onChange={handleChange} type="text" id="noHp" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="(+62) 8...." required />
           {errors.noHp && (
             <span style={{ color: "red" }}>{errors.noHp[0]}</span>
+          )}
+        </div>
+        <div className="mb-4 md:mb-6">
+          <label htmlFor="website" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Website</label>
+          <input value={values.website} onChange={handleChange} type="text" id="website" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="(+62) 8...." required />
+          {errors.website && (
+            <span style={{ color: "red" }}>{errors.website[0]}</span>
           )}
         </div>
         <div className="mb-4 md:mb-6">

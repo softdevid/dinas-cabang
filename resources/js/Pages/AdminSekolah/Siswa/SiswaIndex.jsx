@@ -79,7 +79,7 @@ const SiswaIndex = ({ title, dataSiswa, dataSekolah }) => {
             type="text"
             value={namaSiswa}
             onChange={(e) => setNamaSiswa(e.target.value)}
-            className="rounded-lg"
+            className="rounded-lg text-sm lg:text-base"
           />
         </div>
 

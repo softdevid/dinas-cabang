@@ -78,23 +78,23 @@ const PrestasiIndex = ({ title, dataPrestasi, dataSekolah }) => {
           </div>
         </div>
 
-        <div className="flex mb-5">
+        <div className="flex flex-col md:flex-row flex-wrap gap-4 mb-5">
           <input
             type="text"
             placeholder="Cari Nama Lomba"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="rounded-lg"
+            className="rounded-lg text-sm lg:text-base"
           />
           <input
             type="text"
             placeholder="Cari Nama Peserta"
             value={namaPeserta}
             onChange={(e) => setNamaPeserta(e.target.value)}
-            className="rounded-lg md:ml-2"
+            className="rounded-lg text-sm lg:text-base"
           />
           <select
-            className="rounded-lg md:ml-2"
+            className="rounded-lg text-sm lg:text-base"
             value={kategoriLomba}
             onChange={(e) => setKategoriLomba(e.target.value)}
           >

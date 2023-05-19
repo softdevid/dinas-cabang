@@ -78,27 +78,27 @@ const GuruIndex = ({ title, dataGuru, dataSekolah }) => {
           </div>
         </div>
 
-        <div className="flex mb-5">
+        <div className="flex flex-col md:flex-row flex-wrap gap-4 mb-5">
           <input
             placeholder="Cari Nama Guru"
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="rounded-lg"
+            className="rounded-lg text-sm lg:text-base"
           />
           <input
             placeholder="Cari Mapel"
             type="text"
             value={mapel}
             onChange={(e) => setMapel(e.target.value)}
-            className="rounded-lg ml-2"
+            className="rounded-lg text-sm lg:text-base"
           />
           <input
             placeholder="Cari Jabatan"
             type="text"
             value={jabatan}
             onChange={(e) => setJabatan(e.target.value)}
-            className="rounded-lg ml-2"
+            className="rounded-lg text-sm lg:text-base"
           />
         </div>
 

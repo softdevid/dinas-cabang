@@ -3,14 +3,10 @@ import { UserIcon, XMarkIcon } from "@heroicons/react/20/solid";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import React, { Fragment, useContext, useState } from "react";
 import { AdminSekolahContext } from "@/context/admin-sekolah-context";
-import { router } from "@inertiajs/react";
+import { Link } from "@inertiajs/react";
 
 const Navbar = () => {
   const context = useContext(AdminSekolahContext);
-
-  function handleLogout() {
-    router.post('/logout')
-  }
 
   return (
     <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
@@ -29,16 +25,11 @@ const Navbar = () => {
                 <Bars3Icon className="h-6 w-6" aria-hidden="true" />
               )}
             </button>
-            <a href="https://flowbite.com" className="flex ml-2 md:mr-24">
-              {/* <img
-                src="https://flowbite.com/docs/images/logo.svg"
-                className="h-8 mr-3"
-                alt="FlowBite Logo"
-              /> */}
+            <Link href={`/admin-sekolah/${context.dtSekolah.kode}/profil`} as="button" className="flex ml-2 md:mr-24">
               <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white focus:outline-none">
                 Admin Sekolah - {context.dtSekolah.namaSekolah}
               </span>
-            </a>
+            </Link>
           </div>
           <div className="flex items-center">
             <Menu as="div" className="relative ml-3">
@@ -60,13 +51,16 @@ const Navbar = () => {
                 <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                   <Menu.Item>
                     {({ active }) => (
-                      <button
-                        onClick={handleLogout}
-                        className={`${active ? "bg-gray-100" : ""
-                          } block px-4 py-2 text-sm text-gray-700`}
+                      <Link
+                        as="button"
+                        href="/logout"
+                        method="post"
+                        className={`${
+                          active ? "bg-gray-100" : ""
+                        } block px-4 py-2 text-sm text-gray-700`}
                       >
-                        Sign out
-                      </button>
+                        Logout
+                      </Link>
                     )}
                   </Menu.Item>
                 </Menu.Items>

@@ -37,42 +37,59 @@ class PermohonanInformasiController extends Controller
    */
   public function store(Request $request)
   {
-    // $request->validate([
-    //   'namaPermohonan' => 'required|max:255',
-    //   'file' => 'required|mimes:docx,pdf',
-    // ]);
+    if ($request->jenis === 'tambah') {
+      $request->validate([
+        'namaFormulir' => 'required|max:255',
+        'file' => 'required|mimes:pdf',
+      ]);
 
-    // if ($request->hasFile('file')) {
-    //   $file = $request->file('file');
-    //   $fileName = $file->getClientOriginalName();
+      if ($request->hasFile('file')) {
+        $file = $request->file('file');
+        $namaFile = $file->getClientOriginalName();
+        $storagePath = $file->move('uploads/', $namaFile);
 
-    //   // Pindahkan file ke direktori tujuan
-    //   $request->file('file')->store('uploads');
+        $newFile = new PermohonanInformasi();
+        $newFile->storagePath = $storagePath;
+        $newFile->file = $namaFile;
+        $newFile->namaFormulir = $request->namaFormulir;
+        $newFile->save();
 
-    //   // Simpan data ke database
-    //   $fileData = [
-    //     'namaPermohonan' => $request->namaPermohonan,
-    //     'fileName' => $fileName,
-    //   ];
+        return redirect()->to('/super-admin/permohonan-informasi')->with('message', 'Berhasil menambah');
+        // return response()->json(['data' => 'Berhasil menambah']);
+      }
+    } else {
+      if ($request->hasFile('file')) {
+        $request->validate([
+          'file' => 'required|mimes:pdf',
+        ]);
+      }
+      if ($request->namaFormulir) {
+        $request->validate([
+          'namaFormulir' => 'required',
+        ]);
+      }
 
-    //   PermohonanInformasi::create($fileData);
+      $formulir = PermohonanInformasi::find($request->id);
 
-    //   return response()->json(['data' => 'Berhasil menambah formulir permohonan informasi']);
-    // }
-    $permohonan = new PermohonanInformasi();
-    $permohonan->namaPermohonan = $request->input('namaPermohonan');
+      if ($request->hasFile('file')) {
+        File::delete(public_path($formulir->storagePath));
 
-    if ($request->hasFile('file')) {
-      $pdfFile = $request->file('file');
-      $pdfFileName = time() . '_' . $pdfFile->getClientOriginalName();
-      $pdfFile->move(public_path('uploads'), $pdfFileName);
-      // $pdfFile->store('uploads');
-      $permohonan->fileName = $pdfFileName;
+        $newFile = $request->file('file');
+        $namaFile = $newFile->getClientOriginalName();
+        $storagePath = $newFile->move('uploads/', $namaFile);
+      }
+
+      if ($request->has('namaFormulir')) {
+        $namaFormulir = $request->input('namaFormulir');
+      }
+      $formulir->update([
+        'storagePath' => $storagePath ?? $formulir->storagePath,
+        'file' => $file ?? $formulir->file,
+        'namaFormulir' => $namaFormulir ?? $formulir->namaFormulir,
+      ]);
+
+      return redirect('/super-admin/permohonan-informasi')->with('message', 'Berhasil mengubah');
     }
-
-    $permohonan->save();
-
-    return response()->json(['data' => 'Permohonan berhasil dibuat'], 201);
   }
 
   /**
@@ -99,60 +116,14 @@ class PermohonanInformasiController extends Controller
    */
   public function update(Request $request, $id)
   {
-    // $request->validate([
-    //   'namaPermohonan' => 'max:255',
-    //   'file' => 'mimes:docx,pdf'
-    // ]);
-
-    $permohonan = PermohonanInformasi::findOrFail($id);
-
-    // Menghapus file PDF lama jika ada
-    if ($request->hasFile('file')) {
-      Storage::delete(public_path('uploads/' . $permohonan->file));
-    }
-
-    $permohonan->namaPermohonan = $request->input('namaPermohonan');
-
-    if ($request->hasFile('file')) {
-      $pdfFile = $request->file('file');
-      $pdfFileName = time() . '_' . $pdfFile->getClientOriginalName();
-      $pdfFile->move(public_path('uploads'), $pdfFileName);
-      $permohonan->fileName = $pdfFileName;
-    }
-
-    $permohonan->save();
-
-    return response()->json(['message' => 'Permohonan berhasil diperbarui']);
+    //
   }
 
 
-  public function updateFile(Request $request)
+  public function downloadFile(Request $request, $id)
   {
-    $request->validate([
-      'namaPermohonan' => 'max:255',
-      'file' => 'mimes:docx,pdf'
-    ]);
-    $file = PermohonanInformasi::find($request->id);
-    // dd($request->all(), $file);
-
-    if ($request->hasFile('file')) {
-      // Hapus file yang ada sebelumnya
-      // File::delete($file->fileName);
-      Storage::delete($file->fileName);
-
-      $newFile = $request->file('file');
-      $newFileName = $newFile->getClientOriginalName();
-
-      // Pindahkan file baru ke direktori tujuan
-      $newFile->store('uploads');
-    }
-
-    $file->update([
-      'fileName' => $newFileName ?? $file->fileName,
-      'namaPermohonan' => $request->namaPermohonan ?? $file->namaPermohonan,
-    ]);
-
-    return response()->json(['data' => 'Berhasil mengubah formulir permohonan informasi']);
+    $data = PermohonanInformasi::find($id);
+    return Storage::download($data->storagePath);
   }
 
   /**
@@ -161,19 +132,15 @@ class PermohonanInformasiController extends Controller
   public function destroy(PermohonanInformasi $permohonanInformasi)
   {
     $permohonan = PermohonanInformasi::where('id', $permohonanInformasi->id)->first();
-    Storage::disk('uploads')->delete('1684478638_setting password.png');
-    Storage::delete(public_path('uploads'), '1684478638_setting password.png');
-    // if ($permohonan->fileName) {
-    //   Storage::delete(public_path('uploads/' . $permohonan->fileName));
-    // }
-    return back();
-    // return response()->json(['data' => 'Berhasil menghapus Formulir Permohonan Informasi']);
+    File::delete(public_path($permohonan->storagePath));
+    $permohonan->delete();
+    return response()->json(['data' => 'Berhasil menghapus Formulir Permohonan Informasi']);
   }
 
 
   public function deletePDF(Request $request)
   {
     Cloudinary::destroy($request->pdfName);
-    return response()->json(['data' => 'Berhasil menghapus PDF']);
+    return response()->json(['data' => 'Berhasil menghapus']);
   }
 }

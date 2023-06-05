@@ -3,6 +3,7 @@ import { Head } from "@inertiajs/react";
 import { useState } from "react";
 
 const PermohonanInformasi = ({ title, superadmin, permohonan }) => {
+  console.log(permohonan)
   const [profil, setProfil] = useState({});
   const openProfil = (i) => {
     setProfil((prevState) => ({
@@ -58,23 +59,23 @@ const PermohonanInformasi = ({ title, superadmin, permohonan }) => {
                   <h2 id="accordion-flush-heading-1" onClick={() => openProfil(i)}>
                     <button
                       type="button"
-                      className="flex items-center justify-between w-full py-5 font-medium text-left text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400"
+                      className="flex items-center justify-between w-full py-5 text-left text-black font-bold border-b border-gray-200 "
                     >
-                      <span>{data.namaPermohonan}</span>
-                      <button onClick={() => handleDownload(data)}>Download PDF</button>
+                      <span>{data.namaFormulir}</span>
+                      {/* <button onClick={() => handleDownload(data)}>Download PDF</button> */}
                     </button>
                   </h2>
-                  {/* {profil[i] && (
+                  {profil[i] && (
                     <div
                       id="accordion-flush-body-1"
                       aria-labelledby="accordion-flush-heading-1"
                     >
                       <div className="py-5 font-light border-b border-gray-200 dark:border-gray-700">
                         <p className="mb-2 max-h-96 overflow-auto">
-                          {data.pdfUrl ? (
+                          {data.file ? (
                             <div>
-                              <embed src={data.pdfUrl} type="application/pdf" width="100%" height="600px" />
-                              <button onClick={handleDownload}>Download PDF</button>
+                              <iframe src={`/uploads/${data.file}`} type="application/pdf" width="100%" height="600px" />
+                              {/* <button onClick={handleDownload}>Download PDF</button> */}
                             </div>
                           ) : (
                             <p>Loading PDF...</p>
@@ -82,7 +83,7 @@ const PermohonanInformasi = ({ title, superadmin, permohonan }) => {
                         </p>
                       </div>
                     </div>
-                  )} */}
+                  )}
                 </>
               )
             })}

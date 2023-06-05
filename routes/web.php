@@ -26,6 +26,7 @@ use App\Http\Controllers\SuperAdminPrestasiController;
 use App\Http\Controllers\SuperAdminSiswaController;
 use App\Http\Controllers\LayananPublikController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\FormulirController;
 use App\Http\Controllers\PermohonanInformasiController;
 use App\Http\Controllers\SosmedController;
 
@@ -110,9 +111,12 @@ Route::group([
   Route::resource('skm', SkmController::class);
   Route::resource('layanan-publik', LayananPublikController::class);
   Route::resource('event', EventController::class);
-  Route::resource('permohonan-informasi', PermohonanInformasiController::class);
   Route::resource('sosmed', SosmedController::class);
 
+  Route::resource('permohonan-informasi', PermohonanInformasiController::class);
+  // Route::resource('formulir', FormulirController::class);
+
+  Route::post('/formulir-update', [FormulirController::class, 'updateFormulir'])->name('updateFormulir');
 
   //route tabs banner
   Route::get('/banner', [SuperAdminController::class, 'banner'])->name('super-admin.banner');
